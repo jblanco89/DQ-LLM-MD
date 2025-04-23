@@ -8,7 +8,7 @@ from gensim.models import Phrases
 from gensim.utils import simple_preprocess
 from preprocess import load_kaggle_data
 
-# to do: check if nltk data is available, if not download it
+
 # to do: off-topic handling. Exclude them maybe by checking is_appreciation or is_deleted flags
 # to do: manage hieriarchical comments as elegible for topic analysis optionally
 # to do: consider to use an LDA alternative different from Bertopic but with similar performance or better. 
@@ -124,17 +124,17 @@ def lda_analysis(discussion: dict) -> list:
             alpha='auto',
             eta='auto',
             per_word_topics=True,
-            minimum_probability=0.01  # Lower threshold for topic assignment
+            minimum_probability=0.1  # Lower threshold for topic assignment
         )
 
-        topics = lda_model.print_topics(num_words=4, num_topics=num_topics)
+        topics = lda_model.print_topics(num_words=4, num_topics=4)
         
         # Debug output
-        print(f"Generated {num_topics} topics:")
-        for topic in topics:
-            print(topic)
-        print(f"Total documents: {len(documents)}")
-        print(f"Vocabulary size: {len(dictionary)}")
+        # print(f"Generated {num_topics} topics:")
+        # for topic in topics:
+        #     print(topic)
+        # print(f"Total documents: {len(documents)}")
+        # print(f"Vocabulary size: {len(dictionary)}")
         
         return topics
 
@@ -143,9 +143,10 @@ def lda_analysis(discussion: dict) -> list:
         return None
 
 if __name__ == '__main__':
-    data = load_kaggle_data("./data/getting-started.json")
+    # data = load_kaggle_data("./data/getting-started.json")
+    data = load_kaggle_data("./data/competition-hosting.json")
 
-    for i, discussion in enumerate(data[:10]):
+    for i, discussion in enumerate(data):
         print(f"\nAnalyzing discussion {i+1}: {discussion.get('title', 'No title')}")
         topics = lda_analysis(discussion)
         if topics:

@@ -111,7 +111,11 @@ for i, discussion in enumerate(data[:10]):
 
 ## Installation
 ```bash
-pip install nltk gensim numpy
+conda create -n master_project python=3.10.16
+conda activate  master_projec
+
+pip install -r requirements.txt
+
 python -m nltk.downloader stopwords wordnet
 ```
 
