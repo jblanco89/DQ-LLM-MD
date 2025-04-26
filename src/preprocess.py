@@ -1,21 +1,20 @@
+from config.config import EXPERTISE_RANKS
+from config.config import DOMAINS_TAGS
 import json
 import re
+import os
 from typing import List, Dict
 import numpy as np
-# from config.config import EXPERTISE_RANKS
+import pandas as pd
 
-#To do: Add a config file to store constants and configurations
-#To do: add a function to append the data to one file instead of creating a new one for each discussion
-#To do: add a function to save the data to a csv/json file to be used in the next step of the pipeline (viualization or modeling) 
 
-EXPERTISE_RANKS = {
-    "Novice": 1,
-    "Contributor": 2,
-    "Expert": 3,
-    "Master": 4,
-    "Grandmaster": 5,
-    None: 0 
-}
+#To do: Add a config file to store constants and configurations [done]
+#To do: add a function to append the data to one file instead of creating a new one for each discussion [done]
+#To do: add a function to save the data to a csv/json file to be used in the next step of the pipeline (viualization or modeling) [done]
+#To do: fix the issue related to tags and domains. The domains are not being matched correctly.
+
+
+
 
 def load_kaggle_data(path: str) -> List[Dict]:
     """Carga y normaliza datos de Kaggle"""
@@ -25,13 +24,18 @@ def load_kaggle_data(path: str) -> List[Dict]:
     cleaned_data = []
     for discussion_id, discussion in data.items():  # Iterate using .items()
         # Clean main discussion content
+        discussion["id"] = discussion_id
         discussion["content"] = clean_text(discussion["content"])
-        
+
+        discussion["forum"] = os.path.splitext(os.path.basename(path))[0]
+        discussion["n_comments"] = len(discussion.get("comments", {}))
+        discussion["domains"] = set_discussion_domain(discussion)
+
         # Clean comments if they exist
         if "comments" in discussion and discussion["comments"]:
             for comment_id, comment in discussion["comments"].items():
-                comment["content"] = clean_text(comment["content"])
-        
+                comment["content"] = clean_text(comment["content"])    
+       
         cleaned_data.append(discussion)
     
     return cleaned_data
@@ -40,7 +44,35 @@ def clean_text(text: str) -> str:
     """Normaliza texto para análisis"""
     text = re.sub(r'<[^>]+>', '', text)  # Remove HTML
     text = re.sub(r'\s+', ' ', text)     # Espacios múltiples
+    
+    # Keep more special characters that might be meaningful
+    text = re.sub(r'!?\[\]?\(https?:\S+\)', ' SCREENSHOT ', text)  # Better image handling
+    text = re.sub(r'http\S+|www\S+|https\S+', ' URL ', text, flags=re.MULTILINE)
+    text = re.sub(r'```.*?```|`.*?`', ' CODE ', text, flags=re.DOTALL)
+    text = re.sub(r'@\w+', lambda m: m.group().replace('@', 'USER_'), text)
+    
+    # Keep more punctuation that might be meaningful
+    text = re.sub(r'[^a-zA-Z\s\-0-9_\.\?]', ' ', text)
     return text.strip()
+
+def set_discussion_domain(discussion: Dict) -> list:
+    """Set the domains of the discussion based on tags.
+    
+    Each tag is checked against the DOMAINS_TAGS mapping.
+    A discussion can belong to multiple domains (e.g., AI and Levels).
+    """
+    tags = discussion.get("tags") or []
+    domains = set()
+    
+    for tag in tags:
+        domain = DOMAINS_TAGS.get(tag)
+        if domain is not None:
+            if isinstance(domain, list):
+                domains.update(domain)
+            else:
+                domains.add(domain)
+    
+    return list(domains)
 
 def extract_structural_features(discussion: Dict) -> Dict:
     """Calcula métricas estructurales con manejo de casos faltantes"""
@@ -93,10 +125,33 @@ def calculate_thread_depth(comments: Dict) -> int:
 
 
 
+
 if __name__ == "__main__":
-    data = load_kaggle_data("./data/getting-started.json")
-    # data = load_kaggle_data("./data/competition-hosting.json")
-    for i, discussion in enumerate(data):
-        features = extract_structural_features(discussion)
-        print(f"Discussion ID: {i+1}, Features: {features}")
+    data_dir = "./data/"
+    if not os.path.exists(data_dir):
+        print(f"Directory {data_dir} does not exist.")
+        exit(1)
+    all_discussions = []
+    for f in os.listdir(data_dir):
+        print(f"Processing file: {f}")
+        discussions = load_kaggle_data(os.path.join(data_dir, f))
+        all_discussions.extend(discussions)
+    
+    df = pd.DataFrame(all_discussions)
+    
+    features_list = []
+    for discussion in all_discussions:
+        feat = extract_structural_features(discussion)
+        feat['id'] = discussion['id']
+        features_list.append(feat)
+        print(f"Discussion ID: {discussion['id']}, Features: {feat}")
+    features_df = pd.DataFrame(features_list)
+    features_df = features_df[['id'] + [col for col in features_df.columns if col != 'id']]
+    
+    # Write both dataframes to different sheets of the same Excel file
+    with pd.ExcelWriter("./src/results/processed_data.xlsx") as writer:
+        df.to_excel(writer, sheet_name="Discussions", index=False)
+        features_df.to_excel(writer, sheet_name="Features", index=False)
+    print("Excel file saved as processed_data.xlsx")
+    
        
