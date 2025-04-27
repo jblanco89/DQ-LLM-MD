@@ -12,7 +12,7 @@ import ast
 # to do: off-topic handling. Exclude them maybe by checking is_appreciation or is_deleted flags
 # to do: manage hieriarchical comments as elegible for topic analysis optionally
 # to do: consider to use an LDA alternative different from Bertopic but with similar performance or better. 
-# to do: consider to merge here preprocessing text with preprocessing functions in preprocess.py [checked]
+# to do: consider to merge here preprocessing text with preprocessing functions in preprocess.py [done]
 
 def load_processed_data(path: str) -> list:
     """Load and normalize data from Kaggle"""
@@ -149,7 +149,7 @@ if __name__ == '__main__':
     if not data:
         print("No data to process")
         exit(1)
-    for i, discussion in enumerate(data):
+    for i, discussion in enumerate(data[:5]):
         print(f"\nAnalyzing discussion {i+1}: {discussion.get('title', 'No title')}")
         topics = lda_analysis(discussion)
         if topics:

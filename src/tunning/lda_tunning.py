@@ -17,7 +17,7 @@ from pathlib import Path
 
 # if python .\tunning\lda_tunning.py does not work, run this command in the terminal:
 # python -m tunning.lda_tunning
-from preprocess import load_kaggle_data
+from src.preprocess import load_kaggle_data
 
 Path("tunning/logs").mkdir(parents=True, exist_ok=True)
 

@@ -6,14 +6,13 @@ import os
 from typing import List, Dict
 import numpy as np
 import pandas as pd
-
+from nltk.tokenize import word_tokenize
+from collections import defaultdict
 
 #To do: Add a config file to store constants and configurations [done]
 #To do: add a function to append the data to one file instead of creating a new one for each discussion [done]
 #To do: add a function to save the data to a csv/json file to be used in the next step of the pipeline (viualization or modeling) [done]
-#To do: fix the issue related to tags and domains. The domains are not being matched correctly.
-
-
+#To do: fix the issue related to tags and domains. The domains are not being matched correctly. [done]
 
 
 def load_kaggle_data(path: str) -> List[Dict]:
@@ -55,24 +54,44 @@ def clean_text(text: str) -> str:
     text = re.sub(r'[^a-zA-Z\s\-0-9_\.\?]', ' ', text)
     return text.strip()
 
-def set_discussion_domain(discussion: Dict) -> list:
-    """Set the domains of the discussion based on tags.
+
+def set_discussion_domain(discussion: Dict) -> List[str]:
+    """Set the domains of the discussion based on tags or content.
     
-    Each tag is checked against the DOMAINS_TAGS mapping.
-    A discussion can belong to multiple domains (e.g., AI and Levels).
+    First tries tag-based classification, falls back to keyword matching in text.
     """
-    tags = discussion.get("tags") or []
+    tags = discussion.get("tags", [])
     domains = set()
     
-    for tag in tags:
-        domain = DOMAINS_TAGS.get(tag)
-        if domain is not None:
-            if isinstance(domain, list):
-                domains.update(domain)
-            else:
+    if tags:
+        # Tag-based classification
+        tag_to_domain = {}
+        for domain, domain_tags in DOMAINS_TAGS.items():
+            for tag in domain_tags:
+                tag_to_domain[tag.lower()] = domain
+        
+        for tag in tags:
+            domain = tag_to_domain.get(tag.lower())
+            if domain:
                 domains.add(domain)
+    else:
+        # Text-based keyword matching
+        text = f"{discussion.get('title', '')} {discussion.get('content', '')}".lower()
+        tokens = set(word_tokenize(text))
+        
+        domain_scores = defaultdict(int)
+        for domain, domain_tags in DOMAINS_TAGS.items():
+            # Convert domain_tags to set for intersection
+            keywords = set(tag.lower() for tag in domain_tags)
+            domain_scores[domain] = len(tokens & keywords)
+        
+        # Get domains with at least 2 matching keywords
+        domains = {domain for domain, score in domain_scores.items() if score >= 1}
     
-    return list(domains)
+    return list(domains) if domains else ["General"]
+    
+    # return list(domains) if domains else ["General"]
+
 
 def extract_structural_features(discussion: Dict) -> Dict:
     """Calcula métricas estructurales con manejo de casos faltantes"""
