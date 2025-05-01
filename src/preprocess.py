@@ -3,7 +3,7 @@ from config.config import DOMAINS_TAGS
 import json
 import re
 import os
-from typing import List, Dict
+from typing import List, Dict, Tuple
 import numpy as np
 import pandas as pd
 from nltk.tokenize import word_tokenize
@@ -15,29 +15,64 @@ from collections import defaultdict
 #To do: fix the issue related to tags and domains. The domains are not being matched correctly. [done]
 
 
-def load_kaggle_data(path: str) -> List[Dict]:
-    """Carga y normaliza datos de Kaggle"""
+def load_kaggle_data(path: str) -> Tuple[List[Dict], List[Dict], List[Dict]]:
+    """Load and normalize Kaggle data into discussions, comments, and features"""
     with open(path, encoding='latin1') as f:
         data = json.load(f)
     
-    cleaned_data = []
-    for discussion_id, discussion in data.items():  # Iterate using .items()
-        # Clean main discussion content
-        discussion["id"] = discussion_id
-        discussion["content"] = clean_text(discussion["content"])
-
-        discussion["forum"] = os.path.splitext(os.path.basename(path))[0]
-        discussion["n_comments"] = len(discussion.get("comments", {}))
-        discussion["domains"] = set_discussion_domain(discussion)
-
-        # Clean comments if they exist
-        if "comments" in discussion and discussion["comments"]:
-            for comment_id, comment in discussion["comments"].items():
-                comment["content"] = clean_text(comment["content"])    
-       
-        cleaned_data.append(discussion)
+    discussions, comments, features = [], [], []
     
-    return cleaned_data
+    for discussion_id, discussion in data.items():
+        # Process discussion
+        discussion.update({
+            "id": discussion_id,
+            "content": clean_text(discussion["content"]),
+            "forum": os.path.splitext(os.path.basename(path))[0],
+            "n_comments": len(discussion.get("comments", {})),
+            "domains": set_discussion_domain(discussion)
+        })
+        
+        # Process features
+        features.append({
+            **extract_structural_features(discussion),
+            "discussion_id": discussion_id
+        })
+        
+        # Process comments
+        for comment_id, comment in discussion.pop("comments", {}).items():
+            comments.append({
+                "discussion_id": discussion_id,
+                "id": comment_id,
+                "content": clean_text(comment["content"]),
+                **{k: v for k, v in comment.items() if k != "content"}
+            })
+        
+        discussions.append(discussion)
+    
+    return discussions, comments, features
+
+def process_files(data_dir: str) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    """Process all JSON files in directory and return DataFrames"""
+    if not os.path.exists(data_dir):
+        raise FileNotFoundError(f"Directory {data_dir} does not exist")
+    
+    all_data = ([], [], [])
+    
+    for filename in os.listdir(data_dir):
+        print(f"Processing {filename}")
+        file_data = load_kaggle_data(os.path.join(data_dir, filename))
+        for all_list, new_items in zip(all_data, file_data):
+            all_list.extend(new_items)
+    
+    return tuple(pd.DataFrame(data) for data in all_data)
+
+def save_to_excel(dataframes: Tuple[pd.DataFrame, ...], output_path: str) -> None:
+    """Save DataFrames to Excel sheets"""
+    sheet_names = ["Discussions", "Comments", "Features"]
+    with pd.ExcelWriter(output_path) as writer:
+        for df, name in zip(dataframes, sheet_names):
+            df.to_excel(writer, sheet_name=name, index=False)
+    print(f"Excel file saved to {output_path}")
 
 def clean_text(text: str) -> str:
     """Normaliza texto para análisis"""
@@ -143,34 +178,10 @@ def calculate_thread_depth(comments: Dict) -> int:
     
 
 
-
-
 if __name__ == "__main__":
     data_dir = "./data/"
-    if not os.path.exists(data_dir):
-        print(f"Directory {data_dir} does not exist.")
-        exit(1)
-    all_discussions = []
-    for f in os.listdir(data_dir):
-        print(f"Processing file: {f}")
-        discussions = load_kaggle_data(os.path.join(data_dir, f))
-        all_discussions.extend(discussions)
+    output_path = "./src/results/processed_data.xlsx"
     
-    df = pd.DataFrame(all_discussions)
-    
-    features_list = []
-    for discussion in all_discussions:
-        feat = extract_structural_features(discussion)
-        feat['id'] = discussion['id']
-        features_list.append(feat)
-        print(f"Discussion ID: {discussion['id']}, Features: {feat}")
-    features_df = pd.DataFrame(features_list)
-    features_df = features_df[['id'] + [col for col in features_df.columns if col != 'id']]
-    
-    # Write both dataframes to different sheets of the same Excel file
-    with pd.ExcelWriter("./src/results/processed_data.xlsx") as writer:
-        df.to_excel(writer, sheet_name="Discussions", index=False)
-        features_df.to_excel(writer, sheet_name="Features", index=False)
-    print("Excel file saved as processed_data.xlsx")
-    
+    dfs = process_files(data_dir)
+    save_to_excel(dfs, output_path)
        

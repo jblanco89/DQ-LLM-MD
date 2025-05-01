@@ -7,6 +7,14 @@ EXPERTISE_RANKS = {
     None: 0 
 }
 
+MEDAL_BOOST = {
+        None: 0,
+        'bronze': 1,
+        'silver': 2,
+        'gold': 3,
+        'platinum': 4
+    }
+
 DOMAINS_TAGS = {
     "AI": [
         "AI", "Artificial Intelligence",
