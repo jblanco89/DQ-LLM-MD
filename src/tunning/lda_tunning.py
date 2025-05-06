@@ -1,106 +1,84 @@
 import re
-import gensim
 import datetime
 import logging
+import json
 import numpy as np
+from typing import Dict, List, Tuple, Optional
+from pathlib import Path
 from tqdm import tqdm
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from gensim import corpora
-from gensim.models import Phrases
+from gensim.models import Phrases, LdaModel
 from gensim.utils import simple_preprocess
 from gensim.models import CoherenceModel
 from sklearn.model_selection import ParameterSampler
-from scipy.stats import randint, uniform
-from pathlib import Path
-
-
-# if python .\tunning\lda_tunning.py does not work, run this command in the terminal:
-# python -m tunning.lda_tunning
-from src.preprocess import load_kaggle_data
-
-Path("tunning/logs").mkdir(parents=True, exist_ok=True)
-
-now = datetime.datetime.now()
-log_filename = f"fine_tune_lda_{now.strftime('%Y%m%d')}.log"
-
-# Configure logging
-logging.basicConfig(filename=f"tunning/logs/{log_filename}",
-                    filemode='a',
-                    format='%(asctime)s,%(msecs)03d %(name)s %(levelname)s %(message)s',
-                    datefmt='%Y-%m-%d %H:%M:%S',
-                    level=logging.INFO)
-
+from scipy.stats import randint
 
 # Initialize tools
 lemmatizer = WordNetLemmatizer()
 
-def preprocess_text(text: str) -> list:
-    """More conservative preprocessing that preserves key information"""
+def load_json_data(path: str) -> Dict[str, Dict]:
+    """Load JSON data with discussion ID as keys"""
+    with open(path, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+def preprocess_text(text: str) -> List[str]:
+    """Preprocess text with technical term preservation"""
     if not text:
         return []
     
-    # Keep more special characters that might be meaningful
-    text = re.sub(r'!?\[\]?\(https?:\S+\)', ' SCREENSHOT ', text)  # Better image handling
+    # Enhanced URL and special pattern handling
+    text = re.sub(r'!?\[\]?\(https?:\S+\)', ' SCREENSHOT ', text)
     text = re.sub(r'http\S+|www\S+|https\S+', ' URL ', text, flags=re.MULTILINE)
     text = re.sub(r'```.*?```|`.*?`', ' CODE ', text, flags=re.DOTALL)
     text = re.sub(r'@\w+', lambda m: m.group().replace('@', 'USER_'), text)
     
-    # Keep more punctuation that might be meaningful
+    # Keep meaningful punctuation
     text = re.sub(r'[^a-zA-Z\s\-0-9_\.\?]', ' ', text)
     
-    # Custom stopwords that preserves technical terms
+    # Technical-aware stopwords
     custom_stopwords = set(stopwords.words('english')) - {
-        'how', 'what', 'why', 'when', 'which', 'where'
+        'how', 'what', 'why', 'when', 'which', 'where', 'many'
     }
-    custom_stopwords.update({'hi', 'also', 'use'})  # Remove generic terms
+    custom_stopwords.update({'hi', 'also', 'use', 'like'})
     
-    # Minimum length reduced to 2 for technical terms
     tokens = simple_preprocess(text, deacc=True, min_len=2, max_len=30)
-    
-    # Less aggressive filtering
     tokens = [lemmatizer.lemmatize(token) 
              for token in tokens 
              if token not in custom_stopwords]
     
     return tokens
 
-def prepare_corpus(discussion: dict, min_docs: int = 1, min_tokens: int = 5) -> tuple:
-    """Prepare corpus for LDA analysis from discussion data"""
+def prepare_corpus(discussion: Dict) -> Tuple[Optional[List[List[str]]], 
+                                            Optional[corpora.Dictionary], 
+                                            Optional[List], 
+                                            Optional[int]]:
+    """Prepare corpus from discussion JSON structure"""
     documents = []
-
-    # Add main content with debug info
-    if 'content' in discussion and discussion['content']:
-        original_content = discussion['content']
-        processed = preprocess_text(original_content)
+    
+    # Process main content
+    if discussion.get('content'):
+        processed = preprocess_text(discussion['content'])
         if processed:
             documents.append(processed)
-            print(f"\nProcessing discussion: {discussion.get('title', 'No title')}")
-            print(f"Original content sample: {original_content[:280]}...")
-            print(f"Processed tokens sample: {processed[:len(processed)]}...")
-
-    # Add comments
-    comments = discussion.get("comments", {})
-    for comment in comments.values():
-        if 'content' in comment and comment['content']:
-            processed = preprocess_text(comment['content'])
+    
+    # Process comments
+    comments = discussion.get('comments', {})
+    for comment_id, comment_data in comments.items():
+        if comment_data.get('content'):
+            processed = preprocess_text(comment_data['content'])
             if processed:
                 documents.append(processed)
-
+    
     # Skip if insufficient data
-    if len(documents) < min_docs or sum(len(d) for d in documents) < min_tokens:
-        print("Insufficient data after preprocessing")
+    if len(documents) < 1 or sum(len(d) for d in documents) < 5:
         return None, None, None, None
-
-    # Include technical terms and handle multi-word terms
+    
+    # Technical terms preservation
     technical_terms = {
-        'feature_engineering', 'auto_ml', 'data_centric', 
-        'model_centric', 'random_search', 'grid_search', 'machine_learning',
-        'deep_learning', 'transfer_learning', 'reinforcement_learning',
-        'probabilistic_modeling', 'programming', 'data_science', 'data_analysis',
-        'data_visualization', 'natural_language_processing', 'computer_vision',
-        'time_series_analysis', 'classification', 'pytorch', 'word2vec',
-        'fasttext', 'bert', 'gpt', 'transformer', 'doc2vec', 'cnn', 'rnn'
+        'feature_engineering', 'dataset', 'machine_learning', 
+        'data_analysis', 'model_training', 'data_visualization'
     }
     
     documents = [
@@ -109,137 +87,169 @@ def prepare_corpus(discussion: dict, min_docs: int = 1, min_tokens: int = 5) -> 
          for term in (word.replace(' ', '_'),)]
         for doc in documents
     ]
-
+    
     # Phrase detection
     bigram = Phrases(documents, min_count=2, threshold=5)
     trigram = Phrases(bigram[documents], min_count=2, threshold=5)
     documents_phrased = [trigram[bigram[doc]] for doc in documents]
-
-    # Create dictionary and corpus
+    
+    # Create dictionary
     dictionary = corpora.Dictionary(documents_phrased)
+    dictionary.filter_extremes(no_below=1, no_above=0.9)
     
-    # Adapt filter thresholds based on corpus size
-    if len(documents) < 10:
-        dictionary.filter_extremes(no_below=1, no_above=0.9)
-    else:
-        dictionary.filter_extremes(no_below=2, no_above=0.7)
-    
-    # Ensure we have enough terms
     if len(dictionary) < 5:
-        dictionary.filter_extremes(no_below=1, no_above=0.95)
-        if len(dictionary) < 5:
-            print(f"Insufficient vocabulary: {len(dictionary)} terms")
-            return None, None, None, None
-
-    corpus = [dictionary.doc2bow(doc) for doc in documents_phrased]
+        return None, None, None, None
     
+    corpus = [dictionary.doc2bow(doc) for doc in documents_phrased]
     return documents_phrased, dictionary, corpus, len(documents)
 
-def evaluate_lda_model(model, corpus, dictionary, texts):
+def evaluate_lda_model(model: LdaModel, corpus: List, 
+                      dictionary: corpora.Dictionary, 
+                      texts: List[List[str]]) -> float:
     """Evaluate LDA model using coherence score"""
     try:
-        # Calculate coherence using c_v measure
         coherence_model = CoherenceModel(
             model=model, 
             texts=texts, 
             dictionary=dictionary, 
             coherence='c_v'
         )
-        coherence_score = coherence_model.get_coherence()
-        return coherence_score
+        return coherence_model.get_coherence()
     except Exception as e:
-        print(f"Error calculating coherence: {str(e)}")
+        logging.error(f"Coherence calculation failed: {str(e)}")
         return -1
 
-def lda_hyperparameter_tuning(discussion: dict, n_iter: int = 10) -> list:
-    """Perform hyperparameter tuning for LDA on a discussion"""
-    # Prepare the corpus
+def lda_hyperparameter_tuning(discussion: Dict, n_iter: int = 10) -> Optional[Dict]:
+    """Returns dictionary with coherence score and topic probabilities"""
     texts, dictionary, corpus, num_docs = prepare_corpus(discussion)
     if not corpus:
+        logging.warning("Skipped discussion - insufficient data")
         return None
+
+    # Adaptive parameter ranges
+    min_topics = max(2, min(num_docs//4, 2))
+    max_topics = max(3, min(num_docs//2 + 1, 10))
     
-    print(f"Corpus prepared: {num_docs} documents, {len(dictionary)} unique terms")
-    
-    # Parameter search space
     param_dist = {
-        # Adapt number of topics based on corpus size
-        "num_topics": randint(max(1, min(num_docs // 3, 2)), 
-                             min(max(num_docs // 2, 3), 10) + 1),
-        "alpha": ['symmetric', 'asymmetric', 'auto'],
-        "eta": ['symmetric', 'auto'],
-        "passes": randint(5, 31),  # Number of passes through corpus
-        "chunksize": randint(50, 2001),  # Batch size
-        "decay": uniform(0.5, 0.49),  # Learning rate decay [0.5, 0.99]
-        "offset": randint(1, 51),  # Learning offset
-        "per_word_topics": [True],
+        "num_topics": randint(min_topics, max_topics),
+        "alpha": ['symmetric', 'auto'],
+        "eta": ['auto'],
+        "passes": randint(5, 15),
+        "chunksize": randint(100, 1000),
+        "decay": [0.7],
+        "offset": [10, 12],
+        "per_word_topics": [True, False],
         "random_state": [42]
     }
-    
-    # Sample parameters
-    param_sets = list(ParameterSampler(param_dist, n_iter=n_iter, random_state=42))
-    
-    # Track best model
+
     best_model = None
     best_score = -float('inf')
     best_params = None
-    best_topics = None
-    
-    print(f"Running hyperparameter search with {n_iter} iterations...")
-    
-    # Train and evaluate models
-    for i, params in enumerate(tqdm(param_sets)):
+
+    for params in tqdm(list(ParameterSampler(param_dist, n_iter=n_iter, random_state=42))):
         try:
-            # Train LDA model
-            lda_model = gensim.models.LdaModel(
+            model = LdaModel(
                 corpus=corpus,
                 id2word=dictionary,
                 **params
             )
             
-            # Evaluate model
-            coherence_score = evaluate_lda_model(lda_model, corpus, dictionary, texts)
-            
-            # Track best model by coherence score
-            print(f"Trial {i+1}/{n_iter}: Topics={params['num_topics']}, "
-                  f"Alpha={params['alpha']}, Passes={params['passes']}, "
-                  f"Coherence={coherence_score:.4f}")
-            
-            if coherence_score > best_score:
-                best_score = coherence_score
-                best_model = lda_model
+            score = evaluate_lda_model(model, corpus, dictionary, texts)
+            if score > best_score:
+                best_score = score
+                best_model = model
                 best_params = params
-                # Get topics
-                best_topics = [(i, " + ".join([t[0] for t in lda_model.show_topic(i, 5)])) 
-                              for i in range(params["num_topics"])]
                 
         except Exception as e:
-            print(f"Error in trial {i+1}: {str(e)}")
+            logging.error(f"Training failed: {str(e)}")
             continue
-    
-    # Report results
-    if best_model:
-        print("\nHyperparameter Tuning Results:")
-        print(f"Best Coherence Score: {best_score:.4f}")
-        print(f"Best Parameters: {best_params}")
-        return best_topics
-    else:
-        print("No viable model found during tuning.")
+
+    if not best_model:
         return None
 
-if __name__ == '__main__':
-    # Load data
-    data_path = "./data/competition-hosting.json"  # Change as needed
-    data = load_kaggle_data(data_path)
+    # Get topic probabilities and terms
+    topic_info = []
+    for i in range(best_params["num_topics"]):
+        topic_terms = best_model.show_topic(i, 10)
+        topic_prob = sum(prob for _, prob in topic_terms)
+        topic_info.append({
+            "topic_id": i,
+            "probability": topic_prob,
+            "terms": [term for term, _ in topic_terms]
+        })
+
+    return {
+        "coherence_score": best_score,
+        "parameters": best_params,
+        "topics": topic_info,
+        "topic_distribution": best_model.get_document_topics(corpus[0])
+    }
+
+def print_results(results: Dict):
+    """Pretty print the results"""
+    print(f"\n{'='*50}")
+    print(f"Best Coherence Score: {results['coherence_score']:.4f}")
+    print(f"Parameters Used: {results['parameters']}")
     
-    # Analyze a subset of discussions
-    for i, discussion in enumerate(data[:2]):
-        print(f"\n{'='*80}\nAnalyzing discussion {i+1}: {discussion.get('title', 'No title')}")
+    print("\nTopic Probabilities and Terms:")
+    for topic in results['topics']:
+        print(f"\nTopic {topic['topic_id']} (Probability: {topic['probability']:.2%})")
+        print("Top Terms:", ", ".join(topic['terms']))
+    
+    print("\nExample Document Topic Distribution:")
+    for topic_id, prob in results['topic_distribution']:
+        print(f"Topic {topic_id}: {prob:.2%}")
+
+# In your analyze_discussions function:
+def analyze_discussions(data: Dict[str, Dict], max_discussions: int = 5):
+    results = {}
+    for discussion_id, discussion in list(data.items())[:max_discussions]:
+        title = discussion.get('title', f"Discussion {discussion_id}")
+        print(f"\nAnalyzing: {title}")
         
-        topics = lda_hyperparameter_tuning(discussion, n_iter=4)
-        
-        if topics:
-            print("\nDetected topics:")
-            for topic_id, topic_terms in topics:
-                print(f"Topic {topic_id+1}: {topic_terms}")
+        tuning_results = lda_hyperparameter_tuning(discussion, n_iter=5)
+        if tuning_results:
+            print_results(tuning_results)
+            results[discussion_id] = tuning_results
         else:
-            print("No valid topics extracted for this discussion")
+            print("No topics extracted")
+    
+    return results
+
+if __name__ == '__main__':
+    # Configure logging
+    Path("logs").mkdir(exist_ok=True)
+    logging.basicConfig(
+        filename=f"src/tunning/logs/lda_tuning_{datetime.datetime.now().strftime('%Y%m%d')}.log",
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s'
+    )
+    
+    # Load and process data
+    data_path = "data/accomplishments.json"  # Update with your path
+    try:
+        discussions_data = load_json_data(data_path)
+        print(f"Loaded {len(discussions_data)} discussions")
+        
+        results = analyze_discussions(discussions_data, max_discussions=2)
+        
+        # Simple fix - convert numpy floats to regular floats before saving
+        def convert_floats(obj):
+            if isinstance(obj, np.floating):
+                return float(obj)
+            elif isinstance(obj, np.integer):
+                return int(obj)
+            elif isinstance(obj, dict):
+                return {k: convert_floats(v) for k, v in obj.items()}
+            elif isinstance(obj, list):
+                return [convert_floats(v) for v in obj]
+            return obj
+
+
+        # # Save results
+        # with open("src/results/lda_topics.json", "w") as f:
+        #     json.dump(convert_floats(results), f, indent=2)
+            
+    except Exception as e:
+        logging.critical(f"Pipeline failed: {str(e)}")
+        raise

@@ -1,0 +1,1252 @@
+2025-05-03 16:47:22,638 - INFO - collecting all words and their counts
+2025-05-03 16:47:22,638 - INFO - PROGRESS: at sentence #0, processed 0 words and 0 word types
+2025-05-03 16:47:22,638 - INFO - collected 237 token types (unigram + bigrams) from a corpus of 148 words and 2 sentences
+2025-05-03 16:47:22,638 - INFO - merged Phrases<237 vocab, min_count=2, threshold=5, max_vocab_size=40000000>
+2025-05-03 16:47:22,946 - INFO - Phrases lifecycle event {'msg': 'built Phrases<237 vocab, min_count=2, threshold=5, max_vocab_size=40000000> in 0.00s', 'datetime': '2025-05-03T16:47:22.638091', 'gensim': '4.3.0', 'python': '3.10.10 | packaged by Anaconda, Inc. | (main, Mar 21 2023, 18:39:17) [MSC v.1916 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.26100-SP0', 'event': 'created'}
+2025-05-03 16:47:22,956 - INFO - collecting all words and their counts
+2025-05-03 16:47:22,957 - INFO - PROGRESS: at sentence #0, processed 0 words and 0 word types
+2025-05-03 16:47:22,957 - INFO - collected 237 token types (unigram + bigrams) from a corpus of 148 words and 2 sentences
+2025-05-03 16:47:22,957 - INFO - merged Phrases<237 vocab, min_count=2, threshold=5, max_vocab_size=40000000>
+2025-05-03 16:47:22,957 - INFO - Phrases lifecycle event {'msg': 'built Phrases<237 vocab, min_count=2, threshold=5, max_vocab_size=40000000> in 0.00s', 'datetime': '2025-05-03T16:47:22.957155', 'gensim': '4.3.0', 'python': '3.10.10 | packaged by Anaconda, Inc. | (main, Mar 21 2023, 18:39:17) [MSC v.1916 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.26100-SP0', 'event': 'created'}
+2025-05-03 16:47:22,958 - INFO - adding document #0 to Dictionary<0 unique tokens: []>
+2025-05-03 16:47:22,958 - INFO - built Dictionary<96 unique tokens: ['acura', 'amount', 'attribute', 'audi', 'automatic']...> from 2 documents (total 148 corpus positions)
+2025-05-03 16:47:22,958 - INFO - Dictionary lifecycle event {'msg': "built Dictionary<96 unique tokens: ['acura', 'amount', 'attribute', 'audi', 'automatic']...> from 2 documents (total 148 corpus positions)", 'datetime': '2025-05-03T16:47:22.958015', 'gensim': '4.3.0', 'python': '3.10.10 | packaged by Anaconda, Inc. | (main, Mar 21 2023, 18:39:17) [MSC v.1916 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.26100-SP0', 'event': 'created'}
+2025-05-03 16:47:22,958 - INFO - discarding 9 tokens: [('based', 2), ('characteristic', 2), ('thank', 2), ('url', 2), ('vehicle', 2), ('dataset', 2), ('different', 2), ('environmental', 2), ('impact', 2)]...
+2025-05-03 16:47:22,958 - INFO - keeping 87 tokens which were in no less than 1 and no more than 1 (=90.0%) documents
+2025-05-03 16:47:22,958 - INFO - resulting dictionary: Dictionary<87 unique tokens: ['acura', 'amount', 'attribute', 'audi', 'automatic']...>
+2025-05-03 16:47:23,036 - INFO - using symmetric alpha at 0.5
+2025-05-03 16:47:23,036 - INFO - using serial LDA version on this node
+2025-05-03 16:47:23,036 - INFO - running online (multi-pass) LDA training, 2 topics, 12 passes over the supplied corpus of 2 documents, updating model once every 2 documents, evaluating perplexity every 2 documents, iterating 50x with a convergence threshold of 0.001000
+2025-05-03 16:47:23,047 - INFO - -5.276 per-word bound, 38.7 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:23,047 - INFO - PROGRESS: pass 0, at document #2/2
+2025-05-03 16:47:23,048 - INFO - topic #0 (0.500): 0.015*"fuel" + 0.014*"transmission" + 0.014*"class" + 0.014*"specifies" + 0.014*"engine" + 0.014*"etc" + 0.013*"year" + 0.013*"model" + 0.013*"size" + 0.013*"type"
+2025-05-03 16:47:23,048 - INFO - topic #1 (0.500): 0.015*"insight" + 0.014*"size" + 0.014*"providing" + 0.013*"fuel" + 0.013*"type" + 0.013*"class" + 0.013*"make" + 0.013*"appears" + 0.013*"manufacturer" + 0.013*"representing"
+2025-05-03 16:47:23,048 - INFO - topic diff=0.060345, rho=0.199526
+2025-05-03 16:47:23,052 - INFO - -5.159 per-word bound, 35.7 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:23,052 - INFO - PROGRESS: pass 1, at document #2/2
+2025-05-03 16:47:23,053 - INFO - topic #0 (0.500): 0.017*"fuel" + 0.016*"transmission" + 0.016*"engine" + 0.016*"class" + 0.015*"etc" + 0.015*"year" + 0.015*"specifies" + 0.014*"size" + 0.013*"providing" + 0.013*"model"
+2025-05-03 16:47:23,053 - INFO - topic #1 (0.500): 0.015*"insight" + 0.014*"providing" + 0.014*"size" + 0.014*"fuel" + 0.014*"appears" + 0.013*"class" + 0.013*"type" + 0.013*"sharing" + 0.013*"year" + 0.013*"manufacturer"
+2025-05-03 16:47:23,053 - INFO - topic diff=0.052685, rho=0.175620
+2025-05-03 16:47:23,054 - INFO - -5.047 per-word bound, 33.1 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:23,054 - INFO - PROGRESS: pass 2, at document #2/2
+2025-05-03 16:47:23,055 - INFO - topic #0 (0.500): 0.020*"fuel" + 0.017*"transmission" + 0.017*"engine" + 0.017*"class" + 0.017*"etc" + 0.016*"year" + 0.016*"size" + 0.015*"providing" + 0.015*"specifies" + 0.014*"model"
+2025-05-03 16:47:23,056 - INFO - topic #1 (0.500): 0.015*"appears" + 0.015*"insight" + 0.014*"sharing" + 0.014*"user_krupadharamshi" + 0.014*"resource" + 0.014*"analyzing" + 0.014*"providing" + 0.014*"size" + 0.014*"valuable" + 0.013*"fuel"
+2025-05-03 16:47:23,056 - INFO - topic diff=0.057926, rho=0.166050
+2025-05-03 16:47:23,057 - INFO - -4.949 per-word bound, 30.9 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:23,057 - INFO - PROGRESS: pass 3, at document #2/2
+2025-05-03 16:47:23,058 - INFO - topic #0 (0.500): 0.021*"fuel" + 0.018*"transmission" + 0.018*"engine" + 0.018*"class" + 0.018*"etc" + 0.017*"year" + 0.017*"size" + 0.017*"providing" + 0.015*"specifies" + 0.014*"model"
+2025-05-03 16:47:23,058 - INFO - topic #1 (0.500): 0.016*"appears" + 0.015*"sharing" + 0.015*"user_krupadharamshi" + 0.015*"resource" + 0.015*"analyzing" + 0.015*"valuable" + 0.015*"comprehensive" + 0.014*"insight" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:47:23,058 - INFO - topic diff=0.051390, rho=0.157656
+2025-05-03 16:47:23,058 - INFO - -4.881 per-word bound, 29.5 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:23,058 - INFO - PROGRESS: pass 4, at document #2/2
+2025-05-03 16:47:23,058 - INFO - topic #0 (0.500): 0.023*"fuel" + 0.019*"transmission" + 0.019*"engine" + 0.019*"class" + 0.019*"etc" + 0.018*"year" + 0.018*"size" + 0.018*"providing" + 0.015*"specifies" + 0.015*"model"
+2025-05-03 16:47:23,058 - INFO - topic #1 (0.500): 0.017*"appears" + 0.017*"sharing" + 0.017*"user_krupadharamshi" + 0.016*"resource" + 0.016*"analyzing" + 0.016*"valuable" + 0.016*"comprehensive" + 0.014*"insight" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:47:23,058 - INFO - topic diff=0.046093, rho=0.150223
+2025-05-03 16:47:23,064 - INFO - -4.834 per-word bound, 28.5 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:23,064 - INFO - PROGRESS: pass 5, at document #2/2
+2025-05-03 16:47:23,064 - INFO - topic #0 (0.500): 0.024*"fuel" + 0.020*"transmission" + 0.020*"engine" + 0.020*"class" + 0.019*"etc" + 0.019*"year" + 0.019*"size" + 0.018*"providing" + 0.016*"specifies" + 0.015*"model"
+2025-05-03 16:47:23,064 - INFO - topic #1 (0.500): 0.018*"appears" + 0.018*"sharing" + 0.018*"user_krupadharamshi" + 0.017*"resource" + 0.017*"analyzing" + 0.017*"valuable" + 0.017*"comprehensive" + 0.014*"insight" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:47:23,065 - INFO - topic diff=0.041760, rho=0.143587
+2025-05-03 16:47:23,066 - INFO - -4.803 per-word bound, 27.9 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:23,066 - INFO - PROGRESS: pass 6, at document #2/2
+2025-05-03 16:47:23,066 - INFO - topic #0 (0.500): 0.025*"fuel" + 0.020*"transmission" + 0.020*"engine" + 0.020*"class" + 0.020*"etc" + 0.020*"year" + 0.020*"size" + 0.019*"providing" + 0.016*"specifies" + 0.015*"model"
+2025-05-03 16:47:23,066 - INFO - topic #1 (0.500): 0.019*"appears" + 0.019*"sharing" + 0.019*"user_krupadharamshi" + 0.019*"resource" + 0.018*"analyzing" + 0.018*"valuable" + 0.018*"comprehensive" + 0.013*"insight" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:47:23,066 - INFO - topic diff=0.038019, rho=0.137621
+2025-05-03 16:47:23,066 - INFO - -4.784 per-word bound, 27.5 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:23,066 - INFO - PROGRESS: pass 7, at document #2/2
+2025-05-03 16:47:23,069 - INFO - topic #0 (0.500): 0.025*"fuel" + 0.021*"transmission" + 0.020*"engine" + 0.020*"class" + 0.020*"etc" + 0.020*"year" + 0.020*"size" + 0.020*"providing" + 0.016*"specifies" + 0.015*"model"
+2025-05-03 16:47:23,069 - INFO - topic #1 (0.500): 0.020*"appears" + 0.020*"sharing" + 0.020*"user_krupadharamshi" + 0.019*"resource" + 0.019*"analyzing" + 0.019*"valuable" + 0.019*"comprehensive" + 0.013*"insight" + 0.012*"providing" + 0.012*"size"
+2025-05-03 16:47:23,069 - INFO - topic diff=0.034681, rho=0.132224
+2025-05-03 16:47:23,069 - INFO - -4.773 per-word bound, 27.3 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:23,069 - INFO - PROGRESS: pass 8, at document #2/2
+2025-05-03 16:47:23,069 - INFO - topic #0 (0.500): 0.026*"fuel" + 0.021*"transmission" + 0.021*"engine" + 0.021*"class" + 0.021*"etc" + 0.021*"year" + 0.020*"size" + 0.020*"providing" + 0.016*"specifies" + 0.016*"model"
+2025-05-03 16:47:23,069 - INFO - topic #1 (0.500): 0.021*"appears" + 0.021*"sharing" + 0.021*"user_krupadharamshi" + 0.020*"resource" + 0.020*"analyzing" + 0.020*"valuable" + 0.020*"comprehensive" + 0.013*"insight" + 0.012*"providing" + 0.012*"size"
+2025-05-03 16:47:23,069 - INFO - topic diff=0.031648, rho=0.127313
+2025-05-03 16:47:23,071 - INFO - -4.767 per-word bound, 27.2 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:23,071 - INFO - PROGRESS: pass 9, at document #2/2
+2025-05-03 16:47:23,071 - INFO - topic #0 (0.500): 0.026*"fuel" + 0.021*"transmission" + 0.021*"engine" + 0.021*"class" + 0.021*"etc" + 0.021*"year" + 0.021*"size" + 0.021*"providing" + 0.016*"specifies" + 0.016*"model"
+2025-05-03 16:47:23,071 - INFO - topic #1 (0.500): 0.022*"appears" + 0.021*"sharing" + 0.021*"user_krupadharamshi" + 0.021*"resource" + 0.021*"analyzing" + 0.021*"valuable" + 0.021*"comprehensive" + 0.012*"insight" + 0.012*"providing" + 0.012*"size"
+2025-05-03 16:47:23,071 - INFO - topic diff=0.028869, rho=0.122823
+2025-05-03 16:47:23,071 - INFO - -4.766 per-word bound, 27.2 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:23,071 - INFO - PROGRESS: pass 10, at document #2/2
+2025-05-03 16:47:23,071 - INFO - topic #0 (0.500): 0.027*"fuel" + 0.021*"transmission" + 0.021*"engine" + 0.021*"class" + 0.021*"etc" + 0.021*"year" + 0.021*"size" + 0.021*"providing" + 0.016*"specifies" + 0.016*"model"
+2025-05-03 16:47:23,071 - INFO - topic #1 (0.500): 0.022*"appears" + 0.022*"sharing" + 0.022*"user_krupadharamshi" + 0.022*"resource" + 0.022*"analyzing" + 0.022*"valuable" + 0.022*"comprehensive" + 0.012*"insight" + 0.012*"providing" + 0.012*"size"
+2025-05-03 16:47:23,071 - INFO - topic diff=0.026315, rho=0.118699
+2025-05-03 16:47:23,073 - INFO - -4.768 per-word bound, 27.2 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:23,073 - INFO - PROGRESS: pass 11, at document #2/2
+2025-05-03 16:47:23,073 - INFO - topic #0 (0.500): 0.027*"fuel" + 0.022*"transmission" + 0.022*"engine" + 0.022*"class" + 0.021*"etc" + 0.021*"year" + 0.021*"size" + 0.021*"providing" + 0.016*"specifies" + 0.016*"model"
+2025-05-03 16:47:23,073 - INFO - topic #1 (0.500): 0.023*"appears" + 0.023*"sharing" + 0.023*"user_krupadharamshi" + 0.023*"resource" + 0.023*"analyzing" + 0.023*"valuable" + 0.022*"comprehensive" + 0.012*"insight" + 0.012*"providing" + 0.012*"size"
+2025-05-03 16:47:23,073 - INFO - topic diff=0.023966, rho=0.114896
+2025-05-03 16:47:23,073 - INFO - LdaModel lifecycle event {'msg': 'trained LdaModel<num_terms=87, num_topics=2, decay=0.7, chunksize=535> in 0.04s', 'datetime': '2025-05-03T16:47:23.073024', 'gensim': '4.3.0', 'python': '3.10.10 | packaged by Anaconda, Inc. | (main, Mar 21 2023, 18:39:17) [MSC v.1916 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.26100-SP0', 'event': 'created'}
+2025-05-03 16:47:23,073 - INFO - using ParallelWordOccurrenceAccumulator<processes=7, batch_size=64> to estimate probabilities from sliding windows
+2025-05-03 16:47:27,598 - INFO - 7 accumulators retrieved from output queue
+2025-05-03 16:47:27,618 - INFO - accumulated word occurrence stats for 24 virtual documents
+2025-05-03 16:47:27,727 - INFO - using symmetric alpha at 0.5
+2025-05-03 16:47:27,727 - INFO - using serial LDA version on this node
+2025-05-03 16:47:27,727 - INFO - running online (multi-pass) LDA training, 2 topics, 7 passes over the supplied corpus of 2 documents, updating model once every 2 documents, evaluating perplexity every 2 documents, iterating 50x with a convergence threshold of 0.001000
+2025-05-03 16:47:27,727 - WARNING - too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+2025-05-03 16:47:27,727 - INFO - -5.276 per-word bound, 38.7 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:27,727 - INFO - PROGRESS: pass 0, at document #2/2
+2025-05-03 16:47:27,727 - INFO - topic #0 (0.500): 0.014*"fuel" + 0.014*"specifies" + 0.014*"transmission" + 0.014*"class" + 0.014*"engine" + 0.013*"etc" + 0.013*"year" + 0.013*"model" + 0.013*"size" + 0.012*"link"
+2025-05-03 16:47:27,727 - INFO - topic #1 (0.500): 0.015*"insight" + 0.014*"size" + 0.013*"providing" + 0.013*"type" + 0.013*"fuel" + 0.013*"make" + 0.013*"class" + 0.013*"appears" + 0.013*"representing" + 0.013*"manufacturer"
+2025-05-03 16:47:27,727 - INFO - topic diff=0.052818, rho=0.175620
+2025-05-03 16:47:27,727 - INFO - -5.172 per-word bound, 36.1 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:27,727 - INFO - PROGRESS: pass 1, at document #2/2
+2025-05-03 16:47:27,736 - INFO - topic #0 (0.500): 0.017*"fuel" + 0.015*"transmission" + 0.015*"engine" + 0.015*"class" + 0.015*"etc" + 0.014*"specifies" + 0.014*"year" + 0.014*"size" + 0.013*"model" + 0.013*"providing"
+2025-05-03 16:47:27,736 - INFO - topic #1 (0.500): 0.015*"insight" + 0.014*"providing" + 0.014*"size" + 0.013*"fuel" + 0.013*"appears" + 0.013*"class" + 0.013*"type" + 0.013*"manufacturer" + 0.013*"year" + 0.013*"sharing"
+2025-05-03 16:47:27,736 - INFO - topic diff=0.047089, rho=0.157656
+2025-05-03 16:47:27,737 - INFO - -5.071 per-word bound, 33.6 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:27,738 - INFO - PROGRESS: pass 2, at document #2/2
+2025-05-03 16:47:27,738 - INFO - topic #0 (0.500): 0.019*"fuel" + 0.017*"transmission" + 0.017*"engine" + 0.017*"class" + 0.016*"etc" + 0.016*"year" + 0.016*"size" + 0.015*"specifies" + 0.015*"providing" + 0.014*"model"
+2025-05-03 16:47:27,738 - INFO - topic #1 (0.500): 0.015*"insight" + 0.014*"appears" + 0.014*"sharing" + 0.014*"user_krupadharamshi" + 0.014*"providing" + 0.014*"size" + 0.014*"resource" + 0.013*"analyzing" + 0.013*"valuable" + 0.013*"fuel"
+2025-05-03 16:47:27,738 - INFO - topic diff=0.052556, rho=0.150223
+2025-05-03 16:47:27,739 - INFO - -4.976 per-word bound, 31.5 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:27,739 - INFO - PROGRESS: pass 3, at document #2/2
+2025-05-03 16:47:27,742 - INFO - topic #0 (0.500): 0.021*"fuel" + 0.018*"transmission" + 0.018*"engine" + 0.018*"class" + 0.017*"etc" + 0.017*"year" + 0.017*"size" + 0.016*"providing" + 0.015*"specifies" + 0.014*"model"
+2025-05-03 16:47:27,743 - INFO - topic #1 (0.500): 0.016*"appears" + 0.015*"sharing" + 0.015*"user_krupadharamshi" + 0.015*"resource" + 0.015*"analyzing" + 0.014*"valuable" + 0.014*"insight" + 0.014*"comprehensive" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:47:27,743 - INFO - topic diff=0.047570, rho=0.143587
+2025-05-03 16:47:27,746 - INFO - -4.907 per-word bound, 30.0 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:27,747 - INFO - PROGRESS: pass 4, at document #2/2
+2025-05-03 16:47:27,751 - INFO - topic #0 (0.500): 0.022*"fuel" + 0.019*"transmission" + 0.018*"engine" + 0.018*"class" + 0.018*"etc" + 0.018*"year" + 0.018*"size" + 0.017*"providing" + 0.015*"specifies" + 0.015*"model"
+2025-05-03 16:47:27,753 - INFO - topic #1 (0.500): 0.017*"appears" + 0.016*"sharing" + 0.016*"user_krupadharamshi" + 0.016*"resource" + 0.016*"analyzing" + 0.016*"valuable" + 0.015*"comprehensive" + 0.014*"insight" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:47:27,753 - INFO - topic diff=0.043061, rho=0.137621
+2025-05-03 16:47:27,753 - INFO - -4.856 per-word bound, 29.0 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:27,753 - INFO - PROGRESS: pass 5, at document #2/2
+2025-05-03 16:47:27,755 - INFO - topic #0 (0.500): 0.023*"fuel" + 0.019*"transmission" + 0.019*"engine" + 0.019*"class" + 0.019*"etc" + 0.019*"year" + 0.018*"size" + 0.018*"providing" + 0.015*"specifies" + 0.015*"model"
+2025-05-03 16:47:27,755 - INFO - topic #1 (0.500): 0.018*"appears" + 0.017*"sharing" + 0.017*"user_krupadharamshi" + 0.017*"resource" + 0.017*"analyzing" + 0.017*"valuable" + 0.016*"comprehensive" + 0.014*"insight" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:47:27,755 - INFO - topic diff=0.039377, rho=0.132224
+2025-05-03 16:47:27,756 - INFO - -4.821 per-word bound, 28.3 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:27,757 - INFO - PROGRESS: pass 6, at document #2/2
+2025-05-03 16:47:27,757 - INFO - topic #0 (0.500): 0.024*"fuel" + 0.020*"transmission" + 0.020*"engine" + 0.020*"class" + 0.019*"etc" + 0.019*"year" + 0.019*"size" + 0.019*"providing" + 0.016*"specifies" + 0.015*"model"
+2025-05-03 16:47:27,757 - INFO - topic #1 (0.500): 0.019*"appears" + 0.018*"sharing" + 0.018*"user_krupadharamshi" + 0.018*"resource" + 0.018*"analyzing" + 0.018*"valuable" + 0.017*"comprehensive" + 0.013*"insight" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:47:27,757 - INFO - topic diff=0.036206, rho=0.127313
+2025-05-03 16:47:27,757 - INFO - LdaModel lifecycle event {'msg': 'trained LdaModel<num_terms=87, num_topics=2, decay=0.7, chunksize=714> in 0.03s', 'datetime': '2025-05-03T16:47:27.757070', 'gensim': '4.3.0', 'python': '3.10.10 | packaged by Anaconda, Inc. | (main, Mar 21 2023, 18:39:17) [MSC v.1916 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.26100-SP0', 'event': 'created'}
+2025-05-03 16:47:27,757 - INFO - using ParallelWordOccurrenceAccumulator<processes=7, batch_size=64> to estimate probabilities from sliding windows
+2025-05-03 16:47:33,236 - INFO - 7 accumulators retrieved from output queue
+2025-05-03 16:47:33,256 - INFO - accumulated word occurrence stats for 24 virtual documents
+2025-05-03 16:47:33,320 - INFO - using symmetric alpha at 0.5
+2025-05-03 16:47:33,322 - INFO - using serial LDA version on this node
+2025-05-03 16:47:33,322 - INFO - running online (multi-pass) LDA training, 2 topics, 9 passes over the supplied corpus of 2 documents, updating model once every 2 documents, evaluating perplexity every 2 documents, iterating 50x with a convergence threshold of 0.001000
+2025-05-03 16:47:33,322 - WARNING - too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+2025-05-03 16:47:33,324 - INFO - -5.276 per-word bound, 38.7 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:33,324 - INFO - PROGRESS: pass 0, at document #2/2
+2025-05-03 16:47:33,326 - INFO - topic #0 (0.500): 0.014*"fuel" + 0.014*"specifies" + 0.014*"transmission" + 0.014*"class" + 0.014*"engine" + 0.013*"etc" + 0.013*"year" + 0.013*"model" + 0.013*"size" + 0.012*"link"
+2025-05-03 16:47:33,326 - INFO - topic #1 (0.500): 0.015*"insight" + 0.014*"size" + 0.013*"providing" + 0.013*"type" + 0.013*"fuel" + 0.013*"make" + 0.013*"class" + 0.013*"appears" + 0.013*"representing" + 0.013*"manufacturer"
+2025-05-03 16:47:33,326 - INFO - topic diff=0.052818, rho=0.175620
+2025-05-03 16:47:33,327 - INFO - -5.172 per-word bound, 36.1 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:33,327 - INFO - PROGRESS: pass 1, at document #2/2
+2025-05-03 16:47:33,329 - INFO - topic #0 (0.500): 0.017*"fuel" + 0.015*"transmission" + 0.015*"engine" + 0.015*"class" + 0.015*"etc" + 0.014*"specifies" + 0.014*"year" + 0.014*"size" + 0.013*"model" + 0.013*"providing"
+2025-05-03 16:47:33,329 - INFO - topic #1 (0.500): 0.015*"insight" + 0.014*"providing" + 0.014*"size" + 0.013*"fuel" + 0.013*"appears" + 0.013*"class" + 0.013*"type" + 0.013*"manufacturer" + 0.013*"year" + 0.013*"sharing"
+2025-05-03 16:47:33,329 - INFO - topic diff=0.047089, rho=0.157656
+2025-05-03 16:47:33,331 - INFO - -5.071 per-word bound, 33.6 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:33,331 - INFO - PROGRESS: pass 2, at document #2/2
+2025-05-03 16:47:33,331 - INFO - topic #0 (0.500): 0.019*"fuel" + 0.017*"transmission" + 0.017*"engine" + 0.017*"class" + 0.016*"etc" + 0.016*"year" + 0.016*"size" + 0.015*"specifies" + 0.015*"providing" + 0.014*"model"
+2025-05-03 16:47:33,331 - INFO - topic #1 (0.500): 0.015*"insight" + 0.014*"appears" + 0.014*"sharing" + 0.014*"user_krupadharamshi" + 0.014*"providing" + 0.014*"size" + 0.014*"resource" + 0.013*"analyzing" + 0.013*"valuable" + 0.013*"fuel"
+2025-05-03 16:47:33,331 - INFO - topic diff=0.052556, rho=0.150223
+2025-05-03 16:47:33,333 - INFO - -4.976 per-word bound, 31.5 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:33,333 - INFO - PROGRESS: pass 3, at document #2/2
+2025-05-03 16:47:33,333 - INFO - topic #0 (0.500): 0.021*"fuel" + 0.018*"transmission" + 0.018*"engine" + 0.018*"class" + 0.017*"etc" + 0.017*"year" + 0.017*"size" + 0.016*"providing" + 0.015*"specifies" + 0.014*"model"
+2025-05-03 16:47:33,333 - INFO - topic #1 (0.500): 0.016*"appears" + 0.015*"sharing" + 0.015*"user_krupadharamshi" + 0.015*"resource" + 0.015*"analyzing" + 0.014*"valuable" + 0.014*"insight" + 0.014*"comprehensive" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:47:33,333 - INFO - topic diff=0.047570, rho=0.143587
+2025-05-03 16:47:33,335 - INFO - -4.907 per-word bound, 30.0 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:33,335 - INFO - PROGRESS: pass 4, at document #2/2
+2025-05-03 16:47:33,336 - INFO - topic #0 (0.500): 0.022*"fuel" + 0.019*"transmission" + 0.018*"engine" + 0.018*"class" + 0.018*"etc" + 0.018*"year" + 0.018*"size" + 0.017*"providing" + 0.015*"specifies" + 0.015*"model"
+2025-05-03 16:47:33,336 - INFO - topic #1 (0.500): 0.017*"appears" + 0.016*"sharing" + 0.016*"user_krupadharamshi" + 0.016*"resource" + 0.016*"analyzing" + 0.016*"valuable" + 0.015*"comprehensive" + 0.014*"insight" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:47:33,336 - INFO - topic diff=0.043061, rho=0.137621
+2025-05-03 16:47:33,337 - INFO - -4.856 per-word bound, 29.0 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:33,337 - INFO - PROGRESS: pass 5, at document #2/2
+2025-05-03 16:47:33,338 - INFO - topic #0 (0.500): 0.023*"fuel" + 0.019*"transmission" + 0.019*"engine" + 0.019*"class" + 0.019*"etc" + 0.019*"year" + 0.018*"size" + 0.018*"providing" + 0.015*"specifies" + 0.015*"model"
+2025-05-03 16:47:33,338 - INFO - topic #1 (0.500): 0.018*"appears" + 0.017*"sharing" + 0.017*"user_krupadharamshi" + 0.017*"resource" + 0.017*"analyzing" + 0.017*"valuable" + 0.016*"comprehensive" + 0.014*"insight" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:47:33,338 - INFO - topic diff=0.039377, rho=0.132224
+2025-05-03 16:47:33,338 - INFO - -4.821 per-word bound, 28.3 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:33,338 - INFO - PROGRESS: pass 6, at document #2/2
+2025-05-03 16:47:33,339 - INFO - topic #0 (0.500): 0.024*"fuel" + 0.020*"transmission" + 0.020*"engine" + 0.020*"class" + 0.019*"etc" + 0.019*"year" + 0.019*"size" + 0.019*"providing" + 0.016*"specifies" + 0.015*"model"
+2025-05-03 16:47:33,339 - INFO - topic #1 (0.500): 0.019*"appears" + 0.018*"sharing" + 0.018*"user_krupadharamshi" + 0.018*"resource" + 0.018*"analyzing" + 0.018*"valuable" + 0.017*"comprehensive" + 0.013*"insight" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:47:33,339 - INFO - topic diff=0.036206, rho=0.127313
+2025-05-03 16:47:33,342 - INFO - -4.797 per-word bound, 27.8 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:33,342 - INFO - PROGRESS: pass 7, at document #2/2
+2025-05-03 16:47:33,343 - INFO - topic #0 (0.500): 0.025*"fuel" + 0.020*"transmission" + 0.020*"engine" + 0.020*"class" + 0.020*"etc" + 0.020*"year" + 0.020*"size" + 0.019*"providing" + 0.016*"specifies" + 0.015*"model"
+2025-05-03 16:47:33,343 - INFO - topic #1 (0.500): 0.019*"appears" + 0.019*"sharing" + 0.019*"user_krupadharamshi" + 0.019*"resource" + 0.019*"analyzing" + 0.019*"valuable" + 0.018*"comprehensive" + 0.013*"insight" + 0.012*"providing" + 0.012*"size"
+2025-05-03 16:47:33,343 - INFO - topic diff=0.033376, rho=0.122823
+2025-05-03 16:47:33,346 - INFO - -4.781 per-word bound, 27.5 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:33,348 - INFO - PROGRESS: pass 8, at document #2/2
+2025-05-03 16:47:33,349 - INFO - topic #0 (0.500): 0.025*"fuel" + 0.020*"transmission" + 0.020*"engine" + 0.020*"class" + 0.020*"etc" + 0.020*"year" + 0.020*"size" + 0.020*"providing" + 0.016*"specifies" + 0.015*"model"
+2025-05-03 16:47:33,349 - INFO - topic #1 (0.500): 0.020*"appears" + 0.020*"sharing" + 0.020*"user_krupadharamshi" + 0.020*"resource" + 0.020*"analyzing" + 0.019*"valuable" + 0.019*"comprehensive" + 0.013*"insight" + 0.012*"providing" + 0.012*"size"
+2025-05-03 16:47:33,349 - INFO - topic diff=0.030796, rho=0.118699
+2025-05-03 16:47:33,349 - INFO - LdaModel lifecycle event {'msg': 'trained LdaModel<num_terms=87, num_topics=2, decay=0.7, chunksize=558> in 0.03s', 'datetime': '2025-05-03T16:47:33.349548', 'gensim': '4.3.0', 'python': '3.10.10 | packaged by Anaconda, Inc. | (main, Mar 21 2023, 18:39:17) [MSC v.1916 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.26100-SP0', 'event': 'created'}
+2025-05-03 16:47:33,349 - INFO - using ParallelWordOccurrenceAccumulator<processes=7, batch_size=64> to estimate probabilities from sliding windows
+2025-05-03 16:47:38,308 - INFO - 7 accumulators retrieved from output queue
+2025-05-03 16:47:38,317 - INFO - accumulated word occurrence stats for 24 virtual documents
+2025-05-03 16:47:38,386 - INFO - using autotuned alpha, starting with [0.5, 0.5]
+2025-05-03 16:47:38,386 - INFO - using serial LDA version on this node
+2025-05-03 16:47:38,386 - INFO - running online (multi-pass) LDA training, 2 topics, 10 passes over the supplied corpus of 2 documents, updating model once every 2 documents, evaluating perplexity every 2 documents, iterating 50x with a convergence threshold of 0.001000
+2025-05-03 16:47:38,388 - INFO - -5.276 per-word bound, 38.7 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:38,388 - INFO - PROGRESS: pass 0, at document #2/2
+2025-05-03 16:47:38,388 - INFO - optimized alpha [0.5429489, 0.5747085]
+2025-05-03 16:47:38,388 - INFO - topic #0 (0.543): 0.015*"fuel" + 0.014*"transmission" + 0.014*"class" + 0.014*"specifies" + 0.014*"engine" + 0.014*"etc" + 0.013*"year" + 0.013*"model" + 0.013*"size" + 0.013*"type"
+2025-05-03 16:47:38,388 - INFO - topic #1 (0.575): 0.015*"insight" + 0.014*"size" + 0.014*"providing" + 0.013*"fuel" + 0.013*"type" + 0.013*"class" + 0.013*"make" + 0.013*"appears" + 0.013*"manufacturer" + 0.013*"representing"
+2025-05-03 16:47:38,388 - INFO - topic diff=0.060345, rho=0.199526
+2025-05-03 16:47:38,388 - INFO - -5.159 per-word bound, 35.7 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:38,388 - INFO - PROGRESS: pass 1, at document #2/2
+2025-05-03 16:47:38,388 - INFO - optimized alpha [0.55929196, 0.61502016]
+2025-05-03 16:47:38,388 - INFO - topic #0 (0.559): 0.017*"fuel" + 0.016*"transmission" + 0.016*"engine" + 0.016*"class" + 0.015*"etc" + 0.015*"year" + 0.015*"specifies" + 0.014*"size" + 0.013*"model" + 0.013*"providing"
+2025-05-03 16:47:38,388 - INFO - topic #1 (0.615): 0.015*"insight" + 0.014*"providing" + 0.014*"size" + 0.014*"fuel" + 0.014*"appears" + 0.013*"class" + 0.013*"type" + 0.013*"year" + 0.013*"manufacturer" + 0.013*"sharing"
+2025-05-03 16:47:38,388 - INFO - topic diff=0.051942, rho=0.175620
+2025-05-03 16:47:38,388 - INFO - -5.051 per-word bound, 33.2 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:38,388 - INFO - PROGRESS: pass 2, at document #2/2
+2025-05-03 16:47:38,396 - INFO - optimized alpha [0.5145697, 0.53487796]
+2025-05-03 16:47:38,396 - INFO - topic #0 (0.515): 0.020*"fuel" + 0.017*"transmission" + 0.017*"engine" + 0.017*"class" + 0.017*"etc" + 0.016*"year" + 0.016*"size" + 0.015*"providing" + 0.015*"specifies" + 0.014*"model"
+2025-05-03 16:47:38,396 - INFO - topic #1 (0.535): 0.015*"appears" + 0.015*"insight" + 0.014*"sharing" + 0.014*"user_krupadharamshi" + 0.014*"providing" + 0.014*"resource" + 0.014*"size" + 0.014*"analyzing" + 0.014*"valuable" + 0.013*"fuel"
+2025-05-03 16:47:38,396 - INFO - topic diff=0.056941, rho=0.166050
+2025-05-03 16:47:38,397 - INFO - -4.953 per-word bound, 31.0 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:38,397 - INFO - PROGRESS: pass 3, at document #2/2
+2025-05-03 16:47:38,397 - INFO - optimized alpha [0.44380173, 0.42231667]
+2025-05-03 16:47:38,397 - INFO - topic #0 (0.444): 0.021*"fuel" + 0.018*"transmission" + 0.018*"engine" + 0.018*"class" + 0.018*"etc" + 0.017*"year" + 0.017*"size" + 0.017*"providing" + 0.015*"specifies" + 0.014*"model"
+2025-05-03 16:47:38,397 - INFO - topic #1 (0.422): 0.016*"appears" + 0.015*"sharing" + 0.015*"user_krupadharamshi" + 0.015*"resource" + 0.015*"analyzing" + 0.015*"valuable" + 0.015*"comprehensive" + 0.014*"insight" + 0.014*"providing" + 0.013*"size"
+2025-05-03 16:47:38,397 - INFO - topic diff=0.051398, rho=0.157656
+2025-05-03 16:47:38,397 - INFO - -4.880 per-word bound, 29.4 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:38,397 - INFO - PROGRESS: pass 4, at document #2/2
+2025-05-03 16:47:38,397 - INFO - optimized alpha [0.38309038, 0.34185755]
+2025-05-03 16:47:38,397 - INFO - topic #0 (0.383): 0.023*"fuel" + 0.019*"transmission" + 0.019*"engine" + 0.019*"class" + 0.019*"etc" + 0.018*"year" + 0.018*"size" + 0.018*"providing" + 0.015*"specifies" + 0.015*"model"
+2025-05-03 16:47:38,397 - INFO - topic #1 (0.342): 0.017*"appears" + 0.017*"sharing" + 0.016*"user_krupadharamshi" + 0.016*"resource" + 0.016*"analyzing" + 0.016*"valuable" + 0.016*"comprehensive" + 0.014*"insight" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:47:38,397 - INFO - topic diff=0.046334, rho=0.150223
+2025-05-03 16:47:38,397 - INFO - -4.829 per-word bound, 28.4 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:38,397 - INFO - PROGRESS: pass 5, at document #2/2
+2025-05-03 16:47:38,397 - INFO - optimized alpha [0.33510947, 0.2867019]
+2025-05-03 16:47:38,397 - INFO - topic #0 (0.335): 0.024*"fuel" + 0.020*"transmission" + 0.020*"engine" + 0.020*"class" + 0.019*"etc" + 0.019*"year" + 0.019*"size" + 0.018*"providing" + 0.016*"specifies" + 0.015*"model"
+2025-05-03 16:47:38,397 - INFO - topic #1 (0.287): 0.018*"appears" + 0.018*"sharing" + 0.018*"user_krupadharamshi" + 0.017*"resource" + 0.017*"analyzing" + 0.017*"valuable" + 0.017*"comprehensive" + 0.014*"insight" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:47:38,397 - INFO - topic diff=0.042052, rho=0.143587
+2025-05-03 16:47:38,404 - INFO - -4.795 per-word bound, 27.8 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:38,404 - INFO - PROGRESS: pass 6, at document #2/2
+2025-05-03 16:47:38,405 - INFO - optimized alpha [0.29749686, 0.24776874]
+2025-05-03 16:47:38,405 - INFO - topic #0 (0.297): 0.025*"fuel" + 0.020*"transmission" + 0.020*"engine" + 0.020*"class" + 0.020*"etc" + 0.020*"year" + 0.020*"size" + 0.019*"providing" + 0.016*"specifies" + 0.015*"model"
+2025-05-03 16:47:38,405 - INFO - topic #1 (0.248): 0.019*"appears" + 0.019*"sharing" + 0.019*"user_krupadharamshi" + 0.018*"resource" + 0.018*"analyzing" + 0.018*"valuable" + 0.018*"comprehensive" + 0.013*"insight" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:47:38,405 - INFO - topic diff=0.038311, rho=0.137621
+2025-05-03 16:47:38,407 - INFO - -4.774 per-word bound, 27.4 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:38,407 - INFO - PROGRESS: pass 7, at document #2/2
+2025-05-03 16:47:38,407 - INFO - optimized alpha [0.26761216, 0.21912068]
+2025-05-03 16:47:38,408 - INFO - topic #0 (0.268): 0.025*"fuel" + 0.021*"transmission" + 0.020*"engine" + 0.020*"class" + 0.020*"etc" + 0.020*"year" + 0.020*"size" + 0.020*"providing" + 0.016*"specifies" + 0.015*"model"
+2025-05-03 16:47:38,408 - INFO - topic #1 (0.219): 0.020*"appears" + 0.020*"sharing" + 0.020*"user_krupadharamshi" + 0.019*"resource" + 0.019*"analyzing" + 0.019*"valuable" + 0.019*"comprehensive" + 0.013*"insight" + 0.012*"providing" + 0.012*"size"
+2025-05-03 16:47:38,408 - INFO - topic diff=0.034958, rho=0.132224
+2025-05-03 16:47:38,410 - INFO - -4.761 per-word bound, 27.1 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:38,410 - INFO - PROGRESS: pass 8, at document #2/2
+2025-05-03 16:47:38,410 - INFO - optimized alpha [0.24347071, 0.19724661]
+2025-05-03 16:47:38,412 - INFO - topic #0 (0.243): 0.026*"fuel" + 0.021*"transmission" + 0.021*"engine" + 0.021*"class" + 0.021*"etc" + 0.021*"year" + 0.020*"size" + 0.020*"providing" + 0.016*"specifies" + 0.015*"model"
+2025-05-03 16:47:38,412 - INFO - topic #1 (0.197): 0.021*"appears" + 0.021*"sharing" + 0.021*"user_krupadharamshi" + 0.020*"resource" + 0.020*"analyzing" + 0.020*"valuable" + 0.020*"comprehensive" + 0.013*"insight" + 0.012*"providing" + 0.012*"size"
+2025-05-03 16:47:38,412 - INFO - topic diff=0.031906, rho=0.127313
+2025-05-03 16:47:38,413 - INFO - -4.754 per-word bound, 27.0 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:38,413 - INFO - PROGRESS: pass 9, at document #2/2
+2025-05-03 16:47:38,414 - INFO - optimized alpha [0.22362983, 0.18000798]
+2025-05-03 16:47:38,414 - INFO - topic #0 (0.224): 0.026*"fuel" + 0.021*"transmission" + 0.021*"engine" + 0.021*"class" + 0.021*"etc" + 0.021*"year" + 0.021*"size" + 0.020*"providing" + 0.016*"specifies" + 0.016*"model"
+2025-05-03 16:47:38,414 - INFO - topic #1 (0.180): 0.022*"appears" + 0.021*"sharing" + 0.021*"user_krupadharamshi" + 0.021*"resource" + 0.021*"analyzing" + 0.021*"valuable" + 0.021*"comprehensive" + 0.012*"insight" + 0.012*"providing" + 0.012*"size"
+2025-05-03 16:47:38,414 - INFO - topic diff=0.029107, rho=0.122823
+2025-05-03 16:47:38,415 - INFO - LdaModel lifecycle event {'msg': 'trained LdaModel<num_terms=87, num_topics=2, decay=0.7, chunksize=763> in 0.03s', 'datetime': '2025-05-03T16:47:38.415736', 'gensim': '4.3.0', 'python': '3.10.10 | packaged by Anaconda, Inc. | (main, Mar 21 2023, 18:39:17) [MSC v.1916 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.26100-SP0', 'event': 'created'}
+2025-05-03 16:47:38,416 - INFO - using ParallelWordOccurrenceAccumulator<processes=7, batch_size=64> to estimate probabilities from sliding windows
+2025-05-03 16:47:43,506 - INFO - 7 accumulators retrieved from output queue
+2025-05-03 16:47:43,511 - INFO - accumulated word occurrence stats for 24 virtual documents
+2025-05-03 16:47:43,585 - INFO - using autotuned alpha, starting with [0.5, 0.5]
+2025-05-03 16:47:43,586 - INFO - using serial LDA version on this node
+2025-05-03 16:47:43,586 - INFO - running online (multi-pass) LDA training, 2 topics, 10 passes over the supplied corpus of 2 documents, updating model once every 2 documents, evaluating perplexity every 2 documents, iterating 50x with a convergence threshold of 0.001000
+2025-05-03 16:47:43,588 - INFO - -5.276 per-word bound, 38.7 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:43,588 - INFO - PROGRESS: pass 0, at document #2/2
+2025-05-03 16:47:43,588 - INFO - optimized alpha [0.5378029, 0.56575716]
+2025-05-03 16:47:43,590 - INFO - topic #0 (0.538): 0.014*"fuel" + 0.014*"specifies" + 0.014*"transmission" + 0.014*"class" + 0.014*"engine" + 0.013*"etc" + 0.013*"year" + 0.013*"model" + 0.013*"size" + 0.012*"link"
+2025-05-03 16:47:43,590 - INFO - topic #1 (0.566): 0.015*"insight" + 0.014*"size" + 0.013*"providing" + 0.013*"type" + 0.013*"fuel" + 0.013*"make" + 0.013*"class" + 0.013*"appears" + 0.013*"representing" + 0.013*"manufacturer"
+2025-05-03 16:47:43,590 - INFO - topic diff=0.052818, rho=0.175620
+2025-05-03 16:47:43,592 - INFO - -5.172 per-word bound, 36.0 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:43,592 - INFO - PROGRESS: pass 1, at document #2/2
+2025-05-03 16:47:43,594 - INFO - optimized alpha [0.5547626, 0.60526025]
+2025-05-03 16:47:43,594 - INFO - topic #0 (0.555): 0.017*"fuel" + 0.015*"transmission" + 0.015*"engine" + 0.015*"class" + 0.015*"etc" + 0.014*"specifies" + 0.014*"year" + 0.014*"size" + 0.013*"model" + 0.013*"providing"
+2025-05-03 16:47:43,594 - INFO - topic #1 (0.605): 0.015*"insight" + 0.014*"providing" + 0.014*"size" + 0.014*"fuel" + 0.013*"appears" + 0.013*"class" + 0.013*"type" + 0.013*"manufacturer" + 0.013*"year" + 0.013*"sharing"
+2025-05-03 16:47:43,594 - INFO - topic diff=0.046517, rho=0.157656
+2025-05-03 16:47:43,597 - INFO - -5.074 per-word bound, 33.7 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:43,597 - INFO - PROGRESS: pass 2, at document #2/2
+2025-05-03 16:47:43,598 - INFO - optimized alpha [0.5246531, 0.55243665]
+2025-05-03 16:47:43,598 - INFO - topic #0 (0.525): 0.019*"fuel" + 0.017*"transmission" + 0.017*"engine" + 0.017*"class" + 0.016*"etc" + 0.016*"year" + 0.015*"size" + 0.015*"specifies" + 0.015*"providing" + 0.014*"model"
+2025-05-03 16:47:43,598 - INFO - topic #1 (0.552): 0.015*"insight" + 0.014*"appears" + 0.014*"sharing" + 0.014*"user_krupadharamshi" + 0.014*"providing" + 0.014*"size" + 0.013*"resource" + 0.013*"fuel" + 0.013*"analyzing" + 0.013*"valuable"
+2025-05-03 16:47:43,598 - INFO - topic diff=0.051565, rho=0.150223
+2025-05-03 16:47:43,600 - INFO - -4.979 per-word bound, 31.5 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:43,600 - INFO - PROGRESS: pass 3, at document #2/2
+2025-05-03 16:47:43,601 - INFO - optimized alpha [0.4622215, 0.4495975]
+2025-05-03 16:47:43,601 - INFO - topic #0 (0.462): 0.021*"fuel" + 0.018*"transmission" + 0.018*"engine" + 0.018*"class" + 0.017*"etc" + 0.017*"year" + 0.017*"size" + 0.016*"providing" + 0.015*"specifies" + 0.014*"model"
+2025-05-03 16:47:43,601 - INFO - topic #1 (0.450): 0.015*"appears" + 0.015*"sharing" + 0.015*"user_krupadharamshi" + 0.015*"resource" + 0.014*"analyzing" + 0.014*"valuable" + 0.014*"insight" + 0.014*"comprehensive" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:47:43,601 - INFO - topic diff=0.047499, rho=0.143587
+2025-05-03 16:47:43,602 - INFO - -4.907 per-word bound, 30.0 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:43,602 - INFO - PROGRESS: pass 4, at document #2/2
+2025-05-03 16:47:43,603 - INFO - optimized alpha [0.40471002, 0.36953536]
+2025-05-03 16:47:43,603 - INFO - topic #0 (0.405): 0.022*"fuel" + 0.019*"transmission" + 0.018*"engine" + 0.018*"class" + 0.018*"etc" + 0.018*"year" + 0.018*"size" + 0.017*"providing" + 0.015*"specifies" + 0.015*"model"
+2025-05-03 16:47:43,603 - INFO - topic #1 (0.370): 0.017*"appears" + 0.016*"sharing" + 0.016*"user_krupadharamshi" + 0.016*"resource" + 0.016*"analyzing" + 0.015*"valuable" + 0.015*"comprehensive" + 0.014*"insight" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:47:43,603 - INFO - topic diff=0.043240, rho=0.137621
+2025-05-03 16:47:43,604 - INFO - -4.853 per-word bound, 28.9 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:43,604 - INFO - PROGRESS: pass 5, at document #2/2
+2025-05-03 16:47:43,606 - INFO - optimized alpha [0.35724288, 0.31194496]
+2025-05-03 16:47:43,606 - INFO - topic #0 (0.357): 0.023*"fuel" + 0.019*"transmission" + 0.019*"engine" + 0.019*"class" + 0.019*"etc" + 0.019*"year" + 0.018*"size" + 0.018*"providing" + 0.015*"specifies" + 0.015*"model"
+2025-05-03 16:47:43,606 - INFO - topic #1 (0.312): 0.018*"appears" + 0.017*"sharing" + 0.017*"user_krupadharamshi" + 0.017*"resource" + 0.017*"analyzing" + 0.017*"valuable" + 0.016*"comprehensive" + 0.014*"insight" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:47:43,606 - INFO - topic diff=0.039625, rho=0.132224
+2025-05-03 16:47:43,607 - INFO - -4.815 per-word bound, 28.1 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:43,607 - INFO - PROGRESS: pass 6, at document #2/2
+2025-05-03 16:47:43,607 - INFO - optimized alpha [0.31894648, 0.27015194]
+2025-05-03 16:47:43,607 - INFO - topic #0 (0.319): 0.024*"fuel" + 0.020*"transmission" + 0.020*"engine" + 0.020*"class" + 0.019*"etc" + 0.019*"year" + 0.019*"size" + 0.019*"providing" + 0.016*"specifies" + 0.015*"model"
+2025-05-03 16:47:43,608 - INFO - topic #1 (0.270): 0.018*"appears" + 0.018*"sharing" + 0.018*"user_krupadharamshi" + 0.018*"resource" + 0.018*"analyzing" + 0.018*"valuable" + 0.017*"comprehensive" + 0.013*"insight" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:47:43,608 - INFO - topic diff=0.036465, rho=0.127313
+2025-05-03 16:47:43,609 - INFO - -4.788 per-word bound, 27.6 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:43,609 - INFO - PROGRESS: pass 7, at document #2/2
+2025-05-03 16:47:43,609 - INFO - optimized alpha [0.28795135, 0.23895514]
+2025-05-03 16:47:43,610 - INFO - topic #0 (0.288): 0.025*"fuel" + 0.020*"transmission" + 0.020*"engine" + 0.020*"class" + 0.020*"etc" + 0.020*"year" + 0.020*"size" + 0.019*"providing" + 0.016*"specifies" + 0.015*"model"
+2025-05-03 16:47:43,610 - INFO - topic #1 (0.239): 0.019*"appears" + 0.019*"sharing" + 0.019*"user_krupadharamshi" + 0.019*"resource" + 0.019*"analyzing" + 0.019*"valuable" + 0.018*"comprehensive" + 0.013*"insight" + 0.012*"providing" + 0.012*"size"
+2025-05-03 16:47:43,610 - INFO - topic diff=0.033628, rho=0.122823
+2025-05-03 16:47:43,611 - INFO - -4.771 per-word bound, 27.3 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:43,611 - INFO - PROGRESS: pass 8, at document #2/2
+2025-05-03 16:47:43,611 - INFO - optimized alpha [0.2625525, 0.21490906]
+2025-05-03 16:47:43,611 - INFO - topic #0 (0.263): 0.025*"fuel" + 0.020*"transmission" + 0.020*"engine" + 0.020*"class" + 0.020*"etc" + 0.020*"year" + 0.020*"size" + 0.020*"providing" + 0.016*"specifies" + 0.015*"model"
+2025-05-03 16:47:43,612 - INFO - topic #1 (0.215): 0.020*"appears" + 0.020*"sharing" + 0.020*"user_krupadharamshi" + 0.020*"resource" + 0.019*"analyzing" + 0.019*"valuable" + 0.019*"comprehensive" + 0.013*"insight" + 0.012*"providing" + 0.012*"size"
+2025-05-03 16:47:43,612 - INFO - topic diff=0.031034, rho=0.118699
+2025-05-03 16:47:43,612 - INFO - -4.760 per-word bound, 27.1 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:47:43,612 - INFO - PROGRESS: pass 9, at document #2/2
+2025-05-03 16:47:43,614 - INFO - optimized alpha [0.24147424, 0.1958748]
+2025-05-03 16:47:43,614 - INFO - topic #0 (0.241): 0.026*"fuel" + 0.021*"transmission" + 0.021*"engine" + 0.021*"class" + 0.021*"etc" + 0.020*"year" + 0.020*"size" + 0.020*"providing" + 0.016*"specifies" + 0.015*"model"
+2025-05-03 16:47:43,614 - INFO - topic #1 (0.196): 0.021*"appears" + 0.021*"sharing" + 0.021*"user_krupadharamshi" + 0.020*"resource" + 0.020*"analyzing" + 0.020*"valuable" + 0.020*"comprehensive" + 0.013*"insight" + 0.012*"providing" + 0.012*"size"
+2025-05-03 16:47:43,614 - INFO - topic diff=0.028637, rho=0.114896
+2025-05-03 16:47:43,614 - INFO - LdaModel lifecycle event {'msg': 'trained LdaModel<num_terms=87, num_topics=2, decay=0.7, chunksize=443> in 0.03s', 'datetime': '2025-05-03T16:47:43.614672', 'gensim': '4.3.0', 'python': '3.10.10 | packaged by Anaconda, Inc. | (main, Mar 21 2023, 18:39:17) [MSC v.1916 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.26100-SP0', 'event': 'created'}
+2025-05-03 16:47:43,616 - INFO - using ParallelWordOccurrenceAccumulator<processes=7, batch_size=64> to estimate probabilities from sliding windows
+2025-05-03 16:47:48,709 - INFO - 7 accumulators retrieved from output queue
+2025-05-03 16:47:48,719 - INFO - accumulated word occurrence stats for 24 virtual documents
+2025-05-03 16:47:48,788 - INFO - collecting all words and their counts
+2025-05-03 16:47:48,788 - INFO - PROGRESS: at sentence #0, processed 0 words and 0 word types
+2025-05-03 16:47:48,788 - INFO - collected 20 token types (unigram + bigrams) from a corpus of 14 words and 2 sentences
+2025-05-03 16:47:48,788 - INFO - merged Phrases<20 vocab, min_count=2, threshold=5, max_vocab_size=40000000>
+2025-05-03 16:47:48,788 - INFO - Phrases lifecycle event {'msg': 'built Phrases<20 vocab, min_count=2, threshold=5, max_vocab_size=40000000> in 0.00s', 'datetime': '2025-05-03T16:47:48.788424', 'gensim': '4.3.0', 'python': '3.10.10 | packaged by Anaconda, Inc. | (main, Mar 21 2023, 18:39:17) [MSC v.1916 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.26100-SP0', 'event': 'created'}
+2025-05-03 16:47:48,796 - INFO - collecting all words and their counts
+2025-05-03 16:47:48,796 - INFO - PROGRESS: at sentence #0, processed 0 words and 0 word types
+2025-05-03 16:47:48,796 - INFO - collected 20 token types (unigram + bigrams) from a corpus of 14 words and 2 sentences
+2025-05-03 16:47:48,796 - INFO - merged Phrases<20 vocab, min_count=2, threshold=5, max_vocab_size=40000000>
+2025-05-03 16:47:48,796 - INFO - Phrases lifecycle event {'msg': 'built Phrases<20 vocab, min_count=2, threshold=5, max_vocab_size=40000000> in 0.00s', 'datetime': '2025-05-03T16:47:48.796155', 'gensim': '4.3.0', 'python': '3.10.10 | packaged by Anaconda, Inc. | (main, Mar 21 2023, 18:39:17) [MSC v.1916 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.26100-SP0', 'event': 'created'}
+2025-05-03 16:47:48,796 - INFO - adding document #0 to Dictionary<0 unique tokens: []>
+2025-05-03 16:47:48,796 - INFO - built Dictionary<10 unique tokens: ['became', 'dataset', 'expert', 'finally', 'kaggle']...> from 2 documents (total 14 corpus positions)
+2025-05-03 16:47:48,796 - INFO - Dictionary lifecycle event {'msg': "built Dictionary<10 unique tokens: ['became', 'dataset', 'expert', 'finally', 'kaggle']...> from 2 documents (total 14 corpus positions)", 'datetime': '2025-05-03T16:47:48.796155', 'gensim': '4.3.0', 'python': '3.10.10 | packaged by Anaconda, Inc. | (main, Mar 21 2023, 18:39:17) [MSC v.1916 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.26100-SP0', 'event': 'created'}
+2025-05-03 16:47:48,796 - INFO - discarding 3 tokens: [('dataset', 2), ('expert', 2), ('kaggle', 2)]...
+2025-05-03 16:47:48,797 - INFO - keeping 7 tokens which were in no less than 1 and no more than 1 (=90.0%) documents
+2025-05-03 16:47:48,797 - INFO - resulting dictionary: Dictionary<7 unique tokens: ['became', 'finally', 'xkaggle', 'becoming', 'congrats']...>
+2025-05-03 16:47:48,798 - INFO - using symmetric alpha at 0.5
+2025-05-03 16:47:48,798 - INFO - using serial LDA version on this node
+2025-05-03 16:47:48,798 - INFO - running online (multi-pass) LDA training, 2 topics, 12 passes over the supplied corpus of 2 documents, updating model once every 2 documents, evaluating perplexity every 2 documents, iterating 50x with a convergence threshold of 0.001000
+2025-05-03 16:47:48,798 - INFO - -3.027 per-word bound, 8.2 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:47:48,798 - INFO - PROGRESS: pass 0, at document #2/2
+2025-05-03 16:47:48,804 - INFO - topic #0 (0.500): 0.154*"congrats" + 0.145*"became" + 0.145*"url" + 0.141*"xkaggle" + 0.140*"finally" + 0.138*"becoming" + 0.136*"user_getanmolgupta"
+2025-05-03 16:47:48,806 - INFO - topic #1 (0.500): 0.158*"url" + 0.147*"became" + 0.146*"congrats" + 0.145*"finally" + 0.143*"user_getanmolgupta" + 0.136*"becoming" + 0.126*"xkaggle"
+2025-05-03 16:47:48,806 - INFO - topic diff=0.026771, rho=0.199526
+2025-05-03 16:47:48,808 - INFO - -2.917 per-word bound, 7.6 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:47:48,808 - INFO - PROGRESS: pass 1, at document #2/2
+2025-05-03 16:47:48,810 - INFO - topic #0 (0.500): 0.151*"congrats" + 0.148*"became" + 0.144*"xkaggle" + 0.143*"finally" + 0.143*"url" + 0.137*"becoming" + 0.135*"user_getanmolgupta"
+2025-05-03 16:47:48,810 - INFO - topic #1 (0.500): 0.159*"url" + 0.147*"congrats" + 0.145*"user_getanmolgupta" + 0.144*"became" + 0.142*"finally" + 0.138*"becoming" + 0.125*"xkaggle"
+2025-05-03 16:47:48,810 - INFO - topic diff=0.026336, rho=0.175620
+2025-05-03 16:47:48,811 - INFO - -2.834 per-word bound, 7.1 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:47:48,811 - INFO - PROGRESS: pass 2, at document #2/2
+2025-05-03 16:47:48,813 - INFO - topic #0 (0.500): 0.152*"became" + 0.150*"xkaggle" + 0.148*"finally" + 0.146*"congrats" + 0.138*"url" + 0.134*"becoming" + 0.131*"user_getanmolgupta"
+2025-05-03 16:47:48,813 - INFO - topic #1 (0.500): 0.161*"url" + 0.151*"congrats" + 0.150*"user_getanmolgupta" + 0.143*"becoming" + 0.138*"became" + 0.136*"finally" + 0.121*"xkaggle"
+2025-05-03 16:47:48,813 - INFO - topic diff=0.047379, rho=0.166050
+2025-05-03 16:47:48,815 - INFO - -2.753 per-word bound, 6.7 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:47:48,815 - INFO - PROGRESS: pass 3, at document #2/2
+2025-05-03 16:47:48,817 - INFO - topic #0 (0.500): 0.159*"became" + 0.157*"xkaggle" + 0.155*"finally" + 0.140*"congrats" + 0.133*"url" + 0.129*"becoming" + 0.127*"user_getanmolgupta"
+2025-05-03 16:47:48,818 - INFO - topic #1 (0.500): 0.165*"url" + 0.156*"congrats" + 0.155*"user_getanmolgupta" + 0.149*"becoming" + 0.130*"became" + 0.129*"finally" + 0.115*"xkaggle"
+2025-05-03 16:47:48,818 - INFO - topic diff=0.064032, rho=0.157656
+2025-05-03 16:47:48,820 - INFO - -2.675 per-word bound, 6.4 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:47:48,820 - INFO - PROGRESS: pass 4, at document #2/2
+2025-05-03 16:47:48,820 - INFO - topic #0 (0.500): 0.166*"became" + 0.164*"xkaggle" + 0.162*"finally" + 0.134*"congrats" + 0.127*"url" + 0.125*"becoming" + 0.122*"user_getanmolgupta"
+2025-05-03 16:47:48,820 - INFO - topic #1 (0.500): 0.169*"url" + 0.161*"congrats" + 0.160*"user_getanmolgupta" + 0.155*"becoming" + 0.123*"became" + 0.122*"finally" + 0.110*"xkaggle"
+2025-05-03 16:47:48,820 - INFO - topic diff=0.065084, rho=0.150223
+2025-05-03 16:47:48,822 - INFO - -2.613 per-word bound, 6.1 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:47:48,822 - INFO - PROGRESS: pass 5, at document #2/2
+2025-05-03 16:47:48,823 - INFO - topic #0 (0.500): 0.172*"became" + 0.171*"xkaggle" + 0.169*"finally" + 0.128*"congrats" + 0.122*"url" + 0.120*"becoming" + 0.118*"user_getanmolgupta"
+2025-05-03 16:47:48,823 - INFO - topic #1 (0.500): 0.172*"url" + 0.165*"congrats" + 0.165*"user_getanmolgupta" + 0.160*"becoming" + 0.117*"became" + 0.116*"finally" + 0.105*"xkaggle"
+2025-05-03 16:47:48,823 - INFO - topic diff=0.062038, rho=0.143587
+2025-05-03 16:47:48,823 - INFO - -2.567 per-word bound, 5.9 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:47:48,823 - INFO - PROGRESS: pass 6, at document #2/2
+2025-05-03 16:47:48,823 - INFO - topic #0 (0.500): 0.178*"became" + 0.177*"xkaggle" + 0.175*"finally" + 0.123*"congrats" + 0.118*"url" + 0.116*"becoming" + 0.114*"user_getanmolgupta"
+2025-05-03 16:47:48,823 - INFO - topic #1 (0.500): 0.175*"url" + 0.169*"congrats" + 0.169*"user_getanmolgupta" + 0.165*"becoming" + 0.111*"became" + 0.110*"finally" + 0.101*"xkaggle"
+2025-05-03 16:47:48,823 - INFO - topic diff=0.057841, rho=0.137621
+2025-05-03 16:47:48,823 - INFO - -2.535 per-word bound, 5.8 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:47:48,823 - INFO - PROGRESS: pass 7, at document #2/2
+2025-05-03 16:47:48,823 - INFO - topic #0 (0.500): 0.183*"became" + 0.182*"xkaggle" + 0.180*"finally" + 0.119*"congrats" + 0.114*"url" + 0.112*"becoming" + 0.110*"user_getanmolgupta"
+2025-05-03 16:47:48,826 - INFO - topic #1 (0.500): 0.178*"url" + 0.172*"congrats" + 0.172*"user_getanmolgupta" + 0.169*"becoming" + 0.106*"became" + 0.106*"finally" + 0.097*"xkaggle"
+2025-05-03 16:47:48,826 - INFO - topic diff=0.053390, rho=0.132224
+2025-05-03 16:47:48,826 - INFO - -2.515 per-word bound, 5.7 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:47:48,826 - INFO - PROGRESS: pass 8, at document #2/2
+2025-05-03 16:47:48,827 - INFO - topic #0 (0.500): 0.187*"became" + 0.187*"xkaggle" + 0.185*"finally" + 0.115*"congrats" + 0.110*"url" + 0.109*"becoming" + 0.107*"user_getanmolgupta"
+2025-05-03 16:47:48,827 - INFO - topic #1 (0.500): 0.180*"url" + 0.175*"congrats" + 0.175*"user_getanmolgupta" + 0.172*"becoming" + 0.102*"became" + 0.101*"finally" + 0.094*"xkaggle"
+2025-05-03 16:47:48,827 - INFO - topic diff=0.049025, rho=0.127313
+2025-05-03 16:47:48,827 - INFO - -2.504 per-word bound, 5.7 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:47:48,828 - INFO - PROGRESS: pass 9, at document #2/2
+2025-05-03 16:47:48,828 - INFO - topic #0 (0.500): 0.191*"became" + 0.191*"xkaggle" + 0.190*"finally" + 0.111*"congrats" + 0.107*"url" + 0.106*"becoming" + 0.104*"user_getanmolgupta"
+2025-05-03 16:47:48,828 - INFO - topic #1 (0.500): 0.182*"url" + 0.178*"congrats" + 0.178*"user_getanmolgupta" + 0.175*"becoming" + 0.098*"became" + 0.098*"finally" + 0.091*"xkaggle"
+2025-05-03 16:47:48,828 - INFO - topic diff=0.044871, rho=0.122823
+2025-05-03 16:47:48,829 - INFO - -2.498 per-word bound, 5.7 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:47:48,829 - INFO - PROGRESS: pass 10, at document #2/2
+2025-05-03 16:47:48,829 - INFO - topic #0 (0.500): 0.195*"became" + 0.195*"xkaggle" + 0.193*"finally" + 0.108*"congrats" + 0.104*"url" + 0.103*"becoming" + 0.102*"user_getanmolgupta"
+2025-05-03 16:47:48,829 - INFO - topic #1 (0.500): 0.184*"url" + 0.180*"user_getanmolgupta" + 0.180*"congrats" + 0.178*"becoming" + 0.095*"became" + 0.095*"finally" + 0.089*"xkaggle"
+2025-05-03 16:47:48,829 - INFO - topic diff=0.040988, rho=0.118699
+2025-05-03 16:47:48,829 - INFO - -2.497 per-word bound, 5.6 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:47:48,829 - INFO - PROGRESS: pass 11, at document #2/2
+2025-05-03 16:47:48,829 - INFO - topic #0 (0.500): 0.198*"became" + 0.198*"xkaggle" + 0.197*"finally" + 0.105*"congrats" + 0.102*"url" + 0.101*"becoming" + 0.099*"user_getanmolgupta"
+2025-05-03 16:47:48,829 - INFO - topic #1 (0.500): 0.186*"url" + 0.182*"user_getanmolgupta" + 0.182*"congrats" + 0.180*"becoming" + 0.092*"became" + 0.092*"finally" + 0.087*"xkaggle"
+2025-05-03 16:47:48,829 - INFO - topic diff=0.037388, rho=0.114896
+2025-05-03 16:47:48,829 - INFO - LdaModel lifecycle event {'msg': 'trained LdaModel<num_terms=7, num_topics=2, decay=0.7, chunksize=535> in 0.03s', 'datetime': '2025-05-03T16:47:48.829048', 'gensim': '4.3.0', 'python': '3.10.10 | packaged by Anaconda, Inc. | (main, Mar 21 2023, 18:39:17) [MSC v.1916 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.26100-SP0', 'event': 'created'}
+2025-05-03 16:47:48,829 - INFO - using ParallelWordOccurrenceAccumulator<processes=7, batch_size=64> to estimate probabilities from sliding windows
+2025-05-03 16:47:53,267 - INFO - 7 accumulators retrieved from output queue
+2025-05-03 16:47:53,276 - INFO - accumulated word occurrence stats for 2 virtual documents
+2025-05-03 16:47:53,301 - INFO - using symmetric alpha at 0.5
+2025-05-03 16:47:53,303 - INFO - using serial LDA version on this node
+2025-05-03 16:47:53,303 - INFO - running online (multi-pass) LDA training, 2 topics, 7 passes over the supplied corpus of 2 documents, updating model once every 2 documents, evaluating perplexity every 2 documents, iterating 50x with a convergence threshold of 0.001000
+2025-05-03 16:47:53,303 - WARNING - too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+2025-05-03 16:47:53,306 - INFO - -3.027 per-word bound, 8.2 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:47:53,307 - INFO - PROGRESS: pass 0, at document #2/2
+2025-05-03 16:47:53,309 - INFO - topic #0 (0.500): 0.154*"congrats" + 0.146*"url" + 0.145*"became" + 0.141*"xkaggle" + 0.140*"finally" + 0.138*"becoming" + 0.136*"user_getanmolgupta"
+2025-05-03 16:47:53,309 - INFO - topic #1 (0.500): 0.158*"url" + 0.147*"became" + 0.146*"congrats" + 0.145*"finally" + 0.143*"user_getanmolgupta" + 0.135*"becoming" + 0.126*"xkaggle"
+2025-05-03 16:47:53,309 - INFO - topic diff=0.023318, rho=0.175620
+2025-05-03 16:47:53,311 - INFO - -2.929 per-word bound, 7.6 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:47:53,311 - INFO - PROGRESS: pass 1, at document #2/2
+2025-05-03 16:47:53,313 - INFO - topic #0 (0.500): 0.151*"congrats" + 0.147*"became" + 0.143*"xkaggle" + 0.143*"url" + 0.142*"finally" + 0.138*"becoming" + 0.135*"user_getanmolgupta"
+2025-05-03 16:47:53,313 - INFO - topic #1 (0.500): 0.158*"url" + 0.147*"congrats" + 0.145*"user_getanmolgupta" + 0.145*"became" + 0.142*"finally" + 0.138*"becoming" + 0.125*"xkaggle"
+2025-05-03 16:47:53,313 - INFO - topic diff=0.022747, rho=0.157656
+2025-05-03 16:47:53,313 - INFO - -2.852 per-word bound, 7.2 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:47:53,313 - INFO - PROGRESS: pass 2, at document #2/2
+2025-05-03 16:47:53,316 - INFO - topic #0 (0.500): 0.151*"became" + 0.148*"xkaggle" + 0.147*"congrats" + 0.147*"finally" + 0.139*"url" + 0.135*"becoming" + 0.132*"user_getanmolgupta"
+2025-05-03 16:47:53,316 - INFO - topic #1 (0.500): 0.161*"url" + 0.150*"congrats" + 0.148*"user_getanmolgupta" + 0.142*"becoming" + 0.140*"became" + 0.138*"finally" + 0.122*"xkaggle"
+2025-05-03 16:47:53,316 - INFO - topic diff=0.038820, rho=0.150223
+2025-05-03 16:47:53,318 - INFO - -2.778 per-word bound, 6.9 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:47:53,318 - INFO - PROGRESS: pass 3, at document #2/2
+2025-05-03 16:47:53,320 - INFO - topic #0 (0.500): 0.157*"became" + 0.155*"xkaggle" + 0.153*"finally" + 0.142*"congrats" + 0.135*"url" + 0.131*"becoming" + 0.128*"user_getanmolgupta"
+2025-05-03 16:47:53,320 - INFO - topic #1 (0.500): 0.164*"url" + 0.154*"congrats" + 0.153*"user_getanmolgupta" + 0.147*"becoming" + 0.133*"became" + 0.131*"finally" + 0.117*"xkaggle"
+2025-05-03 16:47:53,320 - INFO - topic diff=0.055520, rho=0.143587
+2025-05-03 16:47:53,322 - INFO - -2.703 per-word bound, 6.5 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:47:53,322 - INFO - PROGRESS: pass 4, at document #2/2
+2025-05-03 16:47:53,323 - INFO - topic #0 (0.500): 0.163*"became" + 0.161*"xkaggle" + 0.159*"finally" + 0.136*"congrats" + 0.130*"url" + 0.127*"becoming" + 0.124*"user_getanmolgupta"
+2025-05-03 16:47:53,323 - INFO - topic #1 (0.500): 0.167*"url" + 0.159*"congrats" + 0.158*"user_getanmolgupta" + 0.152*"becoming" + 0.126*"became" + 0.125*"finally" + 0.112*"xkaggle"
+2025-05-03 16:47:53,323 - INFO - topic diff=0.058313, rho=0.137621
+2025-05-03 16:47:53,324 - INFO - -2.641 per-word bound, 6.2 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:47:53,324 - INFO - PROGRESS: pass 5, at document #2/2
+2025-05-03 16:47:53,326 - INFO - topic #0 (0.500): 0.169*"became" + 0.167*"xkaggle" + 0.165*"finally" + 0.131*"congrats" + 0.125*"url" + 0.122*"becoming" + 0.120*"user_getanmolgupta"
+2025-05-03 16:47:53,326 - INFO - topic #1 (0.500): 0.171*"url" + 0.163*"congrats" + 0.162*"user_getanmolgupta" + 0.157*"becoming" + 0.120*"became" + 0.119*"finally" + 0.108*"xkaggle"
+2025-05-03 16:47:53,326 - INFO - topic diff=0.056811, rho=0.132224
+2025-05-03 16:47:53,327 - INFO - -2.591 per-word bound, 6.0 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:47:53,327 - INFO - PROGRESS: pass 6, at document #2/2
+2025-05-03 16:47:53,328 - INFO - topic #0 (0.500): 0.174*"became" + 0.173*"xkaggle" + 0.171*"finally" + 0.127*"congrats" + 0.121*"url" + 0.118*"becoming" + 0.116*"user_getanmolgupta"
+2025-05-03 16:47:53,328 - INFO - topic #1 (0.500): 0.173*"url" + 0.166*"congrats" + 0.166*"user_getanmolgupta" + 0.162*"becoming" + 0.115*"became" + 0.114*"finally" + 0.104*"xkaggle"
+2025-05-03 16:47:53,328 - INFO - topic diff=0.053905, rho=0.127313
+2025-05-03 16:47:53,328 - INFO - LdaModel lifecycle event {'msg': 'trained LdaModel<num_terms=7, num_topics=2, decay=0.7, chunksize=714> in 0.02s', 'datetime': '2025-05-03T16:47:53.328168', 'gensim': '4.3.0', 'python': '3.10.10 | packaged by Anaconda, Inc. | (main, Mar 21 2023, 18:39:17) [MSC v.1916 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.26100-SP0', 'event': 'created'}
+2025-05-03 16:47:53,328 - INFO - using ParallelWordOccurrenceAccumulator<processes=7, batch_size=64> to estimate probabilities from sliding windows
+2025-05-03 16:47:58,142 - INFO - 7 accumulators retrieved from output queue
+2025-05-03 16:47:58,150 - INFO - accumulated word occurrence stats for 2 virtual documents
+2025-05-03 16:47:58,172 - INFO - using symmetric alpha at 0.5
+2025-05-03 16:47:58,172 - INFO - using serial LDA version on this node
+2025-05-03 16:47:58,172 - INFO - running online (multi-pass) LDA training, 2 topics, 9 passes over the supplied corpus of 2 documents, updating model once every 2 documents, evaluating perplexity every 2 documents, iterating 50x with a convergence threshold of 0.001000
+2025-05-03 16:47:58,174 - WARNING - too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+2025-05-03 16:47:58,176 - INFO - -3.027 per-word bound, 8.2 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:47:58,176 - INFO - PROGRESS: pass 0, at document #2/2
+2025-05-03 16:47:58,178 - INFO - topic #0 (0.500): 0.154*"congrats" + 0.146*"url" + 0.145*"became" + 0.141*"xkaggle" + 0.140*"finally" + 0.138*"becoming" + 0.136*"user_getanmolgupta"
+2025-05-03 16:47:58,178 - INFO - topic #1 (0.500): 0.158*"url" + 0.147*"became" + 0.146*"congrats" + 0.145*"finally" + 0.143*"user_getanmolgupta" + 0.135*"becoming" + 0.126*"xkaggle"
+2025-05-03 16:47:58,178 - INFO - topic diff=0.023318, rho=0.175620
+2025-05-03 16:47:58,180 - INFO - -2.929 per-word bound, 7.6 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:47:58,180 - INFO - PROGRESS: pass 1, at document #2/2
+2025-05-03 16:47:58,182 - INFO - topic #0 (0.500): 0.151*"congrats" + 0.147*"became" + 0.143*"xkaggle" + 0.143*"url" + 0.142*"finally" + 0.138*"becoming" + 0.135*"user_getanmolgupta"
+2025-05-03 16:47:58,182 - INFO - topic #1 (0.500): 0.158*"url" + 0.147*"congrats" + 0.145*"user_getanmolgupta" + 0.145*"became" + 0.142*"finally" + 0.138*"becoming" + 0.125*"xkaggle"
+2025-05-03 16:47:58,182 - INFO - topic diff=0.022747, rho=0.157656
+2025-05-03 16:47:58,186 - INFO - -2.852 per-word bound, 7.2 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:47:58,186 - INFO - PROGRESS: pass 2, at document #2/2
+2025-05-03 16:47:58,188 - INFO - topic #0 (0.500): 0.151*"became" + 0.148*"xkaggle" + 0.147*"congrats" + 0.147*"finally" + 0.139*"url" + 0.135*"becoming" + 0.132*"user_getanmolgupta"
+2025-05-03 16:47:58,188 - INFO - topic #1 (0.500): 0.161*"url" + 0.150*"congrats" + 0.148*"user_getanmolgupta" + 0.142*"becoming" + 0.140*"became" + 0.138*"finally" + 0.122*"xkaggle"
+2025-05-03 16:47:58,188 - INFO - topic diff=0.038820, rho=0.150223
+2025-05-03 16:47:58,190 - INFO - -2.778 per-word bound, 6.9 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:47:58,190 - INFO - PROGRESS: pass 3, at document #2/2
+2025-05-03 16:47:58,190 - INFO - topic #0 (0.500): 0.157*"became" + 0.155*"xkaggle" + 0.153*"finally" + 0.142*"congrats" + 0.135*"url" + 0.131*"becoming" + 0.128*"user_getanmolgupta"
+2025-05-03 16:47:58,190 - INFO - topic #1 (0.500): 0.164*"url" + 0.154*"congrats" + 0.153*"user_getanmolgupta" + 0.147*"becoming" + 0.133*"became" + 0.131*"finally" + 0.117*"xkaggle"
+2025-05-03 16:47:58,190 - INFO - topic diff=0.055520, rho=0.143587
+2025-05-03 16:47:58,192 - INFO - -2.703 per-word bound, 6.5 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:47:58,192 - INFO - PROGRESS: pass 4, at document #2/2
+2025-05-03 16:47:58,194 - INFO - topic #0 (0.500): 0.163*"became" + 0.161*"xkaggle" + 0.159*"finally" + 0.136*"congrats" + 0.130*"url" + 0.127*"becoming" + 0.124*"user_getanmolgupta"
+2025-05-03 16:47:58,194 - INFO - topic #1 (0.500): 0.167*"url" + 0.159*"congrats" + 0.158*"user_getanmolgupta" + 0.152*"becoming" + 0.126*"became" + 0.125*"finally" + 0.112*"xkaggle"
+2025-05-03 16:47:58,194 - INFO - topic diff=0.058313, rho=0.137621
+2025-05-03 16:47:58,196 - INFO - -2.641 per-word bound, 6.2 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:47:58,196 - INFO - PROGRESS: pass 5, at document #2/2
+2025-05-03 16:47:58,197 - INFO - topic #0 (0.500): 0.169*"became" + 0.167*"xkaggle" + 0.165*"finally" + 0.131*"congrats" + 0.125*"url" + 0.122*"becoming" + 0.120*"user_getanmolgupta"
+2025-05-03 16:47:58,197 - INFO - topic #1 (0.500): 0.171*"url" + 0.163*"congrats" + 0.162*"user_getanmolgupta" + 0.157*"becoming" + 0.120*"became" + 0.119*"finally" + 0.108*"xkaggle"
+2025-05-03 16:47:58,197 - INFO - topic diff=0.056811, rho=0.132224
+2025-05-03 16:47:58,199 - INFO - -2.591 per-word bound, 6.0 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:47:58,199 - INFO - PROGRESS: pass 6, at document #2/2
+2025-05-03 16:47:58,200 - INFO - topic #0 (0.500): 0.174*"became" + 0.173*"xkaggle" + 0.171*"finally" + 0.127*"congrats" + 0.121*"url" + 0.118*"becoming" + 0.116*"user_getanmolgupta"
+2025-05-03 16:47:58,200 - INFO - topic #1 (0.500): 0.173*"url" + 0.166*"congrats" + 0.166*"user_getanmolgupta" + 0.162*"becoming" + 0.115*"became" + 0.114*"finally" + 0.104*"xkaggle"
+2025-05-03 16:47:58,200 - INFO - topic diff=0.053905, rho=0.127313
+2025-05-03 16:47:58,201 - INFO - -2.555 per-word bound, 5.9 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:47:58,201 - INFO - PROGRESS: pass 7, at document #2/2
+2025-05-03 16:47:58,201 - INFO - topic #0 (0.500): 0.179*"became" + 0.178*"xkaggle" + 0.176*"finally" + 0.122*"congrats" + 0.117*"url" + 0.115*"becoming" + 0.113*"user_getanmolgupta"
+2025-05-03 16:47:58,201 - INFO - topic #1 (0.500): 0.176*"url" + 0.170*"congrats" + 0.169*"user_getanmolgupta" + 0.166*"becoming" + 0.110*"became" + 0.109*"finally" + 0.100*"xkaggle"
+2025-05-03 16:47:58,202 - INFO - topic diff=0.050541, rho=0.122823
+2025-05-03 16:47:58,202 - INFO - -2.530 per-word bound, 5.8 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:47:58,202 - INFO - PROGRESS: pass 8, at document #2/2
+2025-05-03 16:47:58,203 - INFO - topic #0 (0.500): 0.183*"became" + 0.183*"xkaggle" + 0.181*"finally" + 0.118*"congrats" + 0.113*"url" + 0.111*"becoming" + 0.110*"user_getanmolgupta"
+2025-05-03 16:47:58,203 - INFO - topic #1 (0.500): 0.178*"url" + 0.173*"congrats" + 0.172*"user_getanmolgupta" + 0.169*"becoming" + 0.106*"became" + 0.105*"finally" + 0.097*"xkaggle"
+2025-05-03 16:47:58,203 - INFO - topic diff=0.047066, rho=0.118699
+2025-05-03 16:47:58,203 - INFO - LdaModel lifecycle event {'msg': 'trained LdaModel<num_terms=7, num_topics=2, decay=0.7, chunksize=558> in 0.03s', 'datetime': '2025-05-03T16:47:58.203827', 'gensim': '4.3.0', 'python': '3.10.10 | packaged by Anaconda, Inc. | (main, Mar 21 2023, 18:39:17) [MSC v.1916 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.26100-SP0', 'event': 'created'}
+2025-05-03 16:47:58,204 - INFO - using ParallelWordOccurrenceAccumulator<processes=7, batch_size=64> to estimate probabilities from sliding windows
+2025-05-03 16:48:02,787 - INFO - 7 accumulators retrieved from output queue
+2025-05-03 16:48:02,794 - INFO - accumulated word occurrence stats for 2 virtual documents
+2025-05-03 16:48:02,819 - INFO - using autotuned alpha, starting with [0.5, 0.5]
+2025-05-03 16:48:02,819 - INFO - using serial LDA version on this node
+2025-05-03 16:48:02,821 - INFO - running online (multi-pass) LDA training, 2 topics, 10 passes over the supplied corpus of 2 documents, updating model once every 2 documents, evaluating perplexity every 2 documents, iterating 50x with a convergence threshold of 0.001000
+2025-05-03 16:48:02,823 - INFO - -3.027 per-word bound, 8.2 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:48:02,823 - INFO - PROGRESS: pass 0, at document #2/2
+2025-05-03 16:48:02,826 - INFO - optimized alpha [0.57532585, 0.54983586]
+2025-05-03 16:48:02,826 - INFO - topic #0 (0.575): 0.154*"congrats" + 0.145*"became" + 0.145*"url" + 0.141*"xkaggle" + 0.140*"finally" + 0.138*"becoming" + 0.136*"user_getanmolgupta"
+2025-05-03 16:48:02,826 - INFO - topic #1 (0.550): 0.158*"url" + 0.147*"became" + 0.146*"congrats" + 0.145*"finally" + 0.143*"user_getanmolgupta" + 0.136*"becoming" + 0.126*"xkaggle"
+2025-05-03 16:48:02,826 - INFO - topic diff=0.026771, rho=0.199526
+2025-05-03 16:48:02,828 - INFO - -2.898 per-word bound, 7.5 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:48:02,828 - INFO - PROGRESS: pass 1, at document #2/2
+2025-05-03 16:48:02,830 - INFO - optimized alpha [0.6488359, 0.59977585]
+2025-05-03 16:48:02,830 - INFO - topic #0 (0.649): 0.151*"congrats" + 0.146*"became" + 0.143*"url" + 0.143*"xkaggle" + 0.142*"finally" + 0.138*"becoming" + 0.135*"user_getanmolgupta"
+2025-05-03 16:48:02,830 - INFO - topic #1 (0.600): 0.158*"url" + 0.146*"congrats" + 0.145*"became" + 0.144*"user_getanmolgupta" + 0.143*"finally" + 0.137*"becoming" + 0.126*"xkaggle"
+2025-05-03 16:48:02,830 - INFO - topic diff=0.021952, rho=0.175620
+2025-05-03 16:48:02,832 - INFO - -2.807 per-word bound, 7.0 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:48:02,832 - INFO - PROGRESS: pass 2, at document #2/2
+2025-05-03 16:48:02,834 - INFO - optimized alpha [0.72439444, 0.6477425]
+2025-05-03 16:48:02,835 - INFO - topic #0 (0.724): 0.149*"congrats" + 0.148*"became" + 0.146*"xkaggle" + 0.144*"finally" + 0.141*"url" + 0.138*"becoming" + 0.135*"user_getanmolgupta"
+2025-05-03 16:48:02,835 - INFO - topic #1 (0.648): 0.158*"url" + 0.147*"congrats" + 0.146*"user_getanmolgupta" + 0.143*"became" + 0.141*"finally" + 0.139*"becoming" + 0.125*"xkaggle"
+2025-05-03 16:48:02,835 - INFO - topic diff=0.021085, rho=0.166050
+2025-05-03 16:48:02,838 - INFO - -2.737 per-word bound, 6.7 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:48:02,838 - INFO - PROGRESS: pass 3, at document #2/2
+2025-05-03 16:48:02,840 - INFO - optimized alpha [0.8007385, 0.6938005]
+2025-05-03 16:48:02,840 - INFO - topic #0 (0.801): 0.149*"became" + 0.148*"xkaggle" + 0.147*"congrats" + 0.146*"finally" + 0.139*"url" + 0.137*"becoming" + 0.134*"user_getanmolgupta"
+2025-05-03 16:48:02,840 - INFO - topic #1 (0.694): 0.159*"url" + 0.148*"congrats" + 0.148*"user_getanmolgupta" + 0.142*"becoming" + 0.140*"became" + 0.139*"finally" + 0.124*"xkaggle"
+2025-05-03 16:48:02,840 - INFO - topic diff=0.021226, rho=0.157656
+2025-05-03 16:48:02,840 - INFO - -2.684 per-word bound, 6.4 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:48:02,840 - INFO - PROGRESS: pass 4, at document #2/2
+2025-05-03 16:48:02,842 - INFO - optimized alpha [0.8768391, 0.73771197]
+2025-05-03 16:48:02,842 - INFO - topic #0 (0.877): 0.151*"became" + 0.150*"xkaggle" + 0.148*"finally" + 0.145*"congrats" + 0.137*"url" + 0.136*"becoming" + 0.133*"user_getanmolgupta"
+2025-05-03 16:48:02,842 - INFO - topic #1 (0.738): 0.160*"url" + 0.150*"user_getanmolgupta" + 0.150*"congrats" + 0.144*"becoming" + 0.137*"became" + 0.136*"finally" + 0.123*"xkaggle"
+2025-05-03 16:48:02,842 - INFO - topic diff=0.021788, rho=0.150223
+2025-05-03 16:48:02,842 - INFO - -2.644 per-word bound, 6.3 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:48:02,842 - INFO - PROGRESS: pass 5, at document #2/2
+2025-05-03 16:48:02,845 - INFO - optimized alpha [0.9510751, 0.7795448]
+2025-05-03 16:48:02,845 - INFO - topic #0 (0.951): 0.153*"became" + 0.153*"xkaggle" + 0.150*"finally" + 0.142*"congrats" + 0.135*"url" + 0.134*"becoming" + 0.132*"user_getanmolgupta"
+2025-05-03 16:48:02,845 - INFO - topic #1 (0.780): 0.161*"url" + 0.152*"user_getanmolgupta" + 0.151*"congrats" + 0.146*"becoming" + 0.135*"became" + 0.134*"finally" + 0.121*"xkaggle"
+2025-05-03 16:48:02,845 - INFO - topic diff=0.022576, rho=0.143587
+2025-05-03 16:48:02,846 - INFO - -2.615 per-word bound, 6.1 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:48:02,846 - INFO - PROGRESS: pass 6, at document #2/2
+2025-05-03 16:48:02,847 - INFO - optimized alpha [1.0223476, 0.81901604]
+2025-05-03 16:48:02,847 - INFO - topic #0 (1.022): 0.155*"xkaggle" + 0.155*"became" + 0.153*"finally" + 0.140*"congrats" + 0.133*"url" + 0.133*"becoming" + 0.130*"user_getanmolgupta"
+2025-05-03 16:48:02,847 - INFO - topic #1 (0.819): 0.162*"url" + 0.154*"user_getanmolgupta" + 0.153*"congrats" + 0.149*"becoming" + 0.132*"became" + 0.131*"finally" + 0.119*"xkaggle"
+2025-05-03 16:48:02,848 - INFO - topic diff=0.023528, rho=0.137621
+2025-05-03 16:48:02,848 - INFO - -2.593 per-word bound, 6.0 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:48:02,848 - INFO - PROGRESS: pass 7, at document #2/2
+2025-05-03 16:48:02,850 - INFO - optimized alpha [1.0898229, 0.85594046]
+2025-05-03 16:48:02,850 - INFO - topic #0 (1.090): 0.158*"xkaggle" + 0.157*"became" + 0.155*"finally" + 0.138*"congrats" + 0.132*"becoming" + 0.131*"url" + 0.129*"user_getanmolgupta"
+2025-05-03 16:48:02,850 - INFO - topic #1 (0.856): 0.164*"url" + 0.156*"user_getanmolgupta" + 0.155*"congrats" + 0.151*"becoming" + 0.129*"became" + 0.128*"finally" + 0.117*"xkaggle"
+2025-05-03 16:48:02,850 - INFO - topic diff=0.024171, rho=0.132224
+2025-05-03 16:48:02,852 - INFO - -2.577 per-word bound, 6.0 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:48:02,852 - INFO - PROGRESS: pass 8, at document #2/2
+2025-05-03 16:48:02,852 - INFO - optimized alpha [1.1523911, 0.89015955]
+2025-05-03 16:48:02,852 - INFO - topic #0 (1.152): 0.160*"xkaggle" + 0.159*"became" + 0.157*"finally" + 0.136*"congrats" + 0.130*"becoming" + 0.130*"url" + 0.127*"user_getanmolgupta"
+2025-05-03 16:48:02,852 - INFO - topic #1 (0.890): 0.165*"url" + 0.159*"user_getanmolgupta" + 0.157*"congrats" + 0.154*"becoming" + 0.126*"became" + 0.125*"finally" + 0.115*"xkaggle"
+2025-05-03 16:48:02,854 - INFO - topic diff=0.024599, rho=0.127313
+2025-05-03 16:48:02,855 - INFO - -2.566 per-word bound, 5.9 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:48:02,855 - INFO - PROGRESS: pass 9, at document #2/2
+2025-05-03 16:48:02,856 - INFO - optimized alpha [1.2093453, 0.92150086]
+2025-05-03 16:48:02,856 - INFO - topic #0 (1.209): 0.163*"xkaggle" + 0.162*"became" + 0.160*"finally" + 0.134*"congrats" + 0.129*"becoming" + 0.128*"url" + 0.126*"user_getanmolgupta"
+2025-05-03 16:48:02,857 - INFO - topic #1 (0.922): 0.167*"url" + 0.161*"user_getanmolgupta" + 0.158*"congrats" + 0.156*"becoming" + 0.123*"became" + 0.122*"finally" + 0.113*"xkaggle"
+2025-05-03 16:48:02,857 - INFO - topic diff=0.024730, rho=0.122823
+2025-05-03 16:48:02,857 - INFO - LdaModel lifecycle event {'msg': 'trained LdaModel<num_terms=7, num_topics=2, decay=0.7, chunksize=763> in 0.04s', 'datetime': '2025-05-03T16:48:02.857119', 'gensim': '4.3.0', 'python': '3.10.10 | packaged by Anaconda, Inc. | (main, Mar 21 2023, 18:39:17) [MSC v.1916 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.26100-SP0', 'event': 'created'}
+2025-05-03 16:48:02,857 - INFO - using ParallelWordOccurrenceAccumulator<processes=7, batch_size=64> to estimate probabilities from sliding windows
+2025-05-03 16:48:07,491 - INFO - 7 accumulators retrieved from output queue
+2025-05-03 16:48:07,498 - INFO - accumulated word occurrence stats for 2 virtual documents
+2025-05-03 16:48:07,521 - INFO - using autotuned alpha, starting with [0.5, 0.5]
+2025-05-03 16:48:07,521 - INFO - using serial LDA version on this node
+2025-05-03 16:48:07,521 - INFO - running online (multi-pass) LDA training, 2 topics, 10 passes over the supplied corpus of 2 documents, updating model once every 2 documents, evaluating perplexity every 2 documents, iterating 50x with a convergence threshold of 0.001000
+2025-05-03 16:48:07,525 - INFO - -3.027 per-word bound, 8.2 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:48:07,525 - INFO - PROGRESS: pass 0, at document #2/2
+2025-05-03 16:48:07,527 - INFO - optimized alpha [0.5663006, 0.5438647]
+2025-05-03 16:48:07,527 - INFO - topic #0 (0.566): 0.154*"congrats" + 0.146*"url" + 0.145*"became" + 0.141*"xkaggle" + 0.140*"finally" + 0.138*"becoming" + 0.136*"user_getanmolgupta"
+2025-05-03 16:48:07,527 - INFO - topic #1 (0.544): 0.158*"url" + 0.147*"became" + 0.146*"congrats" + 0.145*"finally" + 0.143*"user_getanmolgupta" + 0.135*"becoming" + 0.126*"xkaggle"
+2025-05-03 16:48:07,527 - INFO - topic diff=0.023318, rho=0.175620
+2025-05-03 16:48:07,530 - INFO - -2.912 per-word bound, 7.5 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:48:07,530 - INFO - PROGRESS: pass 1, at document #2/2
+2025-05-03 16:48:07,530 - INFO - optimized alpha [0.6313752, 0.58903176]
+2025-05-03 16:48:07,530 - INFO - topic #0 (0.631): 0.152*"congrats" + 0.146*"became" + 0.144*"url" + 0.143*"xkaggle" + 0.141*"finally" + 0.138*"becoming" + 0.136*"user_getanmolgupta"
+2025-05-03 16:48:07,530 - INFO - topic #1 (0.589): 0.158*"url" + 0.146*"congrats" + 0.146*"became" + 0.144*"user_getanmolgupta" + 0.143*"finally" + 0.137*"becoming" + 0.126*"xkaggle"
+2025-05-03 16:48:07,530 - INFO - topic diff=0.019572, rho=0.157656
+2025-05-03 16:48:07,530 - INFO - -2.826 per-word bound, 7.1 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:48:07,530 - INFO - PROGRESS: pass 2, at document #2/2
+2025-05-03 16:48:07,534 - INFO - optimized alpha [0.6982875, 0.63275945]
+2025-05-03 16:48:07,534 - INFO - topic #0 (0.698): 0.150*"congrats" + 0.147*"became" + 0.145*"xkaggle" + 0.143*"finally" + 0.142*"url" + 0.138*"becoming" + 0.135*"user_getanmolgupta"
+2025-05-03 16:48:07,534 - INFO - topic #1 (0.633): 0.158*"url" + 0.147*"congrats" + 0.145*"user_getanmolgupta" + 0.144*"became" + 0.142*"finally" + 0.139*"becoming" + 0.125*"xkaggle"
+2025-05-03 16:48:07,534 - INFO - topic diff=0.018935, rho=0.150223
+2025-05-03 16:48:07,536 - INFO - -2.759 per-word bound, 6.8 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:48:07,536 - INFO - PROGRESS: pass 3, at document #2/2
+2025-05-03 16:48:07,537 - INFO - optimized alpha [0.7660317, 0.6750808]
+2025-05-03 16:48:07,537 - INFO - topic #0 (0.766): 0.149*"became" + 0.148*"congrats" + 0.147*"xkaggle" + 0.145*"finally" + 0.140*"url" + 0.137*"becoming" + 0.134*"user_getanmolgupta"
+2025-05-03 16:48:07,537 - INFO - topic #1 (0.675): 0.159*"url" + 0.148*"congrats" + 0.147*"user_getanmolgupta" + 0.141*"became" + 0.141*"becoming" + 0.140*"finally" + 0.125*"xkaggle"
+2025-05-03 16:48:07,537 - INFO - topic diff=0.019178, rho=0.143587
+2025-05-03 16:48:07,539 - INFO - -2.706 per-word bound, 6.5 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:48:07,539 - INFO - PROGRESS: pass 4, at document #2/2
+2025-05-03 16:48:07,540 - INFO - optimized alpha [0.83381355, 0.7157381]
+2025-05-03 16:48:07,540 - INFO - topic #0 (0.834): 0.150*"became" + 0.149*"xkaggle" + 0.147*"finally" + 0.146*"congrats" + 0.138*"url" + 0.136*"becoming" + 0.133*"user_getanmolgupta"
+2025-05-03 16:48:07,541 - INFO - topic #1 (0.716): 0.159*"url" + 0.149*"congrats" + 0.149*"user_getanmolgupta" + 0.143*"becoming" + 0.139*"became" + 0.137*"finally" + 0.123*"xkaggle"
+2025-05-03 16:48:07,541 - INFO - topic diff=0.019810, rho=0.137621
+2025-05-03 16:48:07,542 - INFO - -2.664 per-word bound, 6.3 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:48:07,542 - INFO - PROGRESS: pass 5, at document #2/2
+2025-05-03 16:48:07,543 - INFO - optimized alpha [0.900256, 0.75476414]
+2025-05-03 16:48:07,545 - INFO - topic #0 (0.900): 0.152*"became" + 0.152*"xkaggle" + 0.149*"finally" + 0.144*"congrats" + 0.136*"url" + 0.135*"becoming" + 0.132*"user_getanmolgupta"
+2025-05-03 16:48:07,545 - INFO - topic #1 (0.755): 0.160*"url" + 0.151*"user_getanmolgupta" + 0.151*"congrats" + 0.145*"becoming" + 0.136*"became" + 0.135*"finally" + 0.122*"xkaggle"
+2025-05-03 16:48:07,545 - INFO - topic diff=0.020639, rho=0.132224
+2025-05-03 16:48:07,547 - INFO - -2.632 per-word bound, 6.2 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:48:07,547 - INFO - PROGRESS: pass 6, at document #2/2
+2025-05-03 16:48:07,548 - INFO - optimized alpha [0.96446854, 0.7918878]
+2025-05-03 16:48:07,548 - INFO - topic #0 (0.964): 0.154*"became" + 0.154*"xkaggle" + 0.151*"finally" + 0.141*"congrats" + 0.135*"url" + 0.134*"becoming" + 0.131*"user_getanmolgupta"
+2025-05-03 16:48:07,550 - INFO - topic #1 (0.792): 0.162*"url" + 0.153*"user_getanmolgupta" + 0.152*"congrats" + 0.147*"becoming" + 0.133*"became" + 0.132*"finally" + 0.120*"xkaggle"
+2025-05-03 16:48:07,550 - INFO - topic diff=0.021615, rho=0.127313
+2025-05-03 16:48:07,550 - INFO - -2.607 per-word bound, 6.1 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:48:07,550 - INFO - PROGRESS: pass 7, at document #2/2
+2025-05-03 16:48:07,550 - INFO - optimized alpha [1.0257169, 0.82686156]
+2025-05-03 16:48:07,552 - INFO - topic #0 (1.026): 0.156*"xkaggle" + 0.156*"became" + 0.154*"finally" + 0.139*"congrats" + 0.133*"url" + 0.132*"becoming" + 0.129*"user_getanmolgupta"
+2025-05-03 16:48:07,552 - INFO - topic #1 (0.827): 0.163*"url" + 0.155*"user_getanmolgupta" + 0.154*"congrats" + 0.150*"becoming" + 0.131*"became" + 0.130*"finally" + 0.118*"xkaggle"
+2025-05-03 16:48:07,552 - INFO - topic diff=0.022493, rho=0.122823
+2025-05-03 16:48:07,552 - INFO - -2.589 per-word bound, 6.0 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:48:07,552 - INFO - PROGRESS: pass 8, at document #2/2
+2025-05-03 16:48:07,552 - INFO - optimized alpha [1.0830102, 0.85952246]
+2025-05-03 16:48:07,552 - INFO - topic #0 (1.083): 0.159*"xkaggle" + 0.158*"became" + 0.156*"finally" + 0.137*"congrats" + 0.131*"becoming" + 0.131*"url" + 0.128*"user_getanmolgupta"
+2025-05-03 16:48:07,552 - INFO - topic #1 (0.860): 0.164*"url" + 0.157*"user_getanmolgupta" + 0.155*"congrats" + 0.152*"becoming" + 0.128*"became" + 0.127*"finally" + 0.116*"xkaggle"
+2025-05-03 16:48:07,552 - INFO - topic diff=0.023166, rho=0.118699
+2025-05-03 16:48:07,552 - INFO - -2.575 per-word bound, 6.0 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:48:07,552 - INFO - PROGRESS: pass 9, at document #2/2
+2025-05-03 16:48:07,556 - INFO - optimized alpha [1.135636, 0.8896669]
+2025-05-03 16:48:07,556 - INFO - topic #0 (1.136): 0.161*"xkaggle" + 0.160*"became" + 0.158*"finally" + 0.135*"congrats" + 0.129*"becoming" + 0.129*"url" + 0.127*"user_getanmolgupta"
+2025-05-03 16:48:07,556 - INFO - topic #1 (0.890): 0.166*"url" + 0.159*"user_getanmolgupta" + 0.157*"congrats" + 0.154*"becoming" + 0.125*"became" + 0.124*"finally" + 0.115*"xkaggle"
+2025-05-03 16:48:07,556 - INFO - topic diff=0.023567, rho=0.114896
+2025-05-03 16:48:07,556 - INFO - LdaModel lifecycle event {'msg': 'trained LdaModel<num_terms=7, num_topics=2, decay=0.7, chunksize=443> in 0.03s', 'datetime': '2025-05-03T16:48:07.556012', 'gensim': '4.3.0', 'python': '3.10.10 | packaged by Anaconda, Inc. | (main, Mar 21 2023, 18:39:17) [MSC v.1916 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.26100-SP0', 'event': 'created'}
+2025-05-03 16:48:07,556 - INFO - using ParallelWordOccurrenceAccumulator<processes=7, batch_size=64> to estimate probabilities from sliding windows
+2025-05-03 16:48:12,166 - INFO - 7 accumulators retrieved from output queue
+2025-05-03 16:48:12,174 - INFO - accumulated word occurrence stats for 2 virtual documents
+2025-05-03 16:56:52,141 - INFO - collecting all words and their counts
+2025-05-03 16:56:52,147 - INFO - PROGRESS: at sentence #0, processed 0 words and 0 word types
+2025-05-03 16:56:52,147 - INFO - collected 237 token types (unigram + bigrams) from a corpus of 148 words and 2 sentences
+2025-05-03 16:56:52,147 - INFO - merged Phrases<237 vocab, min_count=2, threshold=5, max_vocab_size=40000000>
+2025-05-03 16:56:52,168 - INFO - Phrases lifecycle event {'msg': 'built Phrases<237 vocab, min_count=2, threshold=5, max_vocab_size=40000000> in 0.01s', 'datetime': '2025-05-03T16:56:52.147117', 'gensim': '4.3.0', 'python': '3.10.10 | packaged by Anaconda, Inc. | (main, Mar 21 2023, 18:39:17) [MSC v.1916 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.26100-SP0', 'event': 'created'}
+2025-05-03 16:56:52,169 - INFO - collecting all words and their counts
+2025-05-03 16:56:52,169 - INFO - PROGRESS: at sentence #0, processed 0 words and 0 word types
+2025-05-03 16:56:52,169 - INFO - collected 237 token types (unigram + bigrams) from a corpus of 148 words and 2 sentences
+2025-05-03 16:56:52,169 - INFO - merged Phrases<237 vocab, min_count=2, threshold=5, max_vocab_size=40000000>
+2025-05-03 16:56:52,169 - INFO - Phrases lifecycle event {'msg': 'built Phrases<237 vocab, min_count=2, threshold=5, max_vocab_size=40000000> in 0.00s', 'datetime': '2025-05-03T16:56:52.169435', 'gensim': '4.3.0', 'python': '3.10.10 | packaged by Anaconda, Inc. | (main, Mar 21 2023, 18:39:17) [MSC v.1916 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.26100-SP0', 'event': 'created'}
+2025-05-03 16:56:52,169 - INFO - adding document #0 to Dictionary<0 unique tokens: []>
+2025-05-03 16:56:52,169 - INFO - built Dictionary<96 unique tokens: ['acura', 'amount', 'attribute', 'audi', 'automatic']...> from 2 documents (total 148 corpus positions)
+2025-05-03 16:56:52,169 - INFO - Dictionary lifecycle event {'msg': "built Dictionary<96 unique tokens: ['acura', 'amount', 'attribute', 'audi', 'automatic']...> from 2 documents (total 148 corpus positions)", 'datetime': '2025-05-03T16:56:52.169435', 'gensim': '4.3.0', 'python': '3.10.10 | packaged by Anaconda, Inc. | (main, Mar 21 2023, 18:39:17) [MSC v.1916 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.26100-SP0', 'event': 'created'}
+2025-05-03 16:56:52,169 - INFO - discarding 9 tokens: [('based', 2), ('characteristic', 2), ('thank', 2), ('url', 2), ('vehicle', 2), ('dataset', 2), ('different', 2), ('environmental', 2), ('impact', 2)]...
+2025-05-03 16:56:52,169 - INFO - keeping 87 tokens which were in no less than 1 and no more than 1 (=90.0%) documents
+2025-05-03 16:56:52,169 - INFO - resulting dictionary: Dictionary<87 unique tokens: ['acura', 'amount', 'attribute', 'audi', 'automatic']...>
+2025-05-03 16:56:52,177 - INFO - using symmetric alpha at 0.5
+2025-05-03 16:56:52,177 - INFO - using serial LDA version on this node
+2025-05-03 16:56:52,177 - INFO - running online (multi-pass) LDA training, 2 topics, 12 passes over the supplied corpus of 2 documents, updating model once every 2 documents, evaluating perplexity every 2 documents, iterating 50x with a convergence threshold of 0.001000
+2025-05-03 16:56:52,179 - INFO - -5.276 per-word bound, 38.7 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:56:52,179 - INFO - PROGRESS: pass 0, at document #2/2
+2025-05-03 16:56:52,179 - INFO - topic #0 (0.500): 0.015*"fuel" + 0.014*"transmission" + 0.014*"class" + 0.014*"specifies" + 0.014*"engine" + 0.014*"etc" + 0.013*"year" + 0.013*"model" + 0.013*"size" + 0.013*"type"
+2025-05-03 16:56:52,180 - INFO - topic #1 (0.500): 0.015*"insight" + 0.014*"size" + 0.014*"providing" + 0.013*"fuel" + 0.013*"type" + 0.013*"class" + 0.013*"make" + 0.013*"appears" + 0.013*"manufacturer" + 0.013*"representing"
+2025-05-03 16:56:52,180 - INFO - topic diff=0.060345, rho=0.199526
+2025-05-03 16:56:52,181 - INFO - -5.159 per-word bound, 35.7 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:56:52,181 - INFO - PROGRESS: pass 1, at document #2/2
+2025-05-03 16:56:52,181 - INFO - topic #0 (0.500): 0.017*"fuel" + 0.016*"transmission" + 0.016*"engine" + 0.016*"class" + 0.015*"etc" + 0.015*"year" + 0.015*"specifies" + 0.014*"size" + 0.013*"providing" + 0.013*"model"
+2025-05-03 16:56:52,181 - INFO - topic #1 (0.500): 0.015*"insight" + 0.014*"providing" + 0.014*"size" + 0.014*"fuel" + 0.014*"appears" + 0.013*"class" + 0.013*"type" + 0.013*"sharing" + 0.013*"year" + 0.013*"manufacturer"
+2025-05-03 16:56:52,181 - INFO - topic diff=0.052685, rho=0.175620
+2025-05-03 16:56:52,182 - INFO - -5.047 per-word bound, 33.1 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:56:52,182 - INFO - PROGRESS: pass 2, at document #2/2
+2025-05-03 16:56:52,183 - INFO - topic #0 (0.500): 0.020*"fuel" + 0.017*"transmission" + 0.017*"engine" + 0.017*"class" + 0.017*"etc" + 0.016*"year" + 0.016*"size" + 0.015*"providing" + 0.015*"specifies" + 0.014*"model"
+2025-05-03 16:56:52,183 - INFO - topic #1 (0.500): 0.015*"appears" + 0.015*"insight" + 0.014*"sharing" + 0.014*"user_krupadharamshi" + 0.014*"resource" + 0.014*"analyzing" + 0.014*"providing" + 0.014*"size" + 0.014*"valuable" + 0.013*"fuel"
+2025-05-03 16:56:52,183 - INFO - topic diff=0.057926, rho=0.166050
+2025-05-03 16:56:52,184 - INFO - -4.949 per-word bound, 30.9 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:56:52,184 - INFO - PROGRESS: pass 3, at document #2/2
+2025-05-03 16:56:52,184 - INFO - topic #0 (0.500): 0.021*"fuel" + 0.018*"transmission" + 0.018*"engine" + 0.018*"class" + 0.018*"etc" + 0.017*"year" + 0.017*"size" + 0.017*"providing" + 0.015*"specifies" + 0.014*"model"
+2025-05-03 16:56:52,184 - INFO - topic #1 (0.500): 0.016*"appears" + 0.015*"sharing" + 0.015*"user_krupadharamshi" + 0.015*"resource" + 0.015*"analyzing" + 0.015*"valuable" + 0.015*"comprehensive" + 0.014*"insight" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:56:52,184 - INFO - topic diff=0.051390, rho=0.157656
+2025-05-03 16:56:52,185 - INFO - -4.881 per-word bound, 29.5 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:56:52,185 - INFO - PROGRESS: pass 4, at document #2/2
+2025-05-03 16:56:52,185 - INFO - topic #0 (0.500): 0.023*"fuel" + 0.019*"transmission" + 0.019*"engine" + 0.019*"class" + 0.019*"etc" + 0.018*"year" + 0.018*"size" + 0.018*"providing" + 0.015*"specifies" + 0.015*"model"
+2025-05-03 16:56:52,186 - INFO - topic #1 (0.500): 0.017*"appears" + 0.017*"sharing" + 0.017*"user_krupadharamshi" + 0.016*"resource" + 0.016*"analyzing" + 0.016*"valuable" + 0.016*"comprehensive" + 0.014*"insight" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:56:52,186 - INFO - topic diff=0.046093, rho=0.150223
+2025-05-03 16:56:52,187 - INFO - -4.834 per-word bound, 28.5 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:56:52,187 - INFO - PROGRESS: pass 5, at document #2/2
+2025-05-03 16:56:52,187 - INFO - topic #0 (0.500): 0.024*"fuel" + 0.020*"transmission" + 0.020*"engine" + 0.020*"class" + 0.019*"etc" + 0.019*"year" + 0.019*"size" + 0.018*"providing" + 0.016*"specifies" + 0.015*"model"
+2025-05-03 16:56:52,187 - INFO - topic #1 (0.500): 0.018*"appears" + 0.018*"sharing" + 0.018*"user_krupadharamshi" + 0.017*"resource" + 0.017*"analyzing" + 0.017*"valuable" + 0.017*"comprehensive" + 0.014*"insight" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:56:52,187 - INFO - topic diff=0.041760, rho=0.143587
+2025-05-03 16:56:52,188 - INFO - -4.803 per-word bound, 27.9 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:56:52,188 - INFO - PROGRESS: pass 6, at document #2/2
+2025-05-03 16:56:52,188 - INFO - topic #0 (0.500): 0.025*"fuel" + 0.020*"transmission" + 0.020*"engine" + 0.020*"class" + 0.020*"etc" + 0.020*"year" + 0.020*"size" + 0.019*"providing" + 0.016*"specifies" + 0.015*"model"
+2025-05-03 16:56:52,188 - INFO - topic #1 (0.500): 0.019*"appears" + 0.019*"sharing" + 0.019*"user_krupadharamshi" + 0.019*"resource" + 0.018*"analyzing" + 0.018*"valuable" + 0.018*"comprehensive" + 0.013*"insight" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:56:52,188 - INFO - topic diff=0.038019, rho=0.137621
+2025-05-03 16:56:52,189 - INFO - -4.784 per-word bound, 27.5 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:56:52,189 - INFO - PROGRESS: pass 7, at document #2/2
+2025-05-03 16:56:52,189 - INFO - topic #0 (0.500): 0.025*"fuel" + 0.021*"transmission" + 0.020*"engine" + 0.020*"class" + 0.020*"etc" + 0.020*"year" + 0.020*"size" + 0.020*"providing" + 0.016*"specifies" + 0.015*"model"
+2025-05-03 16:56:52,189 - INFO - topic #1 (0.500): 0.020*"appears" + 0.020*"sharing" + 0.020*"user_krupadharamshi" + 0.019*"resource" + 0.019*"analyzing" + 0.019*"valuable" + 0.019*"comprehensive" + 0.013*"insight" + 0.012*"providing" + 0.012*"size"
+2025-05-03 16:56:52,189 - INFO - topic diff=0.034681, rho=0.132224
+2025-05-03 16:56:52,190 - INFO - -4.773 per-word bound, 27.3 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:56:52,190 - INFO - PROGRESS: pass 8, at document #2/2
+2025-05-03 16:56:52,190 - INFO - topic #0 (0.500): 0.026*"fuel" + 0.021*"transmission" + 0.021*"engine" + 0.021*"class" + 0.021*"etc" + 0.021*"year" + 0.020*"size" + 0.020*"providing" + 0.016*"specifies" + 0.016*"model"
+2025-05-03 16:56:52,190 - INFO - topic #1 (0.500): 0.021*"appears" + 0.021*"sharing" + 0.021*"user_krupadharamshi" + 0.020*"resource" + 0.020*"analyzing" + 0.020*"valuable" + 0.020*"comprehensive" + 0.013*"insight" + 0.012*"providing" + 0.012*"size"
+2025-05-03 16:56:52,190 - INFO - topic diff=0.031648, rho=0.127313
+2025-05-03 16:56:52,191 - INFO - -4.767 per-word bound, 27.2 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:56:52,191 - INFO - PROGRESS: pass 9, at document #2/2
+2025-05-03 16:56:52,191 - INFO - topic #0 (0.500): 0.026*"fuel" + 0.021*"transmission" + 0.021*"engine" + 0.021*"class" + 0.021*"etc" + 0.021*"year" + 0.021*"size" + 0.021*"providing" + 0.016*"specifies" + 0.016*"model"
+2025-05-03 16:56:52,191 - INFO - topic #1 (0.500): 0.022*"appears" + 0.021*"sharing" + 0.021*"user_krupadharamshi" + 0.021*"resource" + 0.021*"analyzing" + 0.021*"valuable" + 0.021*"comprehensive" + 0.012*"insight" + 0.012*"providing" + 0.012*"size"
+2025-05-03 16:56:52,191 - INFO - topic diff=0.028869, rho=0.122823
+2025-05-03 16:56:52,192 - INFO - -4.766 per-word bound, 27.2 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:56:52,192 - INFO - PROGRESS: pass 10, at document #2/2
+2025-05-03 16:56:52,193 - INFO - topic #0 (0.500): 0.027*"fuel" + 0.021*"transmission" + 0.021*"engine" + 0.021*"class" + 0.021*"etc" + 0.021*"year" + 0.021*"size" + 0.021*"providing" + 0.016*"specifies" + 0.016*"model"
+2025-05-03 16:56:52,193 - INFO - topic #1 (0.500): 0.022*"appears" + 0.022*"sharing" + 0.022*"user_krupadharamshi" + 0.022*"resource" + 0.022*"analyzing" + 0.022*"valuable" + 0.022*"comprehensive" + 0.012*"insight" + 0.012*"providing" + 0.012*"size"
+2025-05-03 16:56:52,193 - INFO - topic diff=0.026315, rho=0.118699
+2025-05-03 16:56:52,193 - INFO - -4.768 per-word bound, 27.2 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:56:52,193 - INFO - PROGRESS: pass 11, at document #2/2
+2025-05-03 16:56:52,194 - INFO - topic #0 (0.500): 0.027*"fuel" + 0.022*"transmission" + 0.022*"engine" + 0.022*"class" + 0.021*"etc" + 0.021*"year" + 0.021*"size" + 0.021*"providing" + 0.016*"specifies" + 0.016*"model"
+2025-05-03 16:56:52,195 - INFO - topic #1 (0.500): 0.023*"appears" + 0.023*"sharing" + 0.023*"user_krupadharamshi" + 0.023*"resource" + 0.023*"analyzing" + 0.023*"valuable" + 0.022*"comprehensive" + 0.012*"insight" + 0.012*"providing" + 0.012*"size"
+2025-05-03 16:56:52,195 - INFO - topic diff=0.023966, rho=0.114896
+2025-05-03 16:56:52,195 - INFO - LdaModel lifecycle event {'msg': 'trained LdaModel<num_terms=87, num_topics=2, decay=0.7, chunksize=535> in 0.02s', 'datetime': '2025-05-03T16:56:52.195085', 'gensim': '4.3.0', 'python': '3.10.10 | packaged by Anaconda, Inc. | (main, Mar 21 2023, 18:39:17) [MSC v.1916 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.26100-SP0', 'event': 'created'}
+2025-05-03 16:56:52,195 - INFO - using ParallelWordOccurrenceAccumulator<processes=7, batch_size=64> to estimate probabilities from sliding windows
+2025-05-03 16:56:55,536 - INFO - 7 accumulators retrieved from output queue
+2025-05-03 16:56:55,571 - INFO - accumulated word occurrence stats for 24 virtual documents
+2025-05-03 16:56:55,621 - INFO - using symmetric alpha at 0.5
+2025-05-03 16:56:55,621 - INFO - using serial LDA version on this node
+2025-05-03 16:56:55,621 - INFO - running online (multi-pass) LDA training, 2 topics, 7 passes over the supplied corpus of 2 documents, updating model once every 2 documents, evaluating perplexity every 2 documents, iterating 50x with a convergence threshold of 0.001000
+2025-05-03 16:56:55,621 - WARNING - too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+2025-05-03 16:56:55,621 - INFO - -5.276 per-word bound, 38.7 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:56:55,621 - INFO - PROGRESS: pass 0, at document #2/2
+2025-05-03 16:56:55,626 - INFO - topic #0 (0.500): 0.014*"fuel" + 0.014*"specifies" + 0.014*"transmission" + 0.014*"class" + 0.014*"engine" + 0.013*"etc" + 0.013*"year" + 0.013*"model" + 0.013*"size" + 0.012*"link"
+2025-05-03 16:56:55,626 - INFO - topic #1 (0.500): 0.015*"insight" + 0.014*"size" + 0.013*"providing" + 0.013*"type" + 0.013*"fuel" + 0.013*"make" + 0.013*"class" + 0.013*"appears" + 0.013*"representing" + 0.013*"manufacturer"
+2025-05-03 16:56:55,626 - INFO - topic diff=0.052818, rho=0.175620
+2025-05-03 16:56:55,626 - INFO - -5.172 per-word bound, 36.1 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:56:55,626 - INFO - PROGRESS: pass 1, at document #2/2
+2025-05-03 16:56:55,628 - INFO - topic #0 (0.500): 0.017*"fuel" + 0.015*"transmission" + 0.015*"engine" + 0.015*"class" + 0.015*"etc" + 0.014*"specifies" + 0.014*"year" + 0.014*"size" + 0.013*"model" + 0.013*"providing"
+2025-05-03 16:56:55,628 - INFO - topic #1 (0.500): 0.015*"insight" + 0.014*"providing" + 0.014*"size" + 0.013*"fuel" + 0.013*"appears" + 0.013*"class" + 0.013*"type" + 0.013*"manufacturer" + 0.013*"year" + 0.013*"sharing"
+2025-05-03 16:56:55,628 - INFO - topic diff=0.047089, rho=0.157656
+2025-05-03 16:56:55,628 - INFO - -5.071 per-word bound, 33.6 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:56:55,628 - INFO - PROGRESS: pass 2, at document #2/2
+2025-05-03 16:56:55,630 - INFO - topic #0 (0.500): 0.019*"fuel" + 0.017*"transmission" + 0.017*"engine" + 0.017*"class" + 0.016*"etc" + 0.016*"year" + 0.016*"size" + 0.015*"specifies" + 0.015*"providing" + 0.014*"model"
+2025-05-03 16:56:55,630 - INFO - topic #1 (0.500): 0.015*"insight" + 0.014*"appears" + 0.014*"sharing" + 0.014*"user_krupadharamshi" + 0.014*"providing" + 0.014*"size" + 0.014*"resource" + 0.013*"analyzing" + 0.013*"valuable" + 0.013*"fuel"
+2025-05-03 16:56:55,630 - INFO - topic diff=0.052556, rho=0.150223
+2025-05-03 16:56:55,630 - INFO - -4.976 per-word bound, 31.5 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:56:55,630 - INFO - PROGRESS: pass 3, at document #2/2
+2025-05-03 16:56:55,632 - INFO - topic #0 (0.500): 0.021*"fuel" + 0.018*"transmission" + 0.018*"engine" + 0.018*"class" + 0.017*"etc" + 0.017*"year" + 0.017*"size" + 0.016*"providing" + 0.015*"specifies" + 0.014*"model"
+2025-05-03 16:56:55,632 - INFO - topic #1 (0.500): 0.016*"appears" + 0.015*"sharing" + 0.015*"user_krupadharamshi" + 0.015*"resource" + 0.015*"analyzing" + 0.014*"valuable" + 0.014*"insight" + 0.014*"comprehensive" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:56:55,632 - INFO - topic diff=0.047570, rho=0.143587
+2025-05-03 16:56:55,632 - INFO - -4.907 per-word bound, 30.0 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:56:55,632 - INFO - PROGRESS: pass 4, at document #2/2
+2025-05-03 16:56:55,632 - INFO - topic #0 (0.500): 0.022*"fuel" + 0.019*"transmission" + 0.018*"engine" + 0.018*"class" + 0.018*"etc" + 0.018*"year" + 0.018*"size" + 0.017*"providing" + 0.015*"specifies" + 0.015*"model"
+2025-05-03 16:56:55,632 - INFO - topic #1 (0.500): 0.017*"appears" + 0.016*"sharing" + 0.016*"user_krupadharamshi" + 0.016*"resource" + 0.016*"analyzing" + 0.016*"valuable" + 0.015*"comprehensive" + 0.014*"insight" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:56:55,632 - INFO - topic diff=0.043061, rho=0.137621
+2025-05-03 16:56:55,634 - INFO - -4.856 per-word bound, 29.0 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:56:55,634 - INFO - PROGRESS: pass 5, at document #2/2
+2025-05-03 16:56:55,634 - INFO - topic #0 (0.500): 0.023*"fuel" + 0.019*"transmission" + 0.019*"engine" + 0.019*"class" + 0.019*"etc" + 0.019*"year" + 0.018*"size" + 0.018*"providing" + 0.015*"specifies" + 0.015*"model"
+2025-05-03 16:56:55,634 - INFO - topic #1 (0.500): 0.018*"appears" + 0.017*"sharing" + 0.017*"user_krupadharamshi" + 0.017*"resource" + 0.017*"analyzing" + 0.017*"valuable" + 0.016*"comprehensive" + 0.014*"insight" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:56:55,634 - INFO - topic diff=0.039377, rho=0.132224
+2025-05-03 16:56:55,636 - INFO - -4.821 per-word bound, 28.3 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:56:55,636 - INFO - PROGRESS: pass 6, at document #2/2
+2025-05-03 16:56:55,636 - INFO - topic #0 (0.500): 0.024*"fuel" + 0.020*"transmission" + 0.020*"engine" + 0.020*"class" + 0.019*"etc" + 0.019*"year" + 0.019*"size" + 0.019*"providing" + 0.016*"specifies" + 0.015*"model"
+2025-05-03 16:56:55,636 - INFO - topic #1 (0.500): 0.019*"appears" + 0.018*"sharing" + 0.018*"user_krupadharamshi" + 0.018*"resource" + 0.018*"analyzing" + 0.018*"valuable" + 0.017*"comprehensive" + 0.013*"insight" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:56:55,636 - INFO - topic diff=0.036206, rho=0.127313
+2025-05-03 16:56:55,636 - INFO - LdaModel lifecycle event {'msg': 'trained LdaModel<num_terms=87, num_topics=2, decay=0.7, chunksize=714> in 0.01s', 'datetime': '2025-05-03T16:56:55.636701', 'gensim': '4.3.0', 'python': '3.10.10 | packaged by Anaconda, Inc. | (main, Mar 21 2023, 18:39:17) [MSC v.1916 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.26100-SP0', 'event': 'created'}
+2025-05-03 16:56:55,636 - INFO - using ParallelWordOccurrenceAccumulator<processes=7, batch_size=64> to estimate probabilities from sliding windows
+2025-05-03 16:56:59,390 - INFO - 7 accumulators retrieved from output queue
+2025-05-03 16:56:59,395 - INFO - accumulated word occurrence stats for 24 virtual documents
+2025-05-03 16:56:59,443 - INFO - using symmetric alpha at 0.5
+2025-05-03 16:56:59,443 - INFO - using serial LDA version on this node
+2025-05-03 16:56:59,443 - INFO - running online (multi-pass) LDA training, 2 topics, 9 passes over the supplied corpus of 2 documents, updating model once every 2 documents, evaluating perplexity every 2 documents, iterating 50x with a convergence threshold of 0.001000
+2025-05-03 16:56:59,445 - WARNING - too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+2025-05-03 16:56:59,446 - INFO - -5.276 per-word bound, 38.7 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:56:59,446 - INFO - PROGRESS: pass 0, at document #2/2
+2025-05-03 16:56:59,446 - INFO - topic #0 (0.500): 0.014*"fuel" + 0.014*"specifies" + 0.014*"transmission" + 0.014*"class" + 0.014*"engine" + 0.013*"etc" + 0.013*"year" + 0.013*"model" + 0.013*"size" + 0.012*"link"
+2025-05-03 16:56:59,446 - INFO - topic #1 (0.500): 0.015*"insight" + 0.014*"size" + 0.013*"providing" + 0.013*"type" + 0.013*"fuel" + 0.013*"make" + 0.013*"class" + 0.013*"appears" + 0.013*"representing" + 0.013*"manufacturer"
+2025-05-03 16:56:59,446 - INFO - topic diff=0.052818, rho=0.175620
+2025-05-03 16:56:59,448 - INFO - -5.172 per-word bound, 36.1 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:56:59,448 - INFO - PROGRESS: pass 1, at document #2/2
+2025-05-03 16:56:59,448 - INFO - topic #0 (0.500): 0.017*"fuel" + 0.015*"transmission" + 0.015*"engine" + 0.015*"class" + 0.015*"etc" + 0.014*"specifies" + 0.014*"year" + 0.014*"size" + 0.013*"model" + 0.013*"providing"
+2025-05-03 16:56:59,448 - INFO - topic #1 (0.500): 0.015*"insight" + 0.014*"providing" + 0.014*"size" + 0.013*"fuel" + 0.013*"appears" + 0.013*"class" + 0.013*"type" + 0.013*"manufacturer" + 0.013*"year" + 0.013*"sharing"
+2025-05-03 16:56:59,448 - INFO - topic diff=0.047089, rho=0.157656
+2025-05-03 16:56:59,450 - INFO - -5.071 per-word bound, 33.6 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:56:59,450 - INFO - PROGRESS: pass 2, at document #2/2
+2025-05-03 16:56:59,450 - INFO - topic #0 (0.500): 0.019*"fuel" + 0.017*"transmission" + 0.017*"engine" + 0.017*"class" + 0.016*"etc" + 0.016*"year" + 0.016*"size" + 0.015*"specifies" + 0.015*"providing" + 0.014*"model"
+2025-05-03 16:56:59,450 - INFO - topic #1 (0.500): 0.015*"insight" + 0.014*"appears" + 0.014*"sharing" + 0.014*"user_krupadharamshi" + 0.014*"providing" + 0.014*"size" + 0.014*"resource" + 0.013*"analyzing" + 0.013*"valuable" + 0.013*"fuel"
+2025-05-03 16:56:59,450 - INFO - topic diff=0.052556, rho=0.150223
+2025-05-03 16:56:59,452 - INFO - -4.976 per-word bound, 31.5 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:56:59,452 - INFO - PROGRESS: pass 3, at document #2/2
+2025-05-03 16:56:59,453 - INFO - topic #0 (0.500): 0.021*"fuel" + 0.018*"transmission" + 0.018*"engine" + 0.018*"class" + 0.017*"etc" + 0.017*"year" + 0.017*"size" + 0.016*"providing" + 0.015*"specifies" + 0.014*"model"
+2025-05-03 16:56:59,453 - INFO - topic #1 (0.500): 0.016*"appears" + 0.015*"sharing" + 0.015*"user_krupadharamshi" + 0.015*"resource" + 0.015*"analyzing" + 0.014*"valuable" + 0.014*"insight" + 0.014*"comprehensive" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:56:59,453 - INFO - topic diff=0.047570, rho=0.143587
+2025-05-03 16:56:59,454 - INFO - -4.907 per-word bound, 30.0 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:56:59,454 - INFO - PROGRESS: pass 4, at document #2/2
+2025-05-03 16:56:59,456 - INFO - topic #0 (0.500): 0.022*"fuel" + 0.019*"transmission" + 0.018*"engine" + 0.018*"class" + 0.018*"etc" + 0.018*"year" + 0.018*"size" + 0.017*"providing" + 0.015*"specifies" + 0.015*"model"
+2025-05-03 16:56:59,456 - INFO - topic #1 (0.500): 0.017*"appears" + 0.016*"sharing" + 0.016*"user_krupadharamshi" + 0.016*"resource" + 0.016*"analyzing" + 0.016*"valuable" + 0.015*"comprehensive" + 0.014*"insight" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:56:59,456 - INFO - topic diff=0.043061, rho=0.137621
+2025-05-03 16:56:59,456 - INFO - -4.856 per-word bound, 29.0 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:56:59,456 - INFO - PROGRESS: pass 5, at document #2/2
+2025-05-03 16:56:59,457 - INFO - topic #0 (0.500): 0.023*"fuel" + 0.019*"transmission" + 0.019*"engine" + 0.019*"class" + 0.019*"etc" + 0.019*"year" + 0.018*"size" + 0.018*"providing" + 0.015*"specifies" + 0.015*"model"
+2025-05-03 16:56:59,457 - INFO - topic #1 (0.500): 0.018*"appears" + 0.017*"sharing" + 0.017*"user_krupadharamshi" + 0.017*"resource" + 0.017*"analyzing" + 0.017*"valuable" + 0.016*"comprehensive" + 0.014*"insight" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:56:59,457 - INFO - topic diff=0.039377, rho=0.132224
+2025-05-03 16:56:59,458 - INFO - -4.821 per-word bound, 28.3 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:56:59,458 - INFO - PROGRESS: pass 6, at document #2/2
+2025-05-03 16:56:59,459 - INFO - topic #0 (0.500): 0.024*"fuel" + 0.020*"transmission" + 0.020*"engine" + 0.020*"class" + 0.019*"etc" + 0.019*"year" + 0.019*"size" + 0.019*"providing" + 0.016*"specifies" + 0.015*"model"
+2025-05-03 16:56:59,459 - INFO - topic #1 (0.500): 0.019*"appears" + 0.018*"sharing" + 0.018*"user_krupadharamshi" + 0.018*"resource" + 0.018*"analyzing" + 0.018*"valuable" + 0.017*"comprehensive" + 0.013*"insight" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:56:59,460 - INFO - topic diff=0.036206, rho=0.127313
+2025-05-03 16:56:59,460 - INFO - -4.797 per-word bound, 27.8 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:56:59,460 - INFO - PROGRESS: pass 7, at document #2/2
+2025-05-03 16:56:59,462 - INFO - topic #0 (0.500): 0.025*"fuel" + 0.020*"transmission" + 0.020*"engine" + 0.020*"class" + 0.020*"etc" + 0.020*"year" + 0.020*"size" + 0.019*"providing" + 0.016*"specifies" + 0.015*"model"
+2025-05-03 16:56:59,462 - INFO - topic #1 (0.500): 0.019*"appears" + 0.019*"sharing" + 0.019*"user_krupadharamshi" + 0.019*"resource" + 0.019*"analyzing" + 0.019*"valuable" + 0.018*"comprehensive" + 0.013*"insight" + 0.012*"providing" + 0.012*"size"
+2025-05-03 16:56:59,462 - INFO - topic diff=0.033376, rho=0.122823
+2025-05-03 16:56:59,463 - INFO - -4.781 per-word bound, 27.5 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:56:59,464 - INFO - PROGRESS: pass 8, at document #2/2
+2025-05-03 16:56:59,464 - INFO - topic #0 (0.500): 0.025*"fuel" + 0.020*"transmission" + 0.020*"engine" + 0.020*"class" + 0.020*"etc" + 0.020*"year" + 0.020*"size" + 0.020*"providing" + 0.016*"specifies" + 0.015*"model"
+2025-05-03 16:56:59,464 - INFO - topic #1 (0.500): 0.020*"appears" + 0.020*"sharing" + 0.020*"user_krupadharamshi" + 0.020*"resource" + 0.020*"analyzing" + 0.019*"valuable" + 0.019*"comprehensive" + 0.013*"insight" + 0.012*"providing" + 0.012*"size"
+2025-05-03 16:56:59,464 - INFO - topic diff=0.030796, rho=0.118699
+2025-05-03 16:56:59,464 - INFO - LdaModel lifecycle event {'msg': 'trained LdaModel<num_terms=87, num_topics=2, decay=0.7, chunksize=558> in 0.02s', 'datetime': '2025-05-03T16:56:59.464066', 'gensim': '4.3.0', 'python': '3.10.10 | packaged by Anaconda, Inc. | (main, Mar 21 2023, 18:39:17) [MSC v.1916 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.26100-SP0', 'event': 'created'}
+2025-05-03 16:56:59,464 - INFO - using ParallelWordOccurrenceAccumulator<processes=7, batch_size=64> to estimate probabilities from sliding windows
+2025-05-03 16:57:02,906 - INFO - 7 accumulators retrieved from output queue
+2025-05-03 16:57:02,916 - INFO - accumulated word occurrence stats for 24 virtual documents
+2025-05-03 16:57:02,966 - INFO - using autotuned alpha, starting with [0.5, 0.5]
+2025-05-03 16:57:02,966 - INFO - using serial LDA version on this node
+2025-05-03 16:57:02,966 - INFO - running online (multi-pass) LDA training, 2 topics, 10 passes over the supplied corpus of 2 documents, updating model once every 2 documents, evaluating perplexity every 2 documents, iterating 50x with a convergence threshold of 0.001000
+2025-05-03 16:57:02,969 - INFO - -5.276 per-word bound, 38.7 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:57:02,969 - INFO - PROGRESS: pass 0, at document #2/2
+2025-05-03 16:57:02,970 - INFO - optimized alpha [0.5429489, 0.5747085]
+2025-05-03 16:57:02,970 - INFO - topic #0 (0.543): 0.015*"fuel" + 0.014*"transmission" + 0.014*"class" + 0.014*"specifies" + 0.014*"engine" + 0.014*"etc" + 0.013*"year" + 0.013*"model" + 0.013*"size" + 0.013*"type"
+2025-05-03 16:57:02,970 - INFO - topic #1 (0.575): 0.015*"insight" + 0.014*"size" + 0.014*"providing" + 0.013*"fuel" + 0.013*"type" + 0.013*"class" + 0.013*"make" + 0.013*"appears" + 0.013*"manufacturer" + 0.013*"representing"
+2025-05-03 16:57:02,970 - INFO - topic diff=0.060345, rho=0.199526
+2025-05-03 16:57:02,970 - INFO - -5.159 per-word bound, 35.7 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:57:02,970 - INFO - PROGRESS: pass 1, at document #2/2
+2025-05-03 16:57:02,972 - INFO - optimized alpha [0.55929196, 0.61502016]
+2025-05-03 16:57:02,972 - INFO - topic #0 (0.559): 0.017*"fuel" + 0.016*"transmission" + 0.016*"engine" + 0.016*"class" + 0.015*"etc" + 0.015*"year" + 0.015*"specifies" + 0.014*"size" + 0.013*"model" + 0.013*"providing"
+2025-05-03 16:57:02,972 - INFO - topic #1 (0.615): 0.015*"insight" + 0.014*"providing" + 0.014*"size" + 0.014*"fuel" + 0.014*"appears" + 0.013*"class" + 0.013*"type" + 0.013*"year" + 0.013*"manufacturer" + 0.013*"sharing"
+2025-05-03 16:57:02,972 - INFO - topic diff=0.051942, rho=0.175620
+2025-05-03 16:57:02,974 - INFO - -5.051 per-word bound, 33.2 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:57:02,974 - INFO - PROGRESS: pass 2, at document #2/2
+2025-05-03 16:57:02,974 - INFO - optimized alpha [0.5145697, 0.53487796]
+2025-05-03 16:57:02,974 - INFO - topic #0 (0.515): 0.020*"fuel" + 0.017*"transmission" + 0.017*"engine" + 0.017*"class" + 0.017*"etc" + 0.016*"year" + 0.016*"size" + 0.015*"providing" + 0.015*"specifies" + 0.014*"model"
+2025-05-03 16:57:02,974 - INFO - topic #1 (0.535): 0.015*"appears" + 0.015*"insight" + 0.014*"sharing" + 0.014*"user_krupadharamshi" + 0.014*"providing" + 0.014*"resource" + 0.014*"size" + 0.014*"analyzing" + 0.014*"valuable" + 0.013*"fuel"
+2025-05-03 16:57:02,974 - INFO - topic diff=0.056941, rho=0.166050
+2025-05-03 16:57:02,974 - INFO - -4.953 per-word bound, 31.0 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:57:02,974 - INFO - PROGRESS: pass 3, at document #2/2
+2025-05-03 16:57:02,976 - INFO - optimized alpha [0.44380173, 0.42231667]
+2025-05-03 16:57:02,976 - INFO - topic #0 (0.444): 0.021*"fuel" + 0.018*"transmission" + 0.018*"engine" + 0.018*"class" + 0.018*"etc" + 0.017*"year" + 0.017*"size" + 0.017*"providing" + 0.015*"specifies" + 0.014*"model"
+2025-05-03 16:57:02,976 - INFO - topic #1 (0.422): 0.016*"appears" + 0.015*"sharing" + 0.015*"user_krupadharamshi" + 0.015*"resource" + 0.015*"analyzing" + 0.015*"valuable" + 0.015*"comprehensive" + 0.014*"insight" + 0.014*"providing" + 0.013*"size"
+2025-05-03 16:57:02,976 - INFO - topic diff=0.051398, rho=0.157656
+2025-05-03 16:57:02,976 - INFO - -4.880 per-word bound, 29.4 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:57:02,976 - INFO - PROGRESS: pass 4, at document #2/2
+2025-05-03 16:57:02,976 - INFO - optimized alpha [0.38309038, 0.34185755]
+2025-05-03 16:57:02,976 - INFO - topic #0 (0.383): 0.023*"fuel" + 0.019*"transmission" + 0.019*"engine" + 0.019*"class" + 0.019*"etc" + 0.018*"year" + 0.018*"size" + 0.018*"providing" + 0.015*"specifies" + 0.015*"model"
+2025-05-03 16:57:02,976 - INFO - topic #1 (0.342): 0.017*"appears" + 0.017*"sharing" + 0.016*"user_krupadharamshi" + 0.016*"resource" + 0.016*"analyzing" + 0.016*"valuable" + 0.016*"comprehensive" + 0.014*"insight" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:57:02,976 - INFO - topic diff=0.046334, rho=0.150223
+2025-05-03 16:57:02,978 - INFO - -4.829 per-word bound, 28.4 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:57:02,978 - INFO - PROGRESS: pass 5, at document #2/2
+2025-05-03 16:57:02,978 - INFO - optimized alpha [0.33510947, 0.2867019]
+2025-05-03 16:57:02,978 - INFO - topic #0 (0.335): 0.024*"fuel" + 0.020*"transmission" + 0.020*"engine" + 0.020*"class" + 0.019*"etc" + 0.019*"year" + 0.019*"size" + 0.018*"providing" + 0.016*"specifies" + 0.015*"model"
+2025-05-03 16:57:02,978 - INFO - topic #1 (0.287): 0.018*"appears" + 0.018*"sharing" + 0.018*"user_krupadharamshi" + 0.017*"resource" + 0.017*"analyzing" + 0.017*"valuable" + 0.017*"comprehensive" + 0.014*"insight" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:57:02,978 - INFO - topic diff=0.042052, rho=0.143587
+2025-05-03 16:57:02,978 - INFO - -4.795 per-word bound, 27.8 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:57:02,980 - INFO - PROGRESS: pass 6, at document #2/2
+2025-05-03 16:57:02,980 - INFO - optimized alpha [0.29749686, 0.24776874]
+2025-05-03 16:57:02,980 - INFO - topic #0 (0.297): 0.025*"fuel" + 0.020*"transmission" + 0.020*"engine" + 0.020*"class" + 0.020*"etc" + 0.020*"year" + 0.020*"size" + 0.019*"providing" + 0.016*"specifies" + 0.015*"model"
+2025-05-03 16:57:02,980 - INFO - topic #1 (0.248): 0.019*"appears" + 0.019*"sharing" + 0.019*"user_krupadharamshi" + 0.018*"resource" + 0.018*"analyzing" + 0.018*"valuable" + 0.018*"comprehensive" + 0.013*"insight" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:57:02,980 - INFO - topic diff=0.038311, rho=0.137621
+2025-05-03 16:57:02,980 - INFO - -4.774 per-word bound, 27.4 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:57:02,980 - INFO - PROGRESS: pass 7, at document #2/2
+2025-05-03 16:57:02,980 - INFO - optimized alpha [0.26761216, 0.21912068]
+2025-05-03 16:57:02,980 - INFO - topic #0 (0.268): 0.025*"fuel" + 0.021*"transmission" + 0.020*"engine" + 0.020*"class" + 0.020*"etc" + 0.020*"year" + 0.020*"size" + 0.020*"providing" + 0.016*"specifies" + 0.015*"model"
+2025-05-03 16:57:02,980 - INFO - topic #1 (0.219): 0.020*"appears" + 0.020*"sharing" + 0.020*"user_krupadharamshi" + 0.019*"resource" + 0.019*"analyzing" + 0.019*"valuable" + 0.019*"comprehensive" + 0.013*"insight" + 0.012*"providing" + 0.012*"size"
+2025-05-03 16:57:02,980 - INFO - topic diff=0.034958, rho=0.132224
+2025-05-03 16:57:02,982 - INFO - -4.761 per-word bound, 27.1 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:57:02,982 - INFO - PROGRESS: pass 8, at document #2/2
+2025-05-03 16:57:02,982 - INFO - optimized alpha [0.24347071, 0.19724661]
+2025-05-03 16:57:02,982 - INFO - topic #0 (0.243): 0.026*"fuel" + 0.021*"transmission" + 0.021*"engine" + 0.021*"class" + 0.021*"etc" + 0.021*"year" + 0.020*"size" + 0.020*"providing" + 0.016*"specifies" + 0.015*"model"
+2025-05-03 16:57:02,982 - INFO - topic #1 (0.197): 0.021*"appears" + 0.021*"sharing" + 0.021*"user_krupadharamshi" + 0.020*"resource" + 0.020*"analyzing" + 0.020*"valuable" + 0.020*"comprehensive" + 0.013*"insight" + 0.012*"providing" + 0.012*"size"
+2025-05-03 16:57:02,982 - INFO - topic diff=0.031906, rho=0.127313
+2025-05-03 16:57:02,982 - INFO - -4.754 per-word bound, 27.0 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:57:02,982 - INFO - PROGRESS: pass 9, at document #2/2
+2025-05-03 16:57:02,984 - INFO - optimized alpha [0.22362983, 0.18000798]
+2025-05-03 16:57:02,984 - INFO - topic #0 (0.224): 0.026*"fuel" + 0.021*"transmission" + 0.021*"engine" + 0.021*"class" + 0.021*"etc" + 0.021*"year" + 0.021*"size" + 0.020*"providing" + 0.016*"specifies" + 0.016*"model"
+2025-05-03 16:57:02,984 - INFO - topic #1 (0.180): 0.022*"appears" + 0.021*"sharing" + 0.021*"user_krupadharamshi" + 0.021*"resource" + 0.021*"analyzing" + 0.021*"valuable" + 0.021*"comprehensive" + 0.012*"insight" + 0.012*"providing" + 0.012*"size"
+2025-05-03 16:57:02,984 - INFO - topic diff=0.029107, rho=0.122823
+2025-05-03 16:57:02,984 - INFO - LdaModel lifecycle event {'msg': 'trained LdaModel<num_terms=87, num_topics=2, decay=0.7, chunksize=763> in 0.02s', 'datetime': '2025-05-03T16:57:02.984880', 'gensim': '4.3.0', 'python': '3.10.10 | packaged by Anaconda, Inc. | (main, Mar 21 2023, 18:39:17) [MSC v.1916 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.26100-SP0', 'event': 'created'}
+2025-05-03 16:57:02,984 - INFO - using ParallelWordOccurrenceAccumulator<processes=7, batch_size=64> to estimate probabilities from sliding windows
+2025-05-03 16:57:06,617 - INFO - 7 accumulators retrieved from output queue
+2025-05-03 16:57:06,622 - INFO - accumulated word occurrence stats for 24 virtual documents
+2025-05-03 16:57:06,671 - INFO - using autotuned alpha, starting with [0.5, 0.5]
+2025-05-03 16:57:06,671 - INFO - using serial LDA version on this node
+2025-05-03 16:57:06,671 - INFO - running online (multi-pass) LDA training, 2 topics, 10 passes over the supplied corpus of 2 documents, updating model once every 2 documents, evaluating perplexity every 2 documents, iterating 50x with a convergence threshold of 0.001000
+2025-05-03 16:57:06,671 - INFO - -5.276 per-word bound, 38.7 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:57:06,671 - INFO - PROGRESS: pass 0, at document #2/2
+2025-05-03 16:57:06,676 - INFO - optimized alpha [0.5378029, 0.56575716]
+2025-05-03 16:57:06,676 - INFO - topic #0 (0.538): 0.014*"fuel" + 0.014*"specifies" + 0.014*"transmission" + 0.014*"class" + 0.014*"engine" + 0.013*"etc" + 0.013*"year" + 0.013*"model" + 0.013*"size" + 0.012*"link"
+2025-05-03 16:57:06,676 - INFO - topic #1 (0.566): 0.015*"insight" + 0.014*"size" + 0.013*"providing" + 0.013*"type" + 0.013*"fuel" + 0.013*"make" + 0.013*"class" + 0.013*"appears" + 0.013*"representing" + 0.013*"manufacturer"
+2025-05-03 16:57:06,676 - INFO - topic diff=0.052818, rho=0.175620
+2025-05-03 16:57:06,676 - INFO - -5.172 per-word bound, 36.0 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:57:06,676 - INFO - PROGRESS: pass 1, at document #2/2
+2025-05-03 16:57:06,676 - INFO - optimized alpha [0.5547626, 0.60526025]
+2025-05-03 16:57:06,676 - INFO - topic #0 (0.555): 0.017*"fuel" + 0.015*"transmission" + 0.015*"engine" + 0.015*"class" + 0.015*"etc" + 0.014*"specifies" + 0.014*"year" + 0.014*"size" + 0.013*"model" + 0.013*"providing"
+2025-05-03 16:57:06,676 - INFO - topic #1 (0.605): 0.015*"insight" + 0.014*"providing" + 0.014*"size" + 0.014*"fuel" + 0.013*"appears" + 0.013*"class" + 0.013*"type" + 0.013*"manufacturer" + 0.013*"year" + 0.013*"sharing"
+2025-05-03 16:57:06,676 - INFO - topic diff=0.046517, rho=0.157656
+2025-05-03 16:57:06,676 - INFO - -5.074 per-word bound, 33.7 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:57:06,681 - INFO - PROGRESS: pass 2, at document #2/2
+2025-05-03 16:57:06,681 - INFO - optimized alpha [0.5246531, 0.55243665]
+2025-05-03 16:57:06,681 - INFO - topic #0 (0.525): 0.019*"fuel" + 0.017*"transmission" + 0.017*"engine" + 0.017*"class" + 0.016*"etc" + 0.016*"year" + 0.015*"size" + 0.015*"specifies" + 0.015*"providing" + 0.014*"model"
+2025-05-03 16:57:06,681 - INFO - topic #1 (0.552): 0.015*"insight" + 0.014*"appears" + 0.014*"sharing" + 0.014*"user_krupadharamshi" + 0.014*"providing" + 0.014*"size" + 0.013*"resource" + 0.013*"fuel" + 0.013*"analyzing" + 0.013*"valuable"
+2025-05-03 16:57:06,681 - INFO - topic diff=0.051565, rho=0.150223
+2025-05-03 16:57:06,684 - INFO - -4.979 per-word bound, 31.5 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:57:06,684 - INFO - PROGRESS: pass 3, at document #2/2
+2025-05-03 16:57:06,686 - INFO - optimized alpha [0.4622215, 0.4495975]
+2025-05-03 16:57:06,686 - INFO - topic #0 (0.462): 0.021*"fuel" + 0.018*"transmission" + 0.018*"engine" + 0.018*"class" + 0.017*"etc" + 0.017*"year" + 0.017*"size" + 0.016*"providing" + 0.015*"specifies" + 0.014*"model"
+2025-05-03 16:57:06,686 - INFO - topic #1 (0.450): 0.015*"appears" + 0.015*"sharing" + 0.015*"user_krupadharamshi" + 0.015*"resource" + 0.014*"analyzing" + 0.014*"valuable" + 0.014*"insight" + 0.014*"comprehensive" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:57:06,686 - INFO - topic diff=0.047499, rho=0.143587
+2025-05-03 16:57:06,688 - INFO - -4.907 per-word bound, 30.0 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:57:06,688 - INFO - PROGRESS: pass 4, at document #2/2
+2025-05-03 16:57:06,688 - INFO - optimized alpha [0.40471002, 0.36953536]
+2025-05-03 16:57:06,688 - INFO - topic #0 (0.405): 0.022*"fuel" + 0.019*"transmission" + 0.018*"engine" + 0.018*"class" + 0.018*"etc" + 0.018*"year" + 0.018*"size" + 0.017*"providing" + 0.015*"specifies" + 0.015*"model"
+2025-05-03 16:57:06,688 - INFO - topic #1 (0.370): 0.017*"appears" + 0.016*"sharing" + 0.016*"user_krupadharamshi" + 0.016*"resource" + 0.016*"analyzing" + 0.015*"valuable" + 0.015*"comprehensive" + 0.014*"insight" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:57:06,688 - INFO - topic diff=0.043240, rho=0.137621
+2025-05-03 16:57:06,688 - INFO - -4.853 per-word bound, 28.9 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:57:06,688 - INFO - PROGRESS: pass 5, at document #2/2
+2025-05-03 16:57:06,688 - INFO - optimized alpha [0.35724288, 0.31194496]
+2025-05-03 16:57:06,688 - INFO - topic #0 (0.357): 0.023*"fuel" + 0.019*"transmission" + 0.019*"engine" + 0.019*"class" + 0.019*"etc" + 0.019*"year" + 0.018*"size" + 0.018*"providing" + 0.015*"specifies" + 0.015*"model"
+2025-05-03 16:57:06,688 - INFO - topic #1 (0.312): 0.018*"appears" + 0.017*"sharing" + 0.017*"user_krupadharamshi" + 0.017*"resource" + 0.017*"analyzing" + 0.017*"valuable" + 0.016*"comprehensive" + 0.014*"insight" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:57:06,688 - INFO - topic diff=0.039625, rho=0.132224
+2025-05-03 16:57:06,688 - INFO - -4.815 per-word bound, 28.1 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:57:06,688 - INFO - PROGRESS: pass 6, at document #2/2
+2025-05-03 16:57:06,688 - INFO - optimized alpha [0.31894648, 0.27015194]
+2025-05-03 16:57:06,688 - INFO - topic #0 (0.319): 0.024*"fuel" + 0.020*"transmission" + 0.020*"engine" + 0.020*"class" + 0.019*"etc" + 0.019*"year" + 0.019*"size" + 0.019*"providing" + 0.016*"specifies" + 0.015*"model"
+2025-05-03 16:57:06,688 - INFO - topic #1 (0.270): 0.018*"appears" + 0.018*"sharing" + 0.018*"user_krupadharamshi" + 0.018*"resource" + 0.018*"analyzing" + 0.018*"valuable" + 0.017*"comprehensive" + 0.013*"insight" + 0.013*"providing" + 0.013*"size"
+2025-05-03 16:57:06,688 - INFO - topic diff=0.036465, rho=0.127313
+2025-05-03 16:57:06,688 - INFO - -4.788 per-word bound, 27.6 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:57:06,688 - INFO - PROGRESS: pass 7, at document #2/2
+2025-05-03 16:57:06,688 - INFO - optimized alpha [0.28795135, 0.23895514]
+2025-05-03 16:57:06,696 - INFO - topic #0 (0.288): 0.025*"fuel" + 0.020*"transmission" + 0.020*"engine" + 0.020*"class" + 0.020*"etc" + 0.020*"year" + 0.020*"size" + 0.019*"providing" + 0.016*"specifies" + 0.015*"model"
+2025-05-03 16:57:06,696 - INFO - topic #1 (0.239): 0.019*"appears" + 0.019*"sharing" + 0.019*"user_krupadharamshi" + 0.019*"resource" + 0.019*"analyzing" + 0.019*"valuable" + 0.018*"comprehensive" + 0.013*"insight" + 0.012*"providing" + 0.012*"size"
+2025-05-03 16:57:06,696 - INFO - topic diff=0.033628, rho=0.122823
+2025-05-03 16:57:06,697 - INFO - -4.771 per-word bound, 27.3 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:57:06,697 - INFO - PROGRESS: pass 8, at document #2/2
+2025-05-03 16:57:06,697 - INFO - optimized alpha [0.2625525, 0.21490906]
+2025-05-03 16:57:06,697 - INFO - topic #0 (0.263): 0.025*"fuel" + 0.020*"transmission" + 0.020*"engine" + 0.020*"class" + 0.020*"etc" + 0.020*"year" + 0.020*"size" + 0.020*"providing" + 0.016*"specifies" + 0.015*"model"
+2025-05-03 16:57:06,697 - INFO - topic #1 (0.215): 0.020*"appears" + 0.020*"sharing" + 0.020*"user_krupadharamshi" + 0.020*"resource" + 0.019*"analyzing" + 0.019*"valuable" + 0.019*"comprehensive" + 0.013*"insight" + 0.012*"providing" + 0.012*"size"
+2025-05-03 16:57:06,697 - INFO - topic diff=0.031034, rho=0.118699
+2025-05-03 16:57:06,698 - INFO - -4.760 per-word bound, 27.1 perplexity estimate based on a held-out corpus of 2 documents with 116 words
+2025-05-03 16:57:06,698 - INFO - PROGRESS: pass 9, at document #2/2
+2025-05-03 16:57:06,698 - INFO - optimized alpha [0.24147424, 0.1958748]
+2025-05-03 16:57:06,698 - INFO - topic #0 (0.241): 0.026*"fuel" + 0.021*"transmission" + 0.021*"engine" + 0.021*"class" + 0.021*"etc" + 0.020*"year" + 0.020*"size" + 0.020*"providing" + 0.016*"specifies" + 0.015*"model"
+2025-05-03 16:57:06,698 - INFO - topic #1 (0.196): 0.021*"appears" + 0.021*"sharing" + 0.021*"user_krupadharamshi" + 0.020*"resource" + 0.020*"analyzing" + 0.020*"valuable" + 0.020*"comprehensive" + 0.013*"insight" + 0.012*"providing" + 0.012*"size"
+2025-05-03 16:57:06,698 - INFO - topic diff=0.028637, rho=0.114896
+2025-05-03 16:57:06,700 - INFO - LdaModel lifecycle event {'msg': 'trained LdaModel<num_terms=87, num_topics=2, decay=0.7, chunksize=443> in 0.03s', 'datetime': '2025-05-03T16:57:06.700372', 'gensim': '4.3.0', 'python': '3.10.10 | packaged by Anaconda, Inc. | (main, Mar 21 2023, 18:39:17) [MSC v.1916 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.26100-SP0', 'event': 'created'}
+2025-05-03 16:57:06,700 - INFO - using ParallelWordOccurrenceAccumulator<processes=7, batch_size=64> to estimate probabilities from sliding windows
+2025-05-03 16:57:10,470 - INFO - 7 accumulators retrieved from output queue
+2025-05-03 16:57:10,479 - INFO - accumulated word occurrence stats for 24 virtual documents
+2025-05-03 16:57:10,541 - INFO - collecting all words and their counts
+2025-05-03 16:57:10,541 - INFO - PROGRESS: at sentence #0, processed 0 words and 0 word types
+2025-05-03 16:57:10,541 - INFO - collected 20 token types (unigram + bigrams) from a corpus of 14 words and 2 sentences
+2025-05-03 16:57:10,541 - INFO - merged Phrases<20 vocab, min_count=2, threshold=5, max_vocab_size=40000000>
+2025-05-03 16:57:10,541 - INFO - Phrases lifecycle event {'msg': 'built Phrases<20 vocab, min_count=2, threshold=5, max_vocab_size=40000000> in 0.00s', 'datetime': '2025-05-03T16:57:10.541599', 'gensim': '4.3.0', 'python': '3.10.10 | packaged by Anaconda, Inc. | (main, Mar 21 2023, 18:39:17) [MSC v.1916 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.26100-SP0', 'event': 'created'}
+2025-05-03 16:57:10,541 - INFO - collecting all words and their counts
+2025-05-03 16:57:10,541 - INFO - PROGRESS: at sentence #0, processed 0 words and 0 word types
+2025-05-03 16:57:10,541 - INFO - collected 20 token types (unigram + bigrams) from a corpus of 14 words and 2 sentences
+2025-05-03 16:57:10,541 - INFO - merged Phrases<20 vocab, min_count=2, threshold=5, max_vocab_size=40000000>
+2025-05-03 16:57:10,541 - INFO - Phrases lifecycle event {'msg': 'built Phrases<20 vocab, min_count=2, threshold=5, max_vocab_size=40000000> in 0.00s', 'datetime': '2025-05-03T16:57:10.541599', 'gensim': '4.3.0', 'python': '3.10.10 | packaged by Anaconda, Inc. | (main, Mar 21 2023, 18:39:17) [MSC v.1916 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.26100-SP0', 'event': 'created'}
+2025-05-03 16:57:10,541 - INFO - adding document #0 to Dictionary<0 unique tokens: []>
+2025-05-03 16:57:10,541 - INFO - built Dictionary<10 unique tokens: ['became', 'dataset', 'expert', 'finally', 'kaggle']...> from 2 documents (total 14 corpus positions)
+2025-05-03 16:57:10,541 - INFO - Dictionary lifecycle event {'msg': "built Dictionary<10 unique tokens: ['became', 'dataset', 'expert', 'finally', 'kaggle']...> from 2 documents (total 14 corpus positions)", 'datetime': '2025-05-03T16:57:10.541599', 'gensim': '4.3.0', 'python': '3.10.10 | packaged by Anaconda, Inc. | (main, Mar 21 2023, 18:39:17) [MSC v.1916 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.26100-SP0', 'event': 'created'}
+2025-05-03 16:57:10,541 - INFO - discarding 3 tokens: [('dataset', 2), ('expert', 2), ('kaggle', 2)]...
+2025-05-03 16:57:10,541 - INFO - keeping 7 tokens which were in no less than 1 and no more than 1 (=90.0%) documents
+2025-05-03 16:57:10,541 - INFO - resulting dictionary: Dictionary<7 unique tokens: ['became', 'finally', 'xkaggle', 'becoming', 'congrats']...>
+2025-05-03 16:57:10,546 - INFO - using symmetric alpha at 0.5
+2025-05-03 16:57:10,546 - INFO - using serial LDA version on this node
+2025-05-03 16:57:10,546 - INFO - running online (multi-pass) LDA training, 2 topics, 12 passes over the supplied corpus of 2 documents, updating model once every 2 documents, evaluating perplexity every 2 documents, iterating 50x with a convergence threshold of 0.001000
+2025-05-03 16:57:10,546 - INFO - -3.027 per-word bound, 8.2 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:10,546 - INFO - PROGRESS: pass 0, at document #2/2
+2025-05-03 16:57:10,549 - INFO - topic #0 (0.500): 0.154*"congrats" + 0.145*"became" + 0.145*"url" + 0.141*"xkaggle" + 0.140*"finally" + 0.138*"becoming" + 0.136*"user_getanmolgupta"
+2025-05-03 16:57:10,549 - INFO - topic #1 (0.500): 0.158*"url" + 0.147*"became" + 0.146*"congrats" + 0.145*"finally" + 0.143*"user_getanmolgupta" + 0.136*"becoming" + 0.126*"xkaggle"
+2025-05-03 16:57:10,549 - INFO - topic diff=0.026771, rho=0.199526
+2025-05-03 16:57:10,550 - INFO - -2.917 per-word bound, 7.6 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:10,550 - INFO - PROGRESS: pass 1, at document #2/2
+2025-05-03 16:57:10,550 - INFO - topic #0 (0.500): 0.151*"congrats" + 0.148*"became" + 0.144*"xkaggle" + 0.143*"finally" + 0.143*"url" + 0.137*"becoming" + 0.135*"user_getanmolgupta"
+2025-05-03 16:57:10,550 - INFO - topic #1 (0.500): 0.159*"url" + 0.147*"congrats" + 0.145*"user_getanmolgupta" + 0.144*"became" + 0.142*"finally" + 0.138*"becoming" + 0.125*"xkaggle"
+2025-05-03 16:57:10,550 - INFO - topic diff=0.026336, rho=0.175620
+2025-05-03 16:57:10,552 - INFO - -2.834 per-word bound, 7.1 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:10,552 - INFO - PROGRESS: pass 2, at document #2/2
+2025-05-03 16:57:10,553 - INFO - topic #0 (0.500): 0.152*"became" + 0.150*"xkaggle" + 0.148*"finally" + 0.146*"congrats" + 0.138*"url" + 0.134*"becoming" + 0.131*"user_getanmolgupta"
+2025-05-03 16:57:10,553 - INFO - topic #1 (0.500): 0.161*"url" + 0.151*"congrats" + 0.150*"user_getanmolgupta" + 0.143*"becoming" + 0.138*"became" + 0.136*"finally" + 0.121*"xkaggle"
+2025-05-03 16:57:10,553 - INFO - topic diff=0.047379, rho=0.166050
+2025-05-03 16:57:10,554 - INFO - -2.753 per-word bound, 6.7 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:10,554 - INFO - PROGRESS: pass 3, at document #2/2
+2025-05-03 16:57:10,555 - INFO - topic #0 (0.500): 0.159*"became" + 0.157*"xkaggle" + 0.155*"finally" + 0.140*"congrats" + 0.133*"url" + 0.129*"becoming" + 0.127*"user_getanmolgupta"
+2025-05-03 16:57:10,555 - INFO - topic #1 (0.500): 0.165*"url" + 0.156*"congrats" + 0.155*"user_getanmolgupta" + 0.149*"becoming" + 0.130*"became" + 0.129*"finally" + 0.115*"xkaggle"
+2025-05-03 16:57:10,555 - INFO - topic diff=0.064032, rho=0.157656
+2025-05-03 16:57:10,555 - INFO - -2.675 per-word bound, 6.4 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:10,555 - INFO - PROGRESS: pass 4, at document #2/2
+2025-05-03 16:57:10,556 - INFO - topic #0 (0.500): 0.166*"became" + 0.164*"xkaggle" + 0.162*"finally" + 0.134*"congrats" + 0.127*"url" + 0.125*"becoming" + 0.122*"user_getanmolgupta"
+2025-05-03 16:57:10,556 - INFO - topic #1 (0.500): 0.169*"url" + 0.161*"congrats" + 0.160*"user_getanmolgupta" + 0.155*"becoming" + 0.123*"became" + 0.122*"finally" + 0.110*"xkaggle"
+2025-05-03 16:57:10,556 - INFO - topic diff=0.065084, rho=0.150223
+2025-05-03 16:57:10,556 - INFO - -2.613 per-word bound, 6.1 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:10,556 - INFO - PROGRESS: pass 5, at document #2/2
+2025-05-03 16:57:10,556 - INFO - topic #0 (0.500): 0.172*"became" + 0.171*"xkaggle" + 0.169*"finally" + 0.128*"congrats" + 0.122*"url" + 0.120*"becoming" + 0.118*"user_getanmolgupta"
+2025-05-03 16:57:10,556 - INFO - topic #1 (0.500): 0.172*"url" + 0.165*"congrats" + 0.165*"user_getanmolgupta" + 0.160*"becoming" + 0.117*"became" + 0.116*"finally" + 0.105*"xkaggle"
+2025-05-03 16:57:10,556 - INFO - topic diff=0.062038, rho=0.143587
+2025-05-03 16:57:10,556 - INFO - -2.567 per-word bound, 5.9 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:10,556 - INFO - PROGRESS: pass 6, at document #2/2
+2025-05-03 16:57:10,556 - INFO - topic #0 (0.500): 0.178*"became" + 0.177*"xkaggle" + 0.175*"finally" + 0.123*"congrats" + 0.118*"url" + 0.116*"becoming" + 0.114*"user_getanmolgupta"
+2025-05-03 16:57:10,556 - INFO - topic #1 (0.500): 0.175*"url" + 0.169*"congrats" + 0.169*"user_getanmolgupta" + 0.165*"becoming" + 0.111*"became" + 0.110*"finally" + 0.101*"xkaggle"
+2025-05-03 16:57:10,556 - INFO - topic diff=0.057841, rho=0.137621
+2025-05-03 16:57:10,562 - INFO - -2.535 per-word bound, 5.8 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:10,562 - INFO - PROGRESS: pass 7, at document #2/2
+2025-05-03 16:57:10,562 - INFO - topic #0 (0.500): 0.183*"became" + 0.182*"xkaggle" + 0.180*"finally" + 0.119*"congrats" + 0.114*"url" + 0.112*"becoming" + 0.110*"user_getanmolgupta"
+2025-05-03 16:57:10,562 - INFO - topic #1 (0.500): 0.178*"url" + 0.172*"congrats" + 0.172*"user_getanmolgupta" + 0.169*"becoming" + 0.106*"became" + 0.106*"finally" + 0.097*"xkaggle"
+2025-05-03 16:57:10,562 - INFO - topic diff=0.053390, rho=0.132224
+2025-05-03 16:57:10,563 - INFO - -2.515 per-word bound, 5.7 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:10,563 - INFO - PROGRESS: pass 8, at document #2/2
+2025-05-03 16:57:10,563 - INFO - topic #0 (0.500): 0.187*"became" + 0.187*"xkaggle" + 0.185*"finally" + 0.115*"congrats" + 0.110*"url" + 0.109*"becoming" + 0.107*"user_getanmolgupta"
+2025-05-03 16:57:10,563 - INFO - topic #1 (0.500): 0.180*"url" + 0.175*"congrats" + 0.175*"user_getanmolgupta" + 0.172*"becoming" + 0.102*"became" + 0.101*"finally" + 0.094*"xkaggle"
+2025-05-03 16:57:10,563 - INFO - topic diff=0.049025, rho=0.127313
+2025-05-03 16:57:10,564 - INFO - -2.504 per-word bound, 5.7 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:10,564 - INFO - PROGRESS: pass 9, at document #2/2
+2025-05-03 16:57:10,564 - INFO - topic #0 (0.500): 0.191*"became" + 0.191*"xkaggle" + 0.190*"finally" + 0.111*"congrats" + 0.107*"url" + 0.106*"becoming" + 0.104*"user_getanmolgupta"
+2025-05-03 16:57:10,564 - INFO - topic #1 (0.500): 0.182*"url" + 0.178*"congrats" + 0.178*"user_getanmolgupta" + 0.175*"becoming" + 0.098*"became" + 0.098*"finally" + 0.091*"xkaggle"
+2025-05-03 16:57:10,564 - INFO - topic diff=0.044871, rho=0.122823
+2025-05-03 16:57:10,565 - INFO - -2.498 per-word bound, 5.7 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:10,565 - INFO - PROGRESS: pass 10, at document #2/2
+2025-05-03 16:57:10,565 - INFO - topic #0 (0.500): 0.195*"became" + 0.195*"xkaggle" + 0.193*"finally" + 0.108*"congrats" + 0.104*"url" + 0.103*"becoming" + 0.102*"user_getanmolgupta"
+2025-05-03 16:57:10,565 - INFO - topic #1 (0.500): 0.184*"url" + 0.180*"user_getanmolgupta" + 0.180*"congrats" + 0.178*"becoming" + 0.095*"became" + 0.095*"finally" + 0.089*"xkaggle"
+2025-05-03 16:57:10,565 - INFO - topic diff=0.040988, rho=0.118699
+2025-05-03 16:57:10,565 - INFO - -2.497 per-word bound, 5.6 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:10,565 - INFO - PROGRESS: pass 11, at document #2/2
+2025-05-03 16:57:10,566 - INFO - topic #0 (0.500): 0.198*"became" + 0.198*"xkaggle" + 0.197*"finally" + 0.105*"congrats" + 0.102*"url" + 0.101*"becoming" + 0.099*"user_getanmolgupta"
+2025-05-03 16:57:10,566 - INFO - topic #1 (0.500): 0.186*"url" + 0.182*"user_getanmolgupta" + 0.182*"congrats" + 0.180*"becoming" + 0.092*"became" + 0.092*"finally" + 0.087*"xkaggle"
+2025-05-03 16:57:10,566 - INFO - topic diff=0.037388, rho=0.114896
+2025-05-03 16:57:10,566 - INFO - LdaModel lifecycle event {'msg': 'trained LdaModel<num_terms=7, num_topics=2, decay=0.7, chunksize=535> in 0.02s', 'datetime': '2025-05-03T16:57:10.566900', 'gensim': '4.3.0', 'python': '3.10.10 | packaged by Anaconda, Inc. | (main, Mar 21 2023, 18:39:17) [MSC v.1916 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.26100-SP0', 'event': 'created'}
+2025-05-03 16:57:10,566 - INFO - using ParallelWordOccurrenceAccumulator<processes=7, batch_size=64> to estimate probabilities from sliding windows
+2025-05-03 16:57:14,172 - INFO - 7 accumulators retrieved from output queue
+2025-05-03 16:57:14,176 - INFO - accumulated word occurrence stats for 2 virtual documents
+2025-05-03 16:57:14,190 - INFO - using symmetric alpha at 0.5
+2025-05-03 16:57:14,192 - INFO - using serial LDA version on this node
+2025-05-03 16:57:14,192 - INFO - running online (multi-pass) LDA training, 2 topics, 7 passes over the supplied corpus of 2 documents, updating model once every 2 documents, evaluating perplexity every 2 documents, iterating 50x with a convergence threshold of 0.001000
+2025-05-03 16:57:14,192 - WARNING - too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+2025-05-03 16:57:14,194 - INFO - -3.027 per-word bound, 8.2 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:14,194 - INFO - PROGRESS: pass 0, at document #2/2
+2025-05-03 16:57:14,194 - INFO - topic #0 (0.500): 0.154*"congrats" + 0.146*"url" + 0.145*"became" + 0.141*"xkaggle" + 0.140*"finally" + 0.138*"becoming" + 0.136*"user_getanmolgupta"
+2025-05-03 16:57:14,194 - INFO - topic #1 (0.500): 0.158*"url" + 0.147*"became" + 0.146*"congrats" + 0.145*"finally" + 0.143*"user_getanmolgupta" + 0.135*"becoming" + 0.126*"xkaggle"
+2025-05-03 16:57:14,194 - INFO - topic diff=0.023318, rho=0.175620
+2025-05-03 16:57:14,196 - INFO - -2.929 per-word bound, 7.6 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:14,196 - INFO - PROGRESS: pass 1, at document #2/2
+2025-05-03 16:57:14,198 - INFO - topic #0 (0.500): 0.151*"congrats" + 0.147*"became" + 0.143*"xkaggle" + 0.143*"url" + 0.142*"finally" + 0.138*"becoming" + 0.135*"user_getanmolgupta"
+2025-05-03 16:57:14,198 - INFO - topic #1 (0.500): 0.158*"url" + 0.147*"congrats" + 0.145*"user_getanmolgupta" + 0.145*"became" + 0.142*"finally" + 0.138*"becoming" + 0.125*"xkaggle"
+2025-05-03 16:57:14,198 - INFO - topic diff=0.022747, rho=0.157656
+2025-05-03 16:57:14,198 - INFO - -2.852 per-word bound, 7.2 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:14,198 - INFO - PROGRESS: pass 2, at document #2/2
+2025-05-03 16:57:14,198 - INFO - topic #0 (0.500): 0.151*"became" + 0.148*"xkaggle" + 0.147*"congrats" + 0.147*"finally" + 0.139*"url" + 0.135*"becoming" + 0.132*"user_getanmolgupta"
+2025-05-03 16:57:14,198 - INFO - topic #1 (0.500): 0.161*"url" + 0.150*"congrats" + 0.148*"user_getanmolgupta" + 0.142*"becoming" + 0.140*"became" + 0.138*"finally" + 0.122*"xkaggle"
+2025-05-03 16:57:14,198 - INFO - topic diff=0.038820, rho=0.150223
+2025-05-03 16:57:14,198 - INFO - -2.778 per-word bound, 6.9 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:14,198 - INFO - PROGRESS: pass 3, at document #2/2
+2025-05-03 16:57:14,198 - INFO - topic #0 (0.500): 0.157*"became" + 0.155*"xkaggle" + 0.153*"finally" + 0.142*"congrats" + 0.135*"url" + 0.131*"becoming" + 0.128*"user_getanmolgupta"
+2025-05-03 16:57:14,198 - INFO - topic #1 (0.500): 0.164*"url" + 0.154*"congrats" + 0.153*"user_getanmolgupta" + 0.147*"becoming" + 0.133*"became" + 0.131*"finally" + 0.117*"xkaggle"
+2025-05-03 16:57:14,198 - INFO - topic diff=0.055520, rho=0.143587
+2025-05-03 16:57:14,198 - INFO - -2.703 per-word bound, 6.5 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:14,198 - INFO - PROGRESS: pass 4, at document #2/2
+2025-05-03 16:57:14,198 - INFO - topic #0 (0.500): 0.163*"became" + 0.161*"xkaggle" + 0.159*"finally" + 0.136*"congrats" + 0.130*"url" + 0.127*"becoming" + 0.124*"user_getanmolgupta"
+2025-05-03 16:57:14,198 - INFO - topic #1 (0.500): 0.167*"url" + 0.159*"congrats" + 0.158*"user_getanmolgupta" + 0.152*"becoming" + 0.126*"became" + 0.125*"finally" + 0.112*"xkaggle"
+2025-05-03 16:57:14,198 - INFO - topic diff=0.058313, rho=0.137621
+2025-05-03 16:57:14,198 - INFO - -2.641 per-word bound, 6.2 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:14,198 - INFO - PROGRESS: pass 5, at document #2/2
+2025-05-03 16:57:14,206 - INFO - topic #0 (0.500): 0.169*"became" + 0.167*"xkaggle" + 0.165*"finally" + 0.131*"congrats" + 0.125*"url" + 0.122*"becoming" + 0.120*"user_getanmolgupta"
+2025-05-03 16:57:14,206 - INFO - topic #1 (0.500): 0.171*"url" + 0.163*"congrats" + 0.162*"user_getanmolgupta" + 0.157*"becoming" + 0.120*"became" + 0.119*"finally" + 0.108*"xkaggle"
+2025-05-03 16:57:14,206 - INFO - topic diff=0.056811, rho=0.132224
+2025-05-03 16:57:14,206 - INFO - -2.591 per-word bound, 6.0 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:14,206 - INFO - PROGRESS: pass 6, at document #2/2
+2025-05-03 16:57:14,208 - INFO - topic #0 (0.500): 0.174*"became" + 0.173*"xkaggle" + 0.171*"finally" + 0.127*"congrats" + 0.121*"url" + 0.118*"becoming" + 0.116*"user_getanmolgupta"
+2025-05-03 16:57:14,208 - INFO - topic #1 (0.500): 0.173*"url" + 0.166*"congrats" + 0.166*"user_getanmolgupta" + 0.162*"becoming" + 0.115*"became" + 0.114*"finally" + 0.104*"xkaggle"
+2025-05-03 16:57:14,208 - INFO - topic diff=0.053905, rho=0.127313
+2025-05-03 16:57:14,208 - INFO - LdaModel lifecycle event {'msg': 'trained LdaModel<num_terms=7, num_topics=2, decay=0.7, chunksize=714> in 0.02s', 'datetime': '2025-05-03T16:57:14.208857', 'gensim': '4.3.0', 'python': '3.10.10 | packaged by Anaconda, Inc. | (main, Mar 21 2023, 18:39:17) [MSC v.1916 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.26100-SP0', 'event': 'created'}
+2025-05-03 16:57:14,209 - INFO - using ParallelWordOccurrenceAccumulator<processes=7, batch_size=64> to estimate probabilities from sliding windows
+2025-05-03 16:57:17,559 - INFO - 7 accumulators retrieved from output queue
+2025-05-03 16:57:17,567 - INFO - accumulated word occurrence stats for 2 virtual documents
+2025-05-03 16:57:17,578 - INFO - using symmetric alpha at 0.5
+2025-05-03 16:57:17,580 - INFO - using serial LDA version on this node
+2025-05-03 16:57:17,580 - INFO - running online (multi-pass) LDA training, 2 topics, 9 passes over the supplied corpus of 2 documents, updating model once every 2 documents, evaluating perplexity every 2 documents, iterating 50x with a convergence threshold of 0.001000
+2025-05-03 16:57:17,580 - WARNING - too few updates, training might not converge; consider increasing the number of passes or iterations to improve accuracy
+2025-05-03 16:57:17,582 - INFO - -3.027 per-word bound, 8.2 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:17,582 - INFO - PROGRESS: pass 0, at document #2/2
+2025-05-03 16:57:17,584 - INFO - topic #0 (0.500): 0.154*"congrats" + 0.146*"url" + 0.145*"became" + 0.141*"xkaggle" + 0.140*"finally" + 0.138*"becoming" + 0.136*"user_getanmolgupta"
+2025-05-03 16:57:17,584 - INFO - topic #1 (0.500): 0.158*"url" + 0.147*"became" + 0.146*"congrats" + 0.145*"finally" + 0.143*"user_getanmolgupta" + 0.135*"becoming" + 0.126*"xkaggle"
+2025-05-03 16:57:17,584 - INFO - topic diff=0.023318, rho=0.175620
+2025-05-03 16:57:17,584 - INFO - -2.929 per-word bound, 7.6 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:17,584 - INFO - PROGRESS: pass 1, at document #2/2
+2025-05-03 16:57:17,588 - INFO - topic #0 (0.500): 0.151*"congrats" + 0.147*"became" + 0.143*"xkaggle" + 0.143*"url" + 0.142*"finally" + 0.138*"becoming" + 0.135*"user_getanmolgupta"
+2025-05-03 16:57:17,588 - INFO - topic #1 (0.500): 0.158*"url" + 0.147*"congrats" + 0.145*"user_getanmolgupta" + 0.145*"became" + 0.142*"finally" + 0.138*"becoming" + 0.125*"xkaggle"
+2025-05-03 16:57:17,588 - INFO - topic diff=0.022747, rho=0.157656
+2025-05-03 16:57:17,591 - INFO - -2.852 per-word bound, 7.2 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:17,591 - INFO - PROGRESS: pass 2, at document #2/2
+2025-05-03 16:57:17,591 - INFO - topic #0 (0.500): 0.151*"became" + 0.148*"xkaggle" + 0.147*"congrats" + 0.147*"finally" + 0.139*"url" + 0.135*"becoming" + 0.132*"user_getanmolgupta"
+2025-05-03 16:57:17,591 - INFO - topic #1 (0.500): 0.161*"url" + 0.150*"congrats" + 0.148*"user_getanmolgupta" + 0.142*"becoming" + 0.140*"became" + 0.138*"finally" + 0.122*"xkaggle"
+2025-05-03 16:57:17,591 - INFO - topic diff=0.038820, rho=0.150223
+2025-05-03 16:57:17,595 - INFO - -2.778 per-word bound, 6.9 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:17,596 - INFO - PROGRESS: pass 3, at document #2/2
+2025-05-03 16:57:17,599 - INFO - topic #0 (0.500): 0.157*"became" + 0.155*"xkaggle" + 0.153*"finally" + 0.142*"congrats" + 0.135*"url" + 0.131*"becoming" + 0.128*"user_getanmolgupta"
+2025-05-03 16:57:17,599 - INFO - topic #1 (0.500): 0.164*"url" + 0.154*"congrats" + 0.153*"user_getanmolgupta" + 0.147*"becoming" + 0.133*"became" + 0.131*"finally" + 0.117*"xkaggle"
+2025-05-03 16:57:17,599 - INFO - topic diff=0.055520, rho=0.143587
+2025-05-03 16:57:17,599 - INFO - -2.703 per-word bound, 6.5 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:17,599 - INFO - PROGRESS: pass 4, at document #2/2
+2025-05-03 16:57:17,599 - INFO - topic #0 (0.500): 0.163*"became" + 0.161*"xkaggle" + 0.159*"finally" + 0.136*"congrats" + 0.130*"url" + 0.127*"becoming" + 0.124*"user_getanmolgupta"
+2025-05-03 16:57:17,599 - INFO - topic #1 (0.500): 0.167*"url" + 0.159*"congrats" + 0.158*"user_getanmolgupta" + 0.152*"becoming" + 0.126*"became" + 0.125*"finally" + 0.112*"xkaggle"
+2025-05-03 16:57:17,599 - INFO - topic diff=0.058313, rho=0.137621
+2025-05-03 16:57:17,599 - INFO - -2.641 per-word bound, 6.2 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:17,599 - INFO - PROGRESS: pass 5, at document #2/2
+2025-05-03 16:57:17,599 - INFO - topic #0 (0.500): 0.169*"became" + 0.167*"xkaggle" + 0.165*"finally" + 0.131*"congrats" + 0.125*"url" + 0.122*"becoming" + 0.120*"user_getanmolgupta"
+2025-05-03 16:57:17,599 - INFO - topic #1 (0.500): 0.171*"url" + 0.163*"congrats" + 0.162*"user_getanmolgupta" + 0.157*"becoming" + 0.120*"became" + 0.119*"finally" + 0.108*"xkaggle"
+2025-05-03 16:57:17,599 - INFO - topic diff=0.056811, rho=0.132224
+2025-05-03 16:57:17,599 - INFO - -2.591 per-word bound, 6.0 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:17,599 - INFO - PROGRESS: pass 6, at document #2/2
+2025-05-03 16:57:17,599 - INFO - topic #0 (0.500): 0.174*"became" + 0.173*"xkaggle" + 0.171*"finally" + 0.127*"congrats" + 0.121*"url" + 0.118*"becoming" + 0.116*"user_getanmolgupta"
+2025-05-03 16:57:17,599 - INFO - topic #1 (0.500): 0.173*"url" + 0.166*"congrats" + 0.166*"user_getanmolgupta" + 0.162*"becoming" + 0.115*"became" + 0.114*"finally" + 0.104*"xkaggle"
+2025-05-03 16:57:17,599 - INFO - topic diff=0.053905, rho=0.127313
+2025-05-03 16:57:17,599 - INFO - -2.555 per-word bound, 5.9 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:17,599 - INFO - PROGRESS: pass 7, at document #2/2
+2025-05-03 16:57:17,599 - INFO - topic #0 (0.500): 0.179*"became" + 0.178*"xkaggle" + 0.176*"finally" + 0.122*"congrats" + 0.117*"url" + 0.115*"becoming" + 0.113*"user_getanmolgupta"
+2025-05-03 16:57:17,599 - INFO - topic #1 (0.500): 0.176*"url" + 0.170*"congrats" + 0.169*"user_getanmolgupta" + 0.166*"becoming" + 0.110*"became" + 0.109*"finally" + 0.100*"xkaggle"
+2025-05-03 16:57:17,599 - INFO - topic diff=0.050541, rho=0.122823
+2025-05-03 16:57:17,606 - INFO - -2.530 per-word bound, 5.8 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:17,606 - INFO - PROGRESS: pass 8, at document #2/2
+2025-05-03 16:57:17,606 - INFO - topic #0 (0.500): 0.183*"became" + 0.183*"xkaggle" + 0.181*"finally" + 0.118*"congrats" + 0.113*"url" + 0.111*"becoming" + 0.110*"user_getanmolgupta"
+2025-05-03 16:57:17,607 - INFO - topic #1 (0.500): 0.178*"url" + 0.173*"congrats" + 0.172*"user_getanmolgupta" + 0.169*"becoming" + 0.106*"became" + 0.105*"finally" + 0.097*"xkaggle"
+2025-05-03 16:57:17,607 - INFO - topic diff=0.047066, rho=0.118699
+2025-05-03 16:57:17,607 - INFO - LdaModel lifecycle event {'msg': 'trained LdaModel<num_terms=7, num_topics=2, decay=0.7, chunksize=558> in 0.03s', 'datetime': '2025-05-03T16:57:17.607832', 'gensim': '4.3.0', 'python': '3.10.10 | packaged by Anaconda, Inc. | (main, Mar 21 2023, 18:39:17) [MSC v.1916 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.26100-SP0', 'event': 'created'}
+2025-05-03 16:57:17,607 - INFO - using ParallelWordOccurrenceAccumulator<processes=7, batch_size=64> to estimate probabilities from sliding windows
+2025-05-03 16:57:20,936 - INFO - 7 accumulators retrieved from output queue
+2025-05-03 16:57:20,944 - INFO - accumulated word occurrence stats for 2 virtual documents
+2025-05-03 16:57:20,956 - INFO - using autotuned alpha, starting with [0.5, 0.5]
+2025-05-03 16:57:20,958 - INFO - using serial LDA version on this node
+2025-05-03 16:57:20,958 - INFO - running online (multi-pass) LDA training, 2 topics, 10 passes over the supplied corpus of 2 documents, updating model once every 2 documents, evaluating perplexity every 2 documents, iterating 50x with a convergence threshold of 0.001000
+2025-05-03 16:57:20,960 - INFO - -3.027 per-word bound, 8.2 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:20,960 - INFO - PROGRESS: pass 0, at document #2/2
+2025-05-03 16:57:20,962 - INFO - optimized alpha [0.57532585, 0.54983586]
+2025-05-03 16:57:20,962 - INFO - topic #0 (0.575): 0.154*"congrats" + 0.145*"became" + 0.145*"url" + 0.141*"xkaggle" + 0.140*"finally" + 0.138*"becoming" + 0.136*"user_getanmolgupta"
+2025-05-03 16:57:20,962 - INFO - topic #1 (0.550): 0.158*"url" + 0.147*"became" + 0.146*"congrats" + 0.145*"finally" + 0.143*"user_getanmolgupta" + 0.136*"becoming" + 0.126*"xkaggle"
+2025-05-03 16:57:20,962 - INFO - topic diff=0.026771, rho=0.199526
+2025-05-03 16:57:20,962 - INFO - -2.898 per-word bound, 7.5 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:20,962 - INFO - PROGRESS: pass 1, at document #2/2
+2025-05-03 16:57:20,966 - INFO - optimized alpha [0.6488359, 0.59977585]
+2025-05-03 16:57:20,966 - INFO - topic #0 (0.649): 0.151*"congrats" + 0.146*"became" + 0.143*"url" + 0.143*"xkaggle" + 0.142*"finally" + 0.138*"becoming" + 0.135*"user_getanmolgupta"
+2025-05-03 16:57:20,966 - INFO - topic #1 (0.600): 0.158*"url" + 0.146*"congrats" + 0.145*"became" + 0.144*"user_getanmolgupta" + 0.143*"finally" + 0.137*"becoming" + 0.126*"xkaggle"
+2025-05-03 16:57:20,966 - INFO - topic diff=0.021952, rho=0.175620
+2025-05-03 16:57:20,966 - INFO - -2.807 per-word bound, 7.0 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:20,966 - INFO - PROGRESS: pass 2, at document #2/2
+2025-05-03 16:57:20,966 - INFO - optimized alpha [0.72439444, 0.6477425]
+2025-05-03 16:57:20,966 - INFO - topic #0 (0.724): 0.149*"congrats" + 0.148*"became" + 0.146*"xkaggle" + 0.144*"finally" + 0.141*"url" + 0.138*"becoming" + 0.135*"user_getanmolgupta"
+2025-05-03 16:57:20,966 - INFO - topic #1 (0.648): 0.158*"url" + 0.147*"congrats" + 0.146*"user_getanmolgupta" + 0.143*"became" + 0.141*"finally" + 0.139*"becoming" + 0.125*"xkaggle"
+2025-05-03 16:57:20,966 - INFO - topic diff=0.021085, rho=0.166050
+2025-05-03 16:57:20,970 - INFO - -2.737 per-word bound, 6.7 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:20,970 - INFO - PROGRESS: pass 3, at document #2/2
+2025-05-03 16:57:20,970 - INFO - optimized alpha [0.8007385, 0.6938005]
+2025-05-03 16:57:20,970 - INFO - topic #0 (0.801): 0.149*"became" + 0.148*"xkaggle" + 0.147*"congrats" + 0.146*"finally" + 0.139*"url" + 0.137*"becoming" + 0.134*"user_getanmolgupta"
+2025-05-03 16:57:20,970 - INFO - topic #1 (0.694): 0.159*"url" + 0.148*"congrats" + 0.148*"user_getanmolgupta" + 0.142*"becoming" + 0.140*"became" + 0.139*"finally" + 0.124*"xkaggle"
+2025-05-03 16:57:20,970 - INFO - topic diff=0.021226, rho=0.157656
+2025-05-03 16:57:20,970 - INFO - -2.684 per-word bound, 6.4 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:20,970 - INFO - PROGRESS: pass 4, at document #2/2
+2025-05-03 16:57:20,970 - INFO - optimized alpha [0.8768391, 0.73771197]
+2025-05-03 16:57:20,970 - INFO - topic #0 (0.877): 0.151*"became" + 0.150*"xkaggle" + 0.148*"finally" + 0.145*"congrats" + 0.137*"url" + 0.136*"becoming" + 0.133*"user_getanmolgupta"
+2025-05-03 16:57:20,970 - INFO - topic #1 (0.738): 0.160*"url" + 0.150*"user_getanmolgupta" + 0.150*"congrats" + 0.144*"becoming" + 0.137*"became" + 0.136*"finally" + 0.123*"xkaggle"
+2025-05-03 16:57:20,970 - INFO - topic diff=0.021788, rho=0.150223
+2025-05-03 16:57:20,973 - INFO - -2.644 per-word bound, 6.3 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:20,973 - INFO - PROGRESS: pass 5, at document #2/2
+2025-05-03 16:57:20,975 - INFO - optimized alpha [0.9510751, 0.7795448]
+2025-05-03 16:57:20,975 - INFO - topic #0 (0.951): 0.153*"became" + 0.153*"xkaggle" + 0.150*"finally" + 0.142*"congrats" + 0.135*"url" + 0.134*"becoming" + 0.132*"user_getanmolgupta"
+2025-05-03 16:57:20,975 - INFO - topic #1 (0.780): 0.161*"url" + 0.152*"user_getanmolgupta" + 0.151*"congrats" + 0.146*"becoming" + 0.135*"became" + 0.134*"finally" + 0.121*"xkaggle"
+2025-05-03 16:57:20,975 - INFO - topic diff=0.022576, rho=0.143587
+2025-05-03 16:57:20,976 - INFO - -2.615 per-word bound, 6.1 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:20,977 - INFO - PROGRESS: pass 6, at document #2/2
+2025-05-03 16:57:20,977 - INFO - optimized alpha [1.0223476, 0.81901604]
+2025-05-03 16:57:20,977 - INFO - topic #0 (1.022): 0.155*"xkaggle" + 0.155*"became" + 0.153*"finally" + 0.140*"congrats" + 0.133*"url" + 0.133*"becoming" + 0.130*"user_getanmolgupta"
+2025-05-03 16:57:20,977 - INFO - topic #1 (0.819): 0.162*"url" + 0.154*"user_getanmolgupta" + 0.153*"congrats" + 0.149*"becoming" + 0.132*"became" + 0.131*"finally" + 0.119*"xkaggle"
+2025-05-03 16:57:20,978 - INFO - topic diff=0.023528, rho=0.137621
+2025-05-03 16:57:20,978 - INFO - -2.593 per-word bound, 6.0 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:20,978 - INFO - PROGRESS: pass 7, at document #2/2
+2025-05-03 16:57:20,979 - INFO - optimized alpha [1.0898229, 0.85594046]
+2025-05-03 16:57:20,980 - INFO - topic #0 (1.090): 0.158*"xkaggle" + 0.157*"became" + 0.155*"finally" + 0.138*"congrats" + 0.132*"becoming" + 0.131*"url" + 0.129*"user_getanmolgupta"
+2025-05-03 16:57:20,980 - INFO - topic #1 (0.856): 0.164*"url" + 0.156*"user_getanmolgupta" + 0.155*"congrats" + 0.151*"becoming" + 0.129*"became" + 0.128*"finally" + 0.117*"xkaggle"
+2025-05-03 16:57:20,980 - INFO - topic diff=0.024171, rho=0.132224
+2025-05-03 16:57:20,980 - INFO - -2.577 per-word bound, 6.0 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:20,980 - INFO - PROGRESS: pass 8, at document #2/2
+2025-05-03 16:57:20,980 - INFO - optimized alpha [1.1523911, 0.89015955]
+2025-05-03 16:57:20,980 - INFO - topic #0 (1.152): 0.160*"xkaggle" + 0.159*"became" + 0.157*"finally" + 0.136*"congrats" + 0.130*"becoming" + 0.130*"url" + 0.127*"user_getanmolgupta"
+2025-05-03 16:57:20,980 - INFO - topic #1 (0.890): 0.165*"url" + 0.159*"user_getanmolgupta" + 0.157*"congrats" + 0.154*"becoming" + 0.126*"became" + 0.125*"finally" + 0.115*"xkaggle"
+2025-05-03 16:57:20,980 - INFO - topic diff=0.024599, rho=0.127313
+2025-05-03 16:57:20,980 - INFO - -2.566 per-word bound, 5.9 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:20,980 - INFO - PROGRESS: pass 9, at document #2/2
+2025-05-03 16:57:20,980 - INFO - optimized alpha [1.2093453, 0.92150086]
+2025-05-03 16:57:20,980 - INFO - topic #0 (1.209): 0.163*"xkaggle" + 0.162*"became" + 0.160*"finally" + 0.134*"congrats" + 0.129*"becoming" + 0.128*"url" + 0.126*"user_getanmolgupta"
+2025-05-03 16:57:20,980 - INFO - topic #1 (0.922): 0.167*"url" + 0.161*"user_getanmolgupta" + 0.158*"congrats" + 0.156*"becoming" + 0.123*"became" + 0.122*"finally" + 0.113*"xkaggle"
+2025-05-03 16:57:20,980 - INFO - topic diff=0.024730, rho=0.122823
+2025-05-03 16:57:20,980 - INFO - LdaModel lifecycle event {'msg': 'trained LdaModel<num_terms=7, num_topics=2, decay=0.7, chunksize=763> in 0.02s', 'datetime': '2025-05-03T16:57:20.980839', 'gensim': '4.3.0', 'python': '3.10.10 | packaged by Anaconda, Inc. | (main, Mar 21 2023, 18:39:17) [MSC v.1916 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.26100-SP0', 'event': 'created'}
+2025-05-03 16:57:20,980 - INFO - using ParallelWordOccurrenceAccumulator<processes=7, batch_size=64> to estimate probabilities from sliding windows
+2025-05-03 16:57:24,218 - INFO - 7 accumulators retrieved from output queue
+2025-05-03 16:57:24,225 - INFO - accumulated word occurrence stats for 2 virtual documents
+2025-05-03 16:57:24,239 - INFO - using autotuned alpha, starting with [0.5, 0.5]
+2025-05-03 16:57:24,239 - INFO - using serial LDA version on this node
+2025-05-03 16:57:24,239 - INFO - running online (multi-pass) LDA training, 2 topics, 10 passes over the supplied corpus of 2 documents, updating model once every 2 documents, evaluating perplexity every 2 documents, iterating 50x with a convergence threshold of 0.001000
+2025-05-03 16:57:24,241 - INFO - -3.027 per-word bound, 8.2 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:24,241 - INFO - PROGRESS: pass 0, at document #2/2
+2025-05-03 16:57:24,242 - INFO - optimized alpha [0.5663006, 0.5438647]
+2025-05-03 16:57:24,242 - INFO - topic #0 (0.566): 0.154*"congrats" + 0.146*"url" + 0.145*"became" + 0.141*"xkaggle" + 0.140*"finally" + 0.138*"becoming" + 0.136*"user_getanmolgupta"
+2025-05-03 16:57:24,242 - INFO - topic #1 (0.544): 0.158*"url" + 0.147*"became" + 0.146*"congrats" + 0.145*"finally" + 0.143*"user_getanmolgupta" + 0.135*"becoming" + 0.126*"xkaggle"
+2025-05-03 16:57:24,242 - INFO - topic diff=0.023318, rho=0.175620
+2025-05-03 16:57:24,244 - INFO - -2.912 per-word bound, 7.5 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:24,244 - INFO - PROGRESS: pass 1, at document #2/2
+2025-05-03 16:57:24,248 - INFO - optimized alpha [0.6313752, 0.58903176]
+2025-05-03 16:57:24,248 - INFO - topic #0 (0.631): 0.152*"congrats" + 0.146*"became" + 0.144*"url" + 0.143*"xkaggle" + 0.141*"finally" + 0.138*"becoming" + 0.136*"user_getanmolgupta"
+2025-05-03 16:57:24,248 - INFO - topic #1 (0.589): 0.158*"url" + 0.146*"congrats" + 0.146*"became" + 0.144*"user_getanmolgupta" + 0.143*"finally" + 0.137*"becoming" + 0.126*"xkaggle"
+2025-05-03 16:57:24,248 - INFO - topic diff=0.019572, rho=0.157656
+2025-05-03 16:57:24,250 - INFO - -2.826 per-word bound, 7.1 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:24,250 - INFO - PROGRESS: pass 2, at document #2/2
+2025-05-03 16:57:24,251 - INFO - optimized alpha [0.6982875, 0.63275945]
+2025-05-03 16:57:24,251 - INFO - topic #0 (0.698): 0.150*"congrats" + 0.147*"became" + 0.145*"xkaggle" + 0.143*"finally" + 0.142*"url" + 0.138*"becoming" + 0.135*"user_getanmolgupta"
+2025-05-03 16:57:24,252 - INFO - topic #1 (0.633): 0.158*"url" + 0.147*"congrats" + 0.145*"user_getanmolgupta" + 0.144*"became" + 0.142*"finally" + 0.139*"becoming" + 0.125*"xkaggle"
+2025-05-03 16:57:24,252 - INFO - topic diff=0.018935, rho=0.150223
+2025-05-03 16:57:24,252 - INFO - -2.759 per-word bound, 6.8 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:24,253 - INFO - PROGRESS: pass 3, at document #2/2
+2025-05-03 16:57:24,253 - INFO - optimized alpha [0.7660317, 0.6750808]
+2025-05-03 16:57:24,255 - INFO - topic #0 (0.766): 0.149*"became" + 0.148*"congrats" + 0.147*"xkaggle" + 0.145*"finally" + 0.140*"url" + 0.137*"becoming" + 0.134*"user_getanmolgupta"
+2025-05-03 16:57:24,255 - INFO - topic #1 (0.675): 0.159*"url" + 0.148*"congrats" + 0.147*"user_getanmolgupta" + 0.141*"became" + 0.141*"becoming" + 0.140*"finally" + 0.125*"xkaggle"
+2025-05-03 16:57:24,255 - INFO - topic diff=0.019178, rho=0.143587
+2025-05-03 16:57:24,256 - INFO - -2.706 per-word bound, 6.5 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:24,258 - INFO - PROGRESS: pass 4, at document #2/2
+2025-05-03 16:57:24,258 - INFO - optimized alpha [0.83381355, 0.7157381]
+2025-05-03 16:57:24,258 - INFO - topic #0 (0.834): 0.150*"became" + 0.149*"xkaggle" + 0.147*"finally" + 0.146*"congrats" + 0.138*"url" + 0.136*"becoming" + 0.133*"user_getanmolgupta"
+2025-05-03 16:57:24,258 - INFO - topic #1 (0.716): 0.159*"url" + 0.149*"congrats" + 0.149*"user_getanmolgupta" + 0.143*"becoming" + 0.139*"became" + 0.137*"finally" + 0.123*"xkaggle"
+2025-05-03 16:57:24,258 - INFO - topic diff=0.019810, rho=0.137621
+2025-05-03 16:57:24,260 - INFO - -2.664 per-word bound, 6.3 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:24,260 - INFO - PROGRESS: pass 5, at document #2/2
+2025-05-03 16:57:24,261 - INFO - optimized alpha [0.900256, 0.75476414]
+2025-05-03 16:57:24,261 - INFO - topic #0 (0.900): 0.152*"became" + 0.152*"xkaggle" + 0.149*"finally" + 0.144*"congrats" + 0.136*"url" + 0.135*"becoming" + 0.132*"user_getanmolgupta"
+2025-05-03 16:57:24,261 - INFO - topic #1 (0.755): 0.160*"url" + 0.151*"user_getanmolgupta" + 0.151*"congrats" + 0.145*"becoming" + 0.136*"became" + 0.135*"finally" + 0.122*"xkaggle"
+2025-05-03 16:57:24,261 - INFO - topic diff=0.020639, rho=0.132224
+2025-05-03 16:57:24,262 - INFO - -2.632 per-word bound, 6.2 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:24,262 - INFO - PROGRESS: pass 6, at document #2/2
+2025-05-03 16:57:24,262 - INFO - optimized alpha [0.96446854, 0.7918878]
+2025-05-03 16:57:24,262 - INFO - topic #0 (0.964): 0.154*"became" + 0.154*"xkaggle" + 0.151*"finally" + 0.141*"congrats" + 0.135*"url" + 0.134*"becoming" + 0.131*"user_getanmolgupta"
+2025-05-03 16:57:24,262 - INFO - topic #1 (0.792): 0.162*"url" + 0.153*"user_getanmolgupta" + 0.152*"congrats" + 0.147*"becoming" + 0.133*"became" + 0.132*"finally" + 0.120*"xkaggle"
+2025-05-03 16:57:24,262 - INFO - topic diff=0.021615, rho=0.127313
+2025-05-03 16:57:24,262 - INFO - -2.607 per-word bound, 6.1 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:24,262 - INFO - PROGRESS: pass 7, at document #2/2
+2025-05-03 16:57:24,262 - INFO - optimized alpha [1.0257169, 0.82686156]
+2025-05-03 16:57:24,262 - INFO - topic #0 (1.026): 0.156*"xkaggle" + 0.156*"became" + 0.154*"finally" + 0.139*"congrats" + 0.133*"url" + 0.132*"becoming" + 0.129*"user_getanmolgupta"
+2025-05-03 16:57:24,262 - INFO - topic #1 (0.827): 0.163*"url" + 0.155*"user_getanmolgupta" + 0.154*"congrats" + 0.150*"becoming" + 0.131*"became" + 0.130*"finally" + 0.118*"xkaggle"
+2025-05-03 16:57:24,262 - INFO - topic diff=0.022493, rho=0.122823
+2025-05-03 16:57:24,266 - INFO - -2.589 per-word bound, 6.0 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:24,266 - INFO - PROGRESS: pass 8, at document #2/2
+2025-05-03 16:57:24,266 - INFO - optimized alpha [1.0830102, 0.85952246]
+2025-05-03 16:57:24,266 - INFO - topic #0 (1.083): 0.159*"xkaggle" + 0.158*"became" + 0.156*"finally" + 0.137*"congrats" + 0.131*"becoming" + 0.131*"url" + 0.128*"user_getanmolgupta"
+2025-05-03 16:57:24,266 - INFO - topic #1 (0.860): 0.164*"url" + 0.157*"user_getanmolgupta" + 0.155*"congrats" + 0.152*"becoming" + 0.128*"became" + 0.127*"finally" + 0.116*"xkaggle"
+2025-05-03 16:57:24,266 - INFO - topic diff=0.023166, rho=0.118699
+2025-05-03 16:57:24,267 - INFO - -2.575 per-word bound, 6.0 perplexity estimate based on a held-out corpus of 2 documents with 7 words
+2025-05-03 16:57:24,267 - INFO - PROGRESS: pass 9, at document #2/2
+2025-05-03 16:57:24,267 - INFO - optimized alpha [1.135636, 0.8896669]
+2025-05-03 16:57:24,267 - INFO - topic #0 (1.136): 0.161*"xkaggle" + 0.160*"became" + 0.158*"finally" + 0.135*"congrats" + 0.129*"becoming" + 0.129*"url" + 0.127*"user_getanmolgupta"
+2025-05-03 16:57:24,267 - INFO - topic #1 (0.890): 0.166*"url" + 0.159*"user_getanmolgupta" + 0.157*"congrats" + 0.154*"becoming" + 0.125*"became" + 0.124*"finally" + 0.115*"xkaggle"
+2025-05-03 16:57:24,267 - INFO - topic diff=0.023567, rho=0.114896
+2025-05-03 16:57:24,267 - INFO - LdaModel lifecycle event {'msg': 'trained LdaModel<num_terms=7, num_topics=2, decay=0.7, chunksize=443> in 0.03s', 'datetime': '2025-05-03T16:57:24.267926', 'gensim': '4.3.0', 'python': '3.10.10 | packaged by Anaconda, Inc. | (main, Mar 21 2023, 18:39:17) [MSC v.1916 64 bit (AMD64)]', 'platform': 'Windows-10-10.0.26100-SP0', 'event': 'created'}
+2025-05-03 16:57:24,267 - INFO - using ParallelWordOccurrenceAccumulator<processes=7, batch_size=64> to estimate probabilities from sliding windows
+2025-05-03 16:57:27,740 - INFO - 7 accumulators retrieved from output queue
+2025-05-03 16:57:27,747 - INFO - accumulated word occurrence stats for 2 virtual documents

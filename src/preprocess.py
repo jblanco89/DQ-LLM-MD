@@ -51,6 +51,21 @@ def load_kaggle_data(path: str) -> Tuple[List[Dict], List[Dict], List[Dict]]:
     
     return discussions, comments, features
 
+def clean_text(text: str) -> str:
+    """Normaliza texto para análisis"""
+    text = re.sub(r'<[^>]+>', '', text)  # Remove HTML
+    text = re.sub(r'\s+', ' ', text)     # Espacios múltiples
+    
+    # Keep more special characters that might be meaningful
+    text = re.sub(r'!?\[\]?\(https?:\S+\)', ' SCREENSHOT ', text)  # Better image handling
+    text = re.sub(r'http\S+|www\S+|https\S+', ' URL ', text, flags=re.MULTILINE)
+    text = re.sub(r'```.*?```|`.*?`', ' CODE ', text, flags=re.DOTALL)
+    text = re.sub(r'@\w+', lambda m: m.group().replace('@', 'USER_'), text)
+    
+    # Keep more punctuation that might be meaningful
+    text = re.sub(r'[^a-zA-Z\s\-0-9_\.\?]', ' ', text)
+    return text.strip()
+
 def process_files(data_dir: str) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     """Process all JSON files in directory and return DataFrames"""
     if not os.path.exists(data_dir):
@@ -74,20 +89,7 @@ def save_to_excel(dataframes: Tuple[pd.DataFrame, ...], output_path: str) -> Non
             df.to_excel(writer, sheet_name=name, index=False)
     print(f"Excel file saved to {output_path}")
 
-def clean_text(text: str) -> str:
-    """Normaliza texto para análisis"""
-    text = re.sub(r'<[^>]+>', '', text)  # Remove HTML
-    text = re.sub(r'\s+', ' ', text)     # Espacios múltiples
-    
-    # Keep more special characters that might be meaningful
-    text = re.sub(r'!?\[\]?\(https?:\S+\)', ' SCREENSHOT ', text)  # Better image handling
-    text = re.sub(r'http\S+|www\S+|https\S+', ' URL ', text, flags=re.MULTILINE)
-    text = re.sub(r'```.*?```|`.*?`', ' CODE ', text, flags=re.DOTALL)
-    text = re.sub(r'@\w+', lambda m: m.group().replace('@', 'USER_'), text)
-    
-    # Keep more punctuation that might be meaningful
-    text = re.sub(r'[^a-zA-Z\s\-0-9_\.\?]', ' ', text)
-    return text.strip()
+
 
 
 def set_discussion_domain(discussion: Dict) -> List[str]:

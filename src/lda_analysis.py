@@ -4,157 +4,239 @@ import gensim
 from gensim import corpora
 from gensim.models import Phrases
 from gensim.utils import simple_preprocess
-from preprocess import clean_text
 import pandas as pd
 import ast
+import numpy as np
+from scipy.special import rel_entr
 
-
-# to do: off-topic handling. Exclude them maybe by checking is_appreciation or is_deleted flags
-# to do: manage hieriarchical comments as elegible for topic analysis optionally
-# to do: consider to use an LDA alternative different from Bertopic but with similar performance or better. 
-# to do: consider to merge here preprocessing text with preprocessing functions in preprocess.py [done]
-
-def load_processed_data(path: str) -> list:
-    """Load and normalize data from Kaggle"""
-    with open(path, encoding='latin1') as f:
-        data = pd.read_excel(path)
-        return data.to_dict(orient='records')
+from typing import Dict, List, Optional, Tuple
 
 # Initialize tools
 lemmatizer = WordNetLemmatizer()
 
-def get_tokens(text: str) -> list:
-    """More conservative preprocessing that preserves key information"""
+def load_processed_data(path: str) -> List[Dict]:
+    """Load and normalize data from Excel"""
+    try:
+        data = pd.read_excel(path)
+        return data.to_dict(orient='records')
+    except Exception as e:
+        print(f"Error loading data: {str(e)}")
+        return []
+
+
+def get_tokens(text: str) -> List[str]:
+    """Preprocess text preserving technical terms"""
     if not text:
         return []
-    
-    text = clean_text(text)  # Clean the text first
-    
-    # Custom stopwords that preserves technical terms
-    custom_stopwords = set(stopwords.words('english')) - {
-        'how', 'what', 'why', 'when', 'which', 'where'
-    }
-    custom_stopwords.update({'hi', 'also', 'use'})  # Remove generic terms
-    
-    # Minimum length reduced to 2 for technical terms
+
+    # Reemplazo manual de términos técnicos antes de tokenizar
+    technical_phrases = [
+        "machine learning", "deep learning", "natural language processing", 
+        "data science", "feature engineering", "computer vision"
+    ]
+    for phrase in technical_phrases:
+        text = text.lower().replace(phrase, phrase.replace(" ", "_"))
+
     tokens = simple_preprocess(text, deacc=True, min_len=2, max_len=30)
     
-    # Less aggressive filtering
-    tokens = [lemmatizer.lemmatize(token) 
-             for token in tokens 
-             if token not in custom_stopwords]
-    
+    # Stopword filtering
+    stop_words = set(stopwords.words("english")) - {"what", "how", "when", "why", "which", "where"}
+    tokens = [lemmatizer.lemmatize(token) for token in tokens if token not in stop_words]
+
     return tokens
 
-def lda_analysis(discussion: dict) -> list:
-    """More robust LDA analysis with fallback options"""
-    documents = []
 
-    # Process main content with debug info
-    content = discussion.get('content')
-    if content:
+def format_topic_terms(terms: List[Tuple[str, float]]) -> str:
+    """Format topic terms with probabilities"""
+    return " | ".join([f"{term} ({prob:.2f})" for term, prob in terms])
+
+def lda_analysis(discussion: Dict):
+     """Improved LDA analysis with type checking"""
+     documents = []
+     
+     content = discussion.get('content')
+     if content:
         processed = get_tokens(content)
         if processed:
             documents.append(processed)
-            print(f"\nProcessing discussion: {discussion.get('title', 'No title')}")
-            print(f"Original content sample: {content[:280]}...")
-            print(f"Processed tokens: {processed}")
+     elif content:
+        print(f"Unexpected content type: {type(content)}")
+ 
 
-    # Process comments
-    comments = discussion.get("comments", {})
-    comment_items = []
-    if isinstance(comments, dict):
-        comment_items = comments.values()
-    elif isinstance(comments, str):
+    # Process comments with robust type handling
+     comments = discussion.get("comments", {})
+    
+    # Handle case where comments might be stored as string
+     if comments and isinstance(comments, str):
         try:
-            comment_dict = ast.literal_eval(comments)
-            if isinstance(comment_dict, dict):
-                comment_items = comment_dict.values()
-        except Exception as e:
-            print(f"Error converting comments: {e}")
+            comments = ast.literal_eval(comments) if comments.strip().startswith('{') else {}
+        except (ValueError, SyntaxError):
+            comments = {}
+     else:
+         comments = {}
+    
+    # # Process each comment
+    #  for comment in comments.values():
+    #     if not isinstance(comment, dict):
+    #         continue
+            
+    #     comment_content = comment.get('content')
+    #     if comment_content and isinstance(comment_content, str):
+    #         processed = get_tokens(comment_content)
+    #         if processed:
+    #             documents.append(processed)
 
-    for comment in comment_items:
-        comment_content = comment.get('content')
-        if comment_content:
-            processed = get_tokens(comment_content)
-            if processed:
-                documents.append(processed)
-
-    # Skip if insufficient data
-    if not documents or sum(len(d) for d in documents) < 5:
-        print("Insufficient data after preprocessing")
-        return None
-
-    technical_terms = {
-        'feature_engineering', 'auto_ml', 'data_centric', 
-        'model_centric', 'random_search', 'grid_search', 'machine_learning',
-        'deep_learning', 'transfer_learning', 'reinforcement_learning',
-        'probabilistic_modeling','programming', 'data_science', 'data_analysis',
-        'data_visualization', 'natural_language_processing', 'computer_vision',
-        'time_series_analysis', 'classification', 'pytorch', 'word-to-vecto',
-        'word2vec', 'fasttext', 'bert', 'gpt', 'transformer','doc2vec','cnn','rnn'
-    }
-    # Replace spaces with underscores when the transformed token is in technical_terms
-    documents = [
-        [word.replace(' ', '_') if word.replace(' ', '_') in technical_terms else word 
-         for word in doc]
-        for doc in documents
-    ]
-
-    try:
-        # Phrase detection
+    # Rest of your function remains the same...
+    #  if not documents or sum(len(d) for d in documents) < 5:
+    #     print("Insufficient data for LDA analysis")
+    #     return None
+     try:
+        # Phrase detection and corpus preparation
         bigram = Phrases(documents, min_count=2, threshold=5)
         trigram = Phrases(bigram[documents], min_count=2, threshold=5)
         documents_phrased = [trigram[bigram[doc]] for doc in documents]
-
-        # Create dictionary and filter extremes based on document count
+        
         dictionary = corpora.Dictionary(documents_phrased)
-        if len(documents) < 10:
-            dictionary.filter_extremes(no_below=1, no_above=0.9)
-        else:
-            dictionary.filter_extremes(no_below=2, no_above=0.7)
+        # dictionary.filter_extremes(no_below=1, no_above=0.8)
 
-        # Ensure there are enough words
-        if len(dictionary) < 5:
-            dictionary.filter_extremes(no_below=1, no_above=0.9) 
-            print(f"Insufficient vocabulary: {len(dictionary)} terms")
+
+        if len(dictionary) < 3:
             return None
-
+            
         corpus = [dictionary.doc2bow(doc) for doc in documents_phrased]
-
-        # Adaptive topic number: at least 1 and at most 2 topics
-        num_topics = min(2, max(1, len(documents) // 2))
-
+        # print(corpus)
+        
+        # Model training
         lda_model = gensim.models.LdaModel(
             corpus=corpus,
             id2word=dictionary,
-            num_topics=num_topics,
+            chunksize=534,
+            decay=0.7,
+            num_topics=3,
             random_state=42,
-            passes=10,
-            alpha='auto',
-            eta='auto',
-            per_word_topics=True,
-            minimum_probability=0.1  # Lower threshold for topic assignment
+            passes=12,
+            offset=10,
+            alpha='symmetric',
+            eta='auto'
         )
-
-        topics = lda_model.print_topics(num_words=4, num_topics=4)
-        return topics
-
-    except Exception as e:
-        print(f"Error processing discussion: {str(e)[:280]}")
+        
+        # Extract and format topics
+        topics = []
+        for idx, topic in lda_model.print_topics(num_words=5, num_topics=-1):
+            terms = [
+                (term.split('*')[1].strip('"'), float(term.split('*')[0]))
+                for term in topic.split('+')
+            ]
+            topics.append((idx, format_topic_terms(terms)))
+        topic_distribution = lda_model.get_document_topics(corpus[0])
+        return topics, topic_distribution
+        
+     except Exception as e:
+        print(f"Error in LDA analysis: {str(e)[:200]}")
         return None
+
+def print_discussion_topics(discussion: Dict, topics: List[Tuple[int, str]], topic_dist) -> None:
+    """Pretty print discussion topics"""
+    title = discussion.get('title', 'discussion')
+    print(f"\n{'='*80}")
+    print(f"Discussion: {title}")
+    print(f"Author: {discussion.get('user', 'Unknown')}")
+    print(f"Votes: {discussion.get('votes', 0)}")
+    print(f"Comments: {discussion.get('n_comments', 0)}")
+    print(f"Domains: {discussion.get('domains', {})}")
+    print("\nDetected Topics:")
+    for idx, topic in topics:
+        print(f"  Topic {idx+1}: {topic}")
+    print("\nTopic Distribution:")
+    for idd, prob in topic_dist[:len(topic_dist)]:
+        print(f"  Topic {idd+1}: {prob:.2%}")
 
 if __name__ == '__main__':
     data = load_processed_data("src/results/processed_data.xlsx")
     if not data:
-        print("No data to process")
-        exit(1)
-    for i, discussion in enumerate(data[:5]):
-        print(f"\nAnalyzing discussion {i+1}: {discussion.get('title', 'No title')}")
-        topics = lda_analysis(discussion)
+        print("No data loaded. Check file path and format.")
+        exit()
+    
+    print(f"Loaded {len(data)} discussions")
+    for discussion in data[16:20]:  # Process first 5 discussions
+        topics, topic_dist = lda_analysis(discussion=discussion)  # Analyze first discussion
         if topics:
-            print("Detected topics:")
-            for topic in topics:
-                print(topic)
+            print_discussion_topics(discussion=discussion, topics=topics, topic_dist=topic_dist)
         else:
-            print("No valid text content for topic analysis")
+            print(f"\nNo topics extracted for: {discussion.get('title', 'Untitled')}")
+    
+
+    def kl_divergence(p, q):
+        p = np.array(p)
+        q = np.array(q)
+        return float(sum(rel_entr(p, q)))
+    
+    
+    def dense_distribution(dist, num_topics):
+        dense = [0.0] * num_topics
+        for idx, prob in dist:
+            dense[idx] = prob
+        return dense
+    
+    def kl_content_vs_domain(data):
+        content_records = []
+        domain_topic_dists = {}
+        domain_averages = {}
+
+        # 1. Recolectamos las distribuciones para cada contenido y dominio
+        for discussion in data[:len(data)]:  # Process all discussions
+            result = lda_analysis(discussion)
+            if result is None:
+                continue
+            topics, topic_dist = result
+            dense = dense_distribution(topic_dist, 2)
+
+            domains = discussion.get("domains", [])
+            if isinstance(domains, str):
+                try:
+                    domains = ast.literal_eval(domains)
+                except Exception:
+                    continue
+
+            for domain in domains:
+                domain_topic_dists.setdefault(domain, []).append(dense)
+
+            content_records.append({
+                "title": discussion.get("title", "Untitled"),
+                "domains": domains,
+                "topic_dist": dense,
+                "user": discussion.get("user", "Unknown"),
+                "votes": discussion.get("votes", 0),
+                "n_comments": discussion.get("n_comments", 0)
+            })
+
+        # 2. Promedio de temas por dominio
+        domain_averages = {
+            domain: np.mean(dists, axis=0)
+            for domain, dists in domain_topic_dists.items()
+        }
+
+        # 3. Calcular KL por contenido respecto a su(s) dominio(s)
+        kl_results = []
+
+        for record in content_records:
+            for domain in record["domains"]:
+                domain_avg = domain_averages.get(domain)
+                if domain_avg is None:
+                    continue
+                divergence = kl_divergence(record["topic_dist"], domain_avg)
+                kl_results.append({
+                    "title": record["title"],
+                    "domain": domain,
+                    "kl_divergence": divergence,
+                    "user": record["user"],
+                    "votes": record["votes"],
+                    "n_comments": record["n_comments"]
+                })
+
+        df = pd.DataFrame(kl_results)
+        print(df)
+        df.to_excel("src/results/kl_content_vs_domain.xlsx", index=False)
+        print("KL content vs domain exported to 'kl_content_vs_domain.xlsx'")
+
+    # kl_content_vs_domain(data)
