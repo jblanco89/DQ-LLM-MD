@@ -124,3 +124,44 @@ python -m nltk.downloader stopwords wordnet
 - Includes debug outputs for analysis steps
 - Uses adaptive parameters based on data size
 - Preserves technical terminology during preprocessing
+
+## Graph Scheme (example)
+```bash
+digraph G {
+    // Configuración general del gráfico
+    graph [bgcolor="transparent", fontname="Verdana", rankdir="LR"];
+    node [margin=0, width=0.5, shape="oval", style="filled", fontname="Verdana", penwidth=2, fontsize=10];
+    edge [fontsize=12, arrowsize=0.9, penwidth=1];
+    
+    // Definición de nodos con colores de medalla
+    A [label="User_A\n(gold | Master)", 
+       fillcolor="#FFD700", color="#D4AF37", fontcolor="#000000"];
+    
+    B [label="User_B\n(silver | Expert)", 
+       fillcolor="#C0C0C0", color="#A8A8A8", fontcolor="#000000"];
+    
+    C [label="User_C\n(bronze | Contributor)", 
+       fillcolor="#CD7F32", color="#A67C52", fontcolor="#FFFFFF"];
+    
+    D [label="User_D\n(none | Novice)", 
+       fillcolor="#FFFFFF", color="#555555", fontcolor="#00000"];
+    
+    E [label="User_E\n(gold | Master)", 
+       fillcolor="#FFD700", color="#D4AF37", fontcolor="#000000"];
+    
+    // Definición de aristas con pesos
+    A -> B [label="3.41", color="#000000", fontcolor="#000000"];
+    B -> C [label="FW", color="#000000", fontcolor="#000000"];
+    B -> D [label="3.38", color="#000000", fontcolor="#000000"];
+    A -> E [label="3.41", color="#000000", fontcolor="#000000"];
+    B -> A [label="10.0", color="#000000", fontcolor="#000000"];
+    C -> A [label="9.5", color="#000000", fontcolor="#000000"];
+    D -> E [label="8.0", color="#000000", fontcolor="#000000"];
+    D -> B [label="3.10", color="#000000", fontcolor="#000000"];
+    
+    // Agrupación jerárquica
+    {rank=same; A; C; E}
+
+}
+
+```
