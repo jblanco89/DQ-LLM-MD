@@ -50,7 +50,7 @@ def format_topic_terms(terms: List[Tuple[str, float]]) -> str:
     """Format topic terms with probabilities"""
     return " | ".join([f"{term} ({prob:.2f})" for term, prob in terms])
 
-def lda_analysis(discussion: Dict):
+def lda_analysis(discussion: Dict) -> Tuple[List[Tuple[int, str]], List[Tuple[int, float]]]:
      """Improved LDA analysis with type checking"""
      documents = []
      
@@ -158,21 +158,36 @@ if __name__ == '__main__':
         exit()
     
     print(f"Loaded {len(data)} discussions")
-    for discussion in data[16:20]:  # Process first 5 discussions
+    for discussion in data[21:23]:  # Process first 5 discussions
         topics, topic_dist = lda_analysis(discussion=discussion)  # Analyze first discussion
+        print(topic_dist)
         if topics:
             print_discussion_topics(discussion=discussion, topics=topics, topic_dist=topic_dist)
         else:
             print(f"\nNo topics extracted for: {discussion.get('title', 'Untitled')}")
     
 
+    # Este código es útil en procesamiento de lenguaje natural (NLP)
+    # donde se quiere resumir la distribución de temas de un dominio 
+    # así, podemos responder a la pregunta: 
+    # "¿Qué proporción promedio de temas tiene cada dominio?"
+    # y qué tan "atípico" es el documento para su dominio
+    # Dado que la lista de dominios parte de un enfoque heurístico del investigador,
+    # surge la necesidad de restringir el peso del analisis KL al mínimo cuando se obtenga
+    # el score final (DELIQ)
+
     def kl_divergence(p, q):
+        # rel_entr computes the Kullback-Leibler divergence
+        # between two probability distributions p and q
+        # rel_entr stands for relative entropy
         p = np.array(p)
         q = np.array(q)
         return float(sum(rel_entr(p, q)))
     
     
     def dense_distribution(dist, num_topics):
+        # Convert sparse distribution to dense format
+        # dist is a list of tuples (index, probability)
         dense = [0.0] * num_topics
         for idx, prob in dist:
             dense[idx] = prob
@@ -189,7 +204,7 @@ if __name__ == '__main__':
             if result is None:
                 continue
             topics, topic_dist = result
-            dense = dense_distribution(topic_dist, 2)
+            dense = dense_distribution(topic_dist, len(topics))
 
             domains = discussion.get("domains", [])
             if isinstance(domains, str):
@@ -239,4 +254,4 @@ if __name__ == '__main__':
         df.to_excel("src/results/kl_content_vs_domain.xlsx", index=False)
         print("KL content vs domain exported to 'kl_content_vs_domain.xlsx'")
 
-    # kl_content_vs_domain(data)
+    kl_content_vs_domain(data)
