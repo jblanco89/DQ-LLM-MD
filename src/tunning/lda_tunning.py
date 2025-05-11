@@ -3,6 +3,10 @@ import datetime
 import logging
 import json
 import numpy as np
+import pandas as pd
+import ast
+
+
 from typing import Dict, List, Tuple, Optional
 from pathlib import Path
 from tqdm import tqdm
@@ -14,14 +18,27 @@ from gensim.utils import simple_preprocess
 from gensim.models import CoherenceModel
 from sklearn.model_selection import ParameterSampler
 from scipy.stats import randint
+from openpyxl import Workbook
+
+# to do: fix the ouput excel file information
+# to do: calculate a mean of parameters stimated from the best model in every discussion
+# to do: To use the best model parameters in lda analysis.py
+# to do: process this tunning with mlflow pipeline
+# to do: save the best model in the output folder
+
+
 
 # Initialize tools
 lemmatizer = WordNetLemmatizer()
 
-def load_json_data(path: str) -> Dict[str, Dict]:
-    """Load JSON data with discussion ID as keys"""
-    with open(path, 'r', encoding='utf-8') as f:
-        return json.load(f)
+def load_data_from_excel(path: str) -> List[Dict]:
+    """Load and normalize data from Excel"""
+    try:
+        data = pd.read_excel(path)
+        return data.to_dict(orient='records')
+    except Exception as e:
+        logging.error(f"Error loading data: {str(e)}")
+        return []
 
 def preprocess_text(text: str) -> List[str]:
     """Preprocess text with technical term preservation"""
@@ -64,12 +81,12 @@ def prepare_corpus(discussion: Dict) -> Tuple[Optional[List[List[str]]],
             documents.append(processed)
     
     # Process comments
-    comments = discussion.get('comments', {})
-    for comment_id, comment_data in comments.items():
-        if comment_data.get('content'):
-            processed = preprocess_text(comment_data['content'])
-            if processed:
-                documents.append(processed)
+    # comments = discussion.get('comments', {})
+    # for comment_id, comment_data in comments.items():
+    #     if comment_data.get('content'):
+    #         processed = preprocess_text(comment_data['content'])
+    #         if processed:
+    #             documents.append(processed)
     
     # Skip if insufficient data
     if len(documents) < 1 or sum(len(d) for d in documents) < 5:
@@ -95,9 +112,9 @@ def prepare_corpus(discussion: Dict) -> Tuple[Optional[List[List[str]]],
     
     # Create dictionary
     dictionary = corpora.Dictionary(documents_phrased)
-    dictionary.filter_extremes(no_below=1, no_above=0.9)
-    
-    if len(dictionary) < 5:
+    # dictionary.filter_extremes(no_below=1, no_above=0.99)
+
+    if len(dictionary) < 3:
         return None, None, None, None
     
     corpus = [dictionary.doc2bow(doc) for doc in documents_phrased]
@@ -131,13 +148,14 @@ def lda_hyperparameter_tuning(discussion: Dict, n_iter: int = 10) -> Optional[Di
     max_topics = max(3, min(num_docs//2 + 1, 10))
     
     param_dist = {
-        "num_topics": randint(min_topics, max_topics),
+        "num_topics": randint(2, 10),
+        # "num_topics": randint(min_topics, max_topics),
         "alpha": ['symmetric', 'auto'],
         "eta": ['auto'],
         "passes": randint(5, 15),
         "chunksize": randint(100, 1000),
-        "decay": [0.7],
-        "offset": [10, 12],
+        "decay": [0.7, 0.5],
+        "offset": [10, 12, 15],
         "per_word_topics": [True, False],
         "random_state": [42]
     }
@@ -185,6 +203,25 @@ def lda_hyperparameter_tuning(discussion: Dict, n_iter: int = 10) -> Optional[Di
         "topic_distribution": best_model.get_document_topics(corpus[0])
     }
 
+def save_results_to_excel(results: Dict, path: str):
+    """Save results to Excel"""
+    try:
+        with pd.ExcelWriter(path, engine='openpyxl', mode='a') as writer:
+            for i, result in results.items():
+                df = pd.concat([
+                    pd.DataFrame({'Topics': [result['topics']]}),
+                    pd.DataFrame({
+                        'Coherence Score': [result['coherence_score']],
+                        'Parameters': [result['parameters']],
+                        'Topic Distribution': [result['topic_distribution']]
+                    })
+                ], axis=1)
+                # df = df.explode('Topics').reset_index(drop=True)
+                df.to_excel(writer, sheet_name=f"Discussion_{i}", index=False)
+    except Exception as e:
+        logging.error(f"Error saving results: {str(e)}")
+        raise
+
 def print_results(results: Dict):
     """Pretty print the results"""
     print(f"\n{'='*50}")
@@ -196,21 +233,20 @@ def print_results(results: Dict):
         print(f"\nTopic {topic['topic_id']} (Probability: {topic['probability']:.2%})")
         print("Top Terms:", ", ".join(topic['terms']))
     
-    print("\nExample Document Topic Distribution:")
+    print("\nTotal Document Topic Distribution:")
     for topic_id, prob in results['topic_distribution']:
         print(f"Topic {topic_id}: {prob:.2%}")
 
-# In your analyze_discussions function:
-def analyze_discussions(data: Dict[str, Dict], max_discussions: int = 5):
+def analyze_discussions(data: List[Dict], max_discussions: int = 5):
     results = {}
-    for discussion_id, discussion in list(data.items())[:max_discussions]:
-        title = discussion.get('title', f"Discussion {discussion_id}")
+    for i, discussion in enumerate(data[:max_discussions]):
+        title = discussion.get('title', f"Discussion {i}")
         print(f"\nAnalyzing: {title}")
         
-        tuning_results = lda_hyperparameter_tuning(discussion, n_iter=5)
+        tuning_results = lda_hyperparameter_tuning(discussion, n_iter=3)
         if tuning_results:
             print_results(tuning_results)
-            results[discussion_id] = tuning_results
+            results[i] = tuning_results  # Using index as ID
         else:
             print("No topics extracted")
     
@@ -226,30 +262,22 @@ if __name__ == '__main__':
     )
     
     # Load and process data
-    data_path = "data/accomplishments.json"  # Update with your path
+    data_path = "src/results/processed_data.xlsx"  # Update with your path
+    output_path = "src/results/lda_tuning_results.xlsx"
+    output_dir = Path(output_path).parent
+    output_dir.mkdir(exist_ok=True)
+    
+    output_file = Path(output_path)
+    if not output_file.exists():
+        # Create an empty Excel file with a default sheet.
+        wb = Workbook()
+        wb.save(output_file)
     try:
-        discussions_data = load_json_data(data_path)
+        discussions_data = load_data_from_excel(data_path)
         print(f"Loaded {len(discussions_data)} discussions")
-        
-        results = analyze_discussions(discussions_data, max_discussions=2)
-        
-        # Simple fix - convert numpy floats to regular floats before saving
-        def convert_floats(obj):
-            if isinstance(obj, np.floating):
-                return float(obj)
-            elif isinstance(obj, np.integer):
-                return int(obj)
-            elif isinstance(obj, dict):
-                return {k: convert_floats(v) for k, v in obj.items()}
-            elif isinstance(obj, list):
-                return [convert_floats(v) for v in obj]
-            return obj
-
-
-        # # Save results
-        # with open("src/results/lda_topics.json", "w") as f:
-        #     json.dump(convert_floats(results), f, indent=2)
-            
+        results = analyze_discussions(discussions_data, max_discussions=1)
+        save_results_to_excel(results, output_path)
+        logging.info(f"Results saved to {output_path}")    
     except Exception as e:
         logging.critical(f"Pipeline failed: {str(e)}")
         raise
