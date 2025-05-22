@@ -1,11 +1,14 @@
 import re
 import os
 import json
+import emoji
 from typing import List, Dict, Tuple, Optional
 import numpy as np
 import pandas as pd
 from nltk.tokenize import word_tokenize
 from collections import defaultdict
+
+# to do: add more technical terms to the list
 
 class TextCleaner:
     """Utility class for cleaning and normalizing text"""
@@ -13,6 +16,8 @@ class TextCleaner:
     @staticmethod
     def clean_text(text: str) -> str:
         """Normalize text for analysis"""
+        text = emoji.demojize(text, delimiters=(" :", ": "))
+        text = text.replace(":", "")  # Ej: ":smiling_face:" → "smiling_face"
         text = re.sub(r'<[^>]+>', '', text)  # Remove HTML
         text = re.sub(r'\s+', ' ', text)     # Multiple spaces
         

@@ -80,14 +80,6 @@ def prepare_corpus(discussion: Dict) -> Tuple[Optional[List[List[str]]],
         if processed:
             documents.append(processed)
     
-    # Process comments
-    # comments = discussion.get('comments', {})
-    # for comment_id, comment_data in comments.items():
-    #     if comment_data.get('content'):
-    #         processed = preprocess_text(comment_data['content'])
-    #         if processed:
-    #             documents.append(processed)
-    
     # Skip if insufficient data
     if len(documents) < 1 or sum(len(d) for d in documents) < 5:
         return None, None, None, None
@@ -144,8 +136,8 @@ def lda_hyperparameter_tuning(discussion: Dict, n_iter: int = 10) -> Optional[Di
         return None
 
     # Adaptive parameter ranges
-    min_topics = max(2, min(num_docs//4, 2))
-    max_topics = max(3, min(num_docs//2 + 1, 10))
+    # min_topics = max(2, min(num_docs//4, 2))
+    # max_topics = max(3, min(num_docs//2 + 1, 10))
     
     param_dist = {
         "num_topics": randint(2, 10),

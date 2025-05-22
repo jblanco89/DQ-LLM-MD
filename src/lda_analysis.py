@@ -74,22 +74,6 @@ def lda_analysis(discussion: Dict) -> Tuple[List[Tuple[int, str]], List[Tuple[in
             comments = {}
      else:
          comments = {}
-    
-    # # Process each comment
-    #  for comment in comments.values():
-    #     if not isinstance(comment, dict):
-    #         continue
-            
-    #     comment_content = comment.get('content')
-    #     if comment_content and isinstance(comment_content, str):
-    #         processed = get_tokens(comment_content)
-    #         if processed:
-    #             documents.append(processed)
-
-    # Rest of your function remains the same...
-    #  if not documents or sum(len(d) for d in documents) < 5:
-    #     print("Insufficient data for LDA analysis")
-    #     return None
      try:
         # Phrase detection and corpus preparation
         bigram = Phrases(documents, min_count=2, threshold=5)
@@ -171,7 +155,7 @@ if __name__ == '__main__':
     # donde se quiere resumir la distribución de temas de un dominio 
     # así, podemos responder a la pregunta: 
     # "¿Qué proporción promedio de temas tiene cada dominio?"
-    # y qué tan "atípico" es el documento para su dominio
+    # y qué tan "atípico" es el documento (discusion) para su dominio
     # Dado que la lista de dominios parte de un enfoque heurístico del investigador,
     # surge la necesidad de restringir el peso del analisis KL al mínimo cuando se obtenga
     # el score final (DELIQ)

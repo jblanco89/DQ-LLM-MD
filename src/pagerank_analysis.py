@@ -5,9 +5,11 @@ from config.config import EXPERTISE_RANKS, MEDAL_BOOST
 import plotly.graph_objects as go
 import matplotlib.pyplot as plt
 
-# to do: check the assigned values for weights in influence score calculation (see lines 73 and 167 and onwards)
+# to do: check the assigned values for weights in influence score calculation (see lines 73 and 167 and onwards) [Done]
 # to do: check the recency factor (see line 63 and 64)
 # to do: try to understand and interpret the graph (see line 118 and onwards)
+# to do: check the edge color and edge text and edge visualization
+
 
 def load_and_process_data(excel_path):
     """Load and preprocess the Excel data."""
@@ -26,23 +28,6 @@ def load_and_process_data(excel_path):
 def build_weighted_graph(discussions_df, comments_df):
     """Construct a directed graph with weighted edges based on forum interactions."""
     G = nx.DiGraph()
-    
-    # # Medal boost factors
-    # MEDAL_BOOST = {
-    #     None: 1.0,
-    #     'bronze': 1.2,
-    #     'silver': 1.5,
-    #     'gold': 2.0,
-    #     'platinum': 3.0
-    # }
-    
-    # # Expertise boost factors
-    # EXPERTISE_BOOST = {
-    #     'Novice': 1.0,
-    #     'Contributor': 1.3,
-    #     'Expert': 1.7,
-    #     'Master': 2.2
-    # }
     
     # Add discussion authors as nodes
     for _, row in discussions_df.iterrows():
@@ -103,8 +88,6 @@ def build_weighted_graph(discussions_df, comments_df):
     
     return G
 
-
-
 def visualize_graph(G, top_n=10):
     """Create both interactive and static visualizations of the graph"""
     # Medal colors with NaN handling
@@ -120,7 +103,7 @@ def visualize_graph(G, top_n=10):
     # Interactive visualization with Plotly
     sorted_nodes = sorted(G.nodes(), key=lambda x: G.degree(x), reverse=True)[:top_n]
     G = G.subgraph(sorted_nodes)
-    pos = nx.spring_layout(G, k=0.35, iterations=50, scale=3)
+    pos = nx.spring_layout(G, k=0.35, iterations=20, scale=3)
     
     # Edge traces
     edge_x = []
@@ -133,7 +116,7 @@ def visualize_graph(G, top_n=10):
 
     edge_trace = go.Scatter(
         x=edge_x, y=edge_y,
-        line=dict(width=0.5, color='#888'),
+        line=dict(width=1, color='#888'),
         hoverinfo='none',
         mode='lines')
 
@@ -172,7 +155,7 @@ def visualize_graph(G, top_n=10):
 
     fig = go.Figure(data=[edge_trace, node_trace],
                  layout=go.Layout(
-                    showlegend=False,
+                    showlegend=True,
                     hovermode='closest',
                     margin=dict(b=0,l=0,r=0,t=0),
                     xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
@@ -184,9 +167,9 @@ def visualize_graph(G, top_n=10):
     nx.draw_networkx_nodes(G, pos, 
                          node_size=[min(G.degree(n)*50, 1000) for n in G.nodes()],  # Cap size at 1000
                          node_color=[get_medal_color(G.nodes[n].get('medal')) for n in G.nodes()])
-    nx.draw_networkx_edges(G, pos, width=0.5, alpha=0.1)
-    nx.draw_networkx_labels(G, pos, font_size=8)
-    plt.axis('off')
+    nx.draw_networkx_edges(G, pos, width=1, alpha=0.5)
+    nx.draw_networkx_labels(G, pos, font_size=9, font_family='sans-serif')
+    plt.axis('on')
     plt.savefig('./src/results/network_graph.png', dpi=300)
     plt.show()
 
@@ -246,39 +229,12 @@ def calculate_influence_scores(discussions_df, comments_df):
             user_metrics[row['user_post']]['received_comments'] = row['id']
             user_metrics[row['user_post']]['received_appreciations'] = row['is_appreciation']
     
-    # # Medal boost factors
-    # MEDAL_BOOST = {
-    #     None: 1.0,
-    #     'bronze': 1.2,
-    #     'silver': 1.5,
-    #     'gold': 2.0,
-    #     'platinum': 3.0
-    # }
     
     # Calculate final influence scores
     influence_scores = {}
     for user, metrics in user_metrics.items():
         # Base score from PageRank
         score = pagerank_scores.get(user, 0)
-        
-        # Add post quality component
-        if metrics['post_count'] > 0:
-            avg_post_votes = metrics['total_post_votes'] / metrics['post_count']
-            score += avg_post_votes * 0.2
-        
-        # Add comment quality component
-        if metrics['comment_count'] > 0:
-            avg_comment_votes = metrics['total_comment_votes'] / metrics['comment_count']
-            score += avg_comment_votes * 0.1
-        
-        # Engagement component
-        score += metrics['received_comments'] * 0.05
-        score += metrics['received_appreciations'] * 0.1
-        
-        # Apply medal boost
-        medal_boost = MEDAL_BOOST.get(metrics['medal'], 0)
-        score += medal_boost
-        
         influence_scores[user] = score
     # Add this line at the end of your calculate_influence_scores function, before return:
     visualize_graph(G, top_n=10)
@@ -302,7 +258,7 @@ def rank_users(excel_path):
         results.append({
             'rank': rank,
             'username': user,
-            'influence_score': round(score, 4),
+            'influence_score': round(score, 6),
             'medal': metrics['medal'],
             'expertise': metrics['expertise'],
             'post_count': metrics['post_count'],
