@@ -22,11 +22,9 @@ from openpyxl import Workbook
 
 # to do: fix the ouput excel file information [done]
 # to do: calculate a mean of parameters stimated from the best model in every discussion [done]
-# to do: To use the best model parameters in lda analysis.py
+# to do: To use the best model parameters in lda analysis.py [done]
 # to do: process this tunning with mlflow pipeline
 # to do: save the best model in the output folder
-
-
 
 # Initialize tools
 lemmatizer = WordNetLemmatizer()

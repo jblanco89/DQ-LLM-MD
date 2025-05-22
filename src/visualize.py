@@ -1,15 +1,17 @@
 # to do: include the PageRank graph visualization
 # to do: innclude a Venn diagram of the domains of users (KL/LDA analysis) [Done with UpSet]
 # to do: some exploratory analysis of the data (most interesting and valuable visualizations)
-# to do: include a word cloud of the most relevant words in the topics
-# to do: include a heatmap of thematic dispersion by domain
+# to do: include a word cloud of the most relevant words in the topics [Done by forum]
+# to do: include a heatmap of thematic dispersion by domain [Done with influence score and expertise-medal]
 
-import numpy as np
+
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 from upsetplot import UpSet
-# from wordcloud import WordCloud
+from wordcloud import WordCloud
 from config.config import DOMAINS_TAGS
+
 
 def upset_plot(directory: str = "src/results/processed_data.xlsx", sheet_name: str = "Discussions"):
     """
@@ -30,67 +32,102 @@ def upset_plot(directory: str = "src/results/processed_data.xlsx", sheet_name: s
     upset_data = data.set_index(list_domains).groupby(level=list_domains).size()
 
     # Leer la documentación de UpSet para más opciones de visualización
-    UpSet(upset_data, subset_size='sum', show_counts=True).plot()
-    
-
+    UpSet(upset_data, subset_size='sum', 
+          show_counts=True).plot()
+    plt.title("UpSet Plot of Discussions by Domain")
     plt.savefig("src/results/upset_plot.png", dpi=300, bbox_inches='tight')
     plt.show()
     plt.close()
 
-def plot_heatmap(data: pd.DataFrame, title: str = "Heatmap"):
+def plot_heatmap(directory:str, 
+                 index_name:str, 
+                 columns_name:str, 
+                 values_name:str,
+                 agg_func:str = 'mean',
+                 title: str = "Heatmap Plot"):
     """
     Create a heatmap to visualize the distribution of discussions across domains.
     """
-    # Assuming 'data' is a DataFrame with domain distributions
-    plt.figure(figsize=(10, 8))
+    df = pd.read_excel(directory)
+    df = df.copy()
+    data = df[[values_name, index_name, columns_name]]
+
+    # Pivot the data for heatmap
+    heatmap_data = data.pivot_table(
+        index=index_name,
+        columns=columns_name,
+        values=values_name,
+        aggfunc=agg_func
+    )
+    plt.figure(figsize=(8, 6))
+    sns.heatmap(
+        heatmap_data, 
+        annot=True,  # Show values in cells
+        fmt=".3f",  # 3 decimal places
+        cmap="YlOrRd",  # Gold→Red gradient (matches medal theme)
+        linewidths=0.5,
+        linecolor='black',  # Black lines between cells
+        cbar_kws={"label": f'{values_name}'}, # Color bar label
+
+    )
     plt.title(title)
-    plt.imshow(data, cmap='hot', interpolation='nearest')
-    plt.colorbar(label='Intensity')
-    plt.xlabel('Domains')
-    plt.ylabel('Discussions')
-    plt.xticks(range(len(data.columns)), data.columns, rotation=45)
-    plt.yticks(range(len(data.index)), data.index)
-    plt.tight_layout()
+    plt.xlabel("Medal")
+    plt.ylabel("Expertise Level")
+    
+    
+    plt.savefig(f"src/results/heatmap_plot_{values_name}.png", dpi=300, bbox_inches='tight')
     plt.show()
+    plt.close()
 
-
-def plot_wordcloud(data: pd.DataFrame, title: str = "Word Cloud"):
+def plot_wordcloud(directory:str, forum_name:str, title: str = "Word Cloud"):
     """
     Create a word cloud to visualize the most relevant words in the topics.
     """
-    
-
-    text = ' '.join(data['terms'].astype(str))
+    df = pd.read_excel(directory)
+    data = df.copy()
+    data = data[data['forum'] == forum_name]
+    text = ' '.join(data['content'].astype(str))
     wordcloud = WordCloud(width=800, height=400, background_color='white').generate(text)
 
     plt.figure(figsize=(10, 8))
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.axis('off')
     plt.title(title)
-    plt.show()  
+
+    plt.savefig("src/results/wordcloud_plot.png", dpi=300, bbox_inches='tight')
+    plt.show()
+    plt.close()  
 
 
-def plot_kl_divergence(data: pd.DataFrame, title: str = "KL Divergence"):
+def plot_kl_divergence(directory:str, title: str = "KL Divergence"):
     """
     Create a plot to visualize KL divergence results.
     """
+    df = pd.read_excel(directory)
+    data = df.copy()
+    
     plt.figure(figsize=(10, 6))
     plt.title(title)
-    plt.bar(data['title'], data['kl_divergence'])
-    plt.xlabel('Discussions')
+    plt.bar(data['domain'], data['kl_divergence'])
+    plt.xlabel('Domains')
     plt.ylabel('KL Divergence')
     plt.xticks(rotation=45)
     plt.tight_layout()
+
+    plt.savefig("src/results/kl_divergence_plot.png", dpi=300, bbox_inches='tight')
     plt.show()
+    plt.close()
 
 
 if __name__ == "__main__":
     # Example usage
-    dir_useplot = "src/results/processed_data.xlsx"
-    upset_plot(dir_useplot)
-    # df = pd.read_excel("", sheet_name="Discussions")
-    # plot_heatmap(df, title="Heatmap of Discussions")
-    # plot_wordcloud(df, title="Word Cloud of Topics")
-    # plot_kl_divergence(df, title="KL Divergence Results")
+    dir_processed_data = "src/results/processed_data.xlsx"
+    dir_kl_div = "src/results/kl_content_vs_domain.xlsx"
+    dir_ranked = "src/results/ranked_users.xlsx"
+    upset_plot(dir_processed_data, sheet_name="Discussions")
+    plot_heatmap(dir_ranked, index_name="expertise", columns_name="medal", values_name="influence_score", title="Average Influence Score by Expertise and Medal")
+    plot_heatmap(dir_processed_data, index_name="expertise", columns_name="medal", values_name="votes", title="Average Votes by Expertise and Medal")
+    plot_wordcloud(dir_processed_data, forum_name='getting-started', title="Word Cloud of Topics")
+    plot_kl_divergence(dir_kl_div, title="KL Divergence Results")
         
 
