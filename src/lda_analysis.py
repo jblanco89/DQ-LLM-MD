@@ -94,14 +94,16 @@ def lda_analysis(discussion: Dict) -> Tuple[List[Tuple[int, str]], List[Tuple[in
         lda_model = gensim.models.LdaModel(
             corpus=corpus,
             id2word=dictionary,
-            chunksize=534,
-            decay=0.7,
-            num_topics=3,
+            chunksize=1000,
+            decay=0.5,
+            num_topics=4,
             random_state=42,
-            passes=12,
-            offset=10,
+            passes=10,
+            offset=1024,
             alpha='symmetric',
-            eta='auto'
+            eta='auto',
+            iterations=100,
+            per_word_topics=True,
         )
         
         # Extract and format topics
@@ -142,7 +144,7 @@ if __name__ == '__main__':
         exit()
     
     print(f"Loaded {len(data)} discussions")
-    for discussion in data[21:23]:  # Process first 5 discussions
+    for discussion in data[0:10]:  # Process first 5 discussions
         topics, topic_dist = lda_analysis(discussion=discussion)  # Analyze first discussion
         print(topic_dist)
         if topics:

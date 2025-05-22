@@ -20,8 +20,8 @@ from sklearn.model_selection import ParameterSampler
 from scipy.stats import randint
 from openpyxl import Workbook
 
-# to do: fix the ouput excel file information
-# to do: calculate a mean of parameters stimated from the best model in every discussion
+# to do: fix the ouput excel file information [done]
+# to do: calculate a mean of parameters stimated from the best model in every discussion [done]
 # to do: To use the best model parameters in lda analysis.py
 # to do: process this tunning with mlflow pipeline
 # to do: save the best model in the output folder
@@ -142,12 +142,13 @@ def lda_hyperparameter_tuning(discussion: Dict, n_iter: int = 10) -> Optional[Di
     param_dist = {
         "num_topics": randint(2, 10),
         # "num_topics": randint(min_topics, max_topics),
-        "alpha": ['symmetric', 'auto'],
+        "alpha": ['symmetric', 'asymmetric'],
         "eta": ['auto'],
-        "passes": randint(5, 15),
-        "chunksize": randint(100, 1000),
-        "decay": [0.7, 0.5],
-        "offset": [10, 12, 15],
+        "passes": [10, 15],
+        "chunksize": [500, 1000],
+        "decay": [0.5, 0.7, 1.0],
+        "offset": [1024, 256, 64],
+        "iterations": [100, 200],
         "per_word_topics": [True, False],
         "random_state": [42]
     }
@@ -196,20 +197,60 @@ def lda_hyperparameter_tuning(discussion: Dict, n_iter: int = 10) -> Optional[Di
     }
 
 def save_results_to_excel(results: Dict, path: str):
-    """Save results to Excel"""
+    """Save results with all data flattened into columns (topics and parameters)"""
     try:
-        with pd.ExcelWriter(path, engine='openpyxl', mode='a') as writer:
-            for i, result in results.items():
-                df = pd.concat([
-                    pd.DataFrame({'Topics': [result['topics']]}),
-                    pd.DataFrame({
-                        'Coherence Score': [result['coherence_score']],
-                        'Parameters': [result['parameters']],
-                        'Topic Distribution': [result['topic_distribution']]
-                    })
-                ], axis=1)
-                # df = df.explode('Topics').reset_index(drop=True)
-                df.to_excel(writer, sheet_name=f"Discussion_{i}", index=False)
+        all_rows = []
+        
+        for discussion_id, result in results.items():
+            # Flatten topic distribution if it exists
+            topic_dist_dict = dict(result['topic_distribution']) if result['topic_distribution'] else {}
+
+            # Process each topic in this discussion
+            for topic in result['topics']:
+                row = {
+                    'Discussion': f"Discussion_{discussion_id}",
+                    'Topic_ID': topic['topic_id'],
+                    'Topic_Probability': topic['probability'],
+                    'Terms': ', '.join(topic['terms']),
+                    'Coherence_Score': result['coherence_score'],
+                    'Topic_Distribution_Probability': topic_dist_dict.get(topic['topic_id'], None),
+                    
+                    # Add all parameters as separate columns
+                    **{f'Param_{k}': v for k, v in result['parameters'].items()}
+                }
+                all_rows.append(row)
+        
+        # Create DataFrame
+        df = pd.DataFrame(all_rows)
+        
+        # Reorder columns for better organization (optional)
+        preferred_order = [
+            'Discussion', 'Topic_ID', 'Topic_Probability', 'Terms',
+            'Coherence_Score', 'Topic_Distribution_Probability'
+        ]
+        # Add parameter columns after the main columns
+        other_cols = [col for col in df.columns if col not in preferred_order]
+        df = df[preferred_order + other_cols]
+        
+        # Calculate the mode (most repeated value) for columns G to O.
+        # Here we assume that columns G to O correspond to the 7th to 15th columns (0-indexed: 6 to 14)
+        if len(df.columns) >= 15:
+            mode_row = {}
+            for idx, col in enumerate(df.columns):
+                if 6 <= idx <= 14:
+                    mode_series = df[col].mode()
+                    mode_row[col] = mode_series.iloc[0] if not mode_series.empty else None
+                elif idx == 0:
+                    mode_row[col] = 'Discussion Mode'
+                else:
+                    mode_row[col] = ''
+            # Append the mode_row as the final row using pd.concat
+            df = pd.concat([df, pd.DataFrame([mode_row])], ignore_index=True)
+        else:
+            logging.warning("Not enough columns to compute mode for columns G to O")
+        
+        df.to_excel(path, index=False)
+
     except Exception as e:
         logging.error(f"Error saving results: {str(e)}")
         raise
@@ -235,7 +276,7 @@ def analyze_discussions(data: List[Dict], max_discussions: int = 5):
         title = discussion.get('title', f"Discussion {i}")
         print(f"\nAnalyzing: {title}")
         
-        tuning_results = lda_hyperparameter_tuning(discussion, n_iter=3)
+        tuning_results = lda_hyperparameter_tuning(discussion, n_iter=2)
         if tuning_results:
             print_results(tuning_results)
             results[i] = tuning_results  # Using index as ID
@@ -267,7 +308,7 @@ if __name__ == '__main__':
     try:
         discussions_data = load_data_from_excel(data_path)
         print(f"Loaded {len(discussions_data)} discussions")
-        results = analyze_discussions(discussions_data, max_discussions=1)
+        results = analyze_discussions(discussions_data, max_discussions=20)
         save_results_to_excel(results, output_path)
         logging.info(f"Results saved to {output_path}")    
     except Exception as e:
