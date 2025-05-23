@@ -208,7 +208,8 @@ if __name__ == '__main__':
                 "topic_dist": dense,
                 "user": discussion.get("user", "Unknown"),
                 "votes": discussion.get("votes", 0),
-                "n_comments": discussion.get("n_comments", 0)
+                "n_comments": discussion.get("n_comments", 0),
+                "engagement": 0
             })
 
         # 2. Promedio de temas por dominio
@@ -226,13 +227,15 @@ if __name__ == '__main__':
                 if domain_avg is None:
                     continue
                 divergence = kl_divergence(record["topic_dist"], domain_avg)
+                positive_votes = max(record["votes"], 0)
                 kl_results.append({
                     "title": record["title"],
                     "domain": domain,
                     "kl_divergence": divergence,
                     "user": record["user"],
-                    "votes": record["votes"],
-                    "n_comments": record["n_comments"]
+                    "votes": positive_votes,
+                    "n_comments": record["n_comments"],
+                    "engagement": positive_votes + record["n_comments"] * 2,
                 })
 
         df = pd.DataFrame(kl_results)
