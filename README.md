@@ -1,53 +1,86 @@
 # LLMs and Deliberation Quality Analysis Project
 
 ## Overview
-This project analyzes Kaggle forum discussions using Natural Language Processing (NLP) techniques, focusing on structural analysis and topic modeling. The project includes tools for preprocessing text data, extracting structural features, and performing Latent Dirichlet Allocation (LDA) analysis.
+This project analyzes online forum discussions using Natural Language Processing (NLP) and Large Language Models (LLMs) to evaluate deliberation quality. The analysis focuses on structural features, topic modeling, and interaction patterns in Kaggle forum discussions.
 
 ## Project Structure
 ```
-src/
-├── analysis.py      # Topic modeling and text analysis
-├── preprocess.py    # Data loading and feature extraction
-└── visualize.py     # Data visualization (placeholder)
+project/
+├── src/
+│   ├── analysis.py      # Topic modeling and text analysis
+│   ├── preprocess.py    # Data loading and feature extraction
+│   └── visualize.py     # Data visualization
+├── data/
+│   └── competition-hosting.json
+├── docker/
+│   └── Dockerfile
+├── notebooks/
+│   └── exploratory_analysis.ipynb
+├── requirements.txt
+├── main.py
+└── README.md
 ```
 
 ## Key Features
-- Text preprocessing and cleaning
+- Advanced text preprocessing and cleaning
 - Structural feature extraction from discussions
 - Topic modeling using LDA
 - Technical term detection
-- Thread depth analysis
-- Expertise level analysis
+- Thread depth and interaction analysis
+- Expertise level evaluation
+- Docker containerization
+- Interactive visualization of discussion networks
 
-## Modules
+## Dependencies
+- Python 3.10.16
+- NLTK
+- Gensim
+- NumPy
+- Docker (optional)
 
-### `preprocess.py`
-Handles data loading and preprocessing tasks.
+## Installation
 
-**Key Functions:**
-- `load_kaggle_data(path: str) -> List[Dict]`: Loads Kaggle discussion data from JSON files
-- `clean_text(text: str) -> str`: Normalizes text for analysis
-- `extract_structural_features(discussion: Dict) -> Dict`: Extracts metrics including:
-  - Thread depth
-  - Average expertise level
-  - Vote ratio
-  - Comment counts
-- `calculate_thread_depth(comments: Dict) -> int`: Recursively calculates discussion thread depth
+### Using Conda (Recommended)
+```bash
+# Create and activate conda environment
+conda create -n master_project python=3.10.16
+conda activate master_project
 
-### `analysis.py`
-Implements topic modeling and text analysis.
+# Install dependencies
+pip install -r requirements.txt
 
-**Key Functions:**
-- `preprocess_text(text: str) -> list`: Performs text preprocessing including:
-  - URL and code block removal
-  - User mention handling
-  - Lemmatization
-  - Stopword removal
-- `lda_analysis(discussion: dict) -> list`: Performs LDA topic modeling with:
-  - Adaptive topic number selection
-  - Technical term preservation
-  - Phrase detection
-  - Vocabulary filtering
+# Download NLTK data
+python -m nltk.downloader stopwords wordnet
+```
+
+### Using Docker
+```bash
+# Build Docker image
+docker build -t deliberation-analysis .
+
+# Run container
+docker run -it deliberation-analysis
+```
+
+## Usage
+
+### Basic Analysis
+```python
+from src.preprocess import load_kaggle_data, extract_structural_features
+from src.analysis import lda_analysis
+
+# Load and analyze data
+data = load_kaggle_data("./data/competition-hosting.json")
+results = analyze_discussions(data)
+```
+
+### Visualization
+```python
+from src.visualize import plot_interaction_network
+
+# Generate interaction network visualization
+plot_interaction_network(results)
+```
 
 ## Technical Details
 
@@ -63,105 +96,24 @@ EXPERTISE_RANKS = {
 }
 ```
 
-### Technical Terms
-Includes domain-specific terms like:
-- Machine learning concepts
-- Programming frameworks
-- Data science terminology
-- NLP-related terms
+## Configuration
+The project uses environment variables for configuration:
+- `PYTHONPATH=/app`
+- `DATA_DIR=/app/data`
 
-## Usage Example
+## Development Roadmap
+- [x] Basic text preprocessing
+- [x] LDA implementation
+- [x] Docker support
+- [x] Add configuration file for constants
+- [x] Improve visualization options
 
-```python
-from src.preprocess import load_kaggle_data, extract_structural_features
-from src.analysis import lda_analysis
 
-# Load data
-data = load_kaggle_data("./data/getting-started.json")
 
-# Analyze discussions
-for i, discussion in enumerate(data[:10]):
-    # Extract structural features
-    features = extract_structural_features(discussion)
-    print(f"Discussion ID: {i+1}, Features: {features}")
-    
-    # Perform topic analysis
-    topics = lda_analysis(discussion)
-    if topics:
-        print("Detected topics:")
-        for topic in topics:
-            print(topic)
-```
-
-## Dependencies
-- NLTK
-- Gensim
-- NumPy
-- Regular Expressions (re)
-
-## TODO List
-- [ ] Add configuration file for constants
-- [ ] Implement data append functionality
-- [ ] Add CSV/JSON export functionality
-- [ ] Improve off-topic handling
-- [ ] Consider BERTopic as an LDA alternative
-- [ ] Merge preprocessing functions
-- [ ] Add automatic NLTK data download
-- [ ] Enhance hierarchical comment analysis
-
-## Installation
-```bash
-conda create -n master_project python=3.10.16
-conda activate  master_projec
-
-pip install -r requirements.txt
-
-python -m nltk.downloader stopwords wordnet
-```
 
 ## Notes
-- The project is designed to handle missing data gracefully
+- Handles missing data gracefully
 - Includes debug outputs for analysis steps
 - Uses adaptive parameters based on data size
 - Preserves technical terminology during preprocessing
-
-## Graph Scheme (example)
-```bash
-digraph G {
-    // Configuración general del gráfico
-    graph [bgcolor="transparent", fontname="Verdana", rankdir="LR"];
-    node [margin=0, width=0.5, shape="oval", style="filled", fontname="Verdana", penwidth=2, fontsize=10];
-    edge [fontsize=12, arrowsize=0.9, penwidth=1];
-    
-    // Definición de nodos con colores de medalla
-    A [label="User_A\n(gold | Master)", 
-       fillcolor="#FFD700", color="#D4AF37", fontcolor="#000000"];
-    
-    B [label="User_B\n(silver | Expert)", 
-       fillcolor="#C0C0C0", color="#A8A8A8", fontcolor="#000000"];
-    
-    C [label="User_C\n(bronze | Contributor)", 
-       fillcolor="#CD7F32", color="#A67C52", fontcolor="#FFFFFF"];
-    
-    D [label="User_D\n(none | Novice)", 
-       fillcolor="#FFFFFF", color="#555555", fontcolor="#00000"];
-    
-    E [label="User_E\n(gold | Master)", 
-       fillcolor="#FFD700", color="#D4AF37", fontcolor="#000000"];
-    
-    // Definición de aristas con pesos
-    A -> B [label="3.41", color="#000000", fontcolor="#000000"];
-    B -> C [label="FW", color="#000000", fontcolor="#000000"];
-    B -> D [label="3.38", color="#000000", fontcolor="#000000"];
-    A -> E [label="3.41", color="#000000", fontcolor="#000000"];
-    B -> A [label="10.0", color="#000000", fontcolor="#000000"];
-    C -> A [label="9.5", color="#000000", fontcolor="#000000"];
-    D -> E [label="8.0", color="#000000", fontcolor="#000000"];
-    D -> B [label="3.10", color="#000000", fontcolor="#000000"];
-    
-    // Agrupación jerárquica
-    {rank=same; A; C; E}
-
-}
-
-```
+- Docker container includes all necessary NLTK data
