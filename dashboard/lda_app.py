@@ -56,47 +56,43 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-@st.cache_data
-def load_sample_data():
-    """Carga datos de ejemplo basados en tu estructura"""
-    data = [
-        {"title": "Machine Learning Fundamentals", "domain": "AI/ML", "kl_divergence": 0.15, "user": "alice", "votes": 45, "n_comments": 12},
-        {"title": "Deep Learning Networks", "domain": "AI/ML", "kl_divergence": 0.08, "user": "bob", "votes": 67, "n_comments": 8},
-        {"title": "NLP Transformers", "domain": "AI/ML", "kl_divergence": 0.32, "user": "charlie", "votes": 89, "n_comments": 15},
-        {"title": "Computer Vision Applications", "domain": "AI/ML", "kl_divergence": 0.12, "user": "diana", "votes": 34, "n_comments": 6},
-        {"title": "Feature Engineering Techniques", "domain": "AI/ML", "kl_divergence": 0.25, "user": "eve", "votes": 23, "n_comments": 4},
-        {"title": "Reinforcement Learning", "domain": "AI/ML", "kl_divergence": 0.19, "user": "frank", "votes": 41, "n_comments": 9},
-        {"title": "React Component Architecture", "domain": "Web Dev", "kl_divergence": 0.18, "user": "grace", "votes": 56, "n_comments": 9},
-        {"title": "Node.js Performance", "domain": "Web Dev", "kl_divergence": 0.07, "user": "henry", "votes": 78, "n_comments": 11},
-        {"title": "CSS Grid Layouts", "domain": "Web Dev", "kl_divergence": 0.28, "user": "iris", "votes": 41, "n_comments": 7},
-        {"title": "API Design Patterns", "domain": "Web Dev", "kl_divergence": 0.14, "user": "jack", "votes": 52, "n_comments": 13},
-        {"title": "Frontend Testing", "domain": "Web Dev", "kl_divergence": 0.21, "user": "kate", "votes": 35, "n_comments": 5},
-        {"title": "Database Optimization", "domain": "Backend", "kl_divergence": 0.22, "user": "liam", "votes": 61, "n_comments": 10},
-        {"title": "Microservices Architecture", "domain": "Backend", "kl_divergence": 0.11, "user": "maya", "votes": 49, "n_comments": 8},
-        {"title": "Cloud Infrastructure", "domain": "Backend", "kl_divergence": 0.35, "user": "noah", "votes": 73, "n_comments": 16},
-        {"title": "Docker Containerization", "domain": "Backend", "kl_divergence": 0.16, "user": "olivia", "votes": 38, "n_comments": 6},
-        {"title": "Data Structures Algorithms", "domain": "CS Theory", "kl_divergence": 0.19, "user": "peter", "votes": 38, "n_comments": 5},
-        {"title": "Complexity Analysis", "domain": "CS Theory", "kl_divergence": 0.13, "user": "quinn", "votes": 44, "n_comments": 7},
-        {"title": "Graph Theory Applications", "domain": "CS Theory", "kl_divergence": 0.29, "user": "ruby", "votes": 31, "n_comments": 4},
-        {"title": "Dynamic Programming", "domain": "CS Theory", "kl_divergence": 0.17, "user": "sam", "votes": 42, "n_comments": 8}
-    ]
+# @st.cache_data
+# def load_sample_data():
+#     """Carga datos de ejemplo basados en tu estructura"""
+#     data = [
+#         {"title": "Machine Learning Fundamentals", "domain": "AI/ML", "kl_divergence": 0.15, "user": "alice", "votes": 45, "n_comments": 12},
+#         {"title": "Deep Learning Networks", "domain": "AI/ML", "kl_divergence": 0.08, "user": "bob", "votes": 67, "n_comments": 8},
+#         {"title": "NLP Transformers", "domain": "AI/ML", "kl_divergence": 0.32, "user": "charlie", "votes": 89, "n_comments": 15},
+#         {"title": "Computer Vision Applications", "domain": "AI/ML", "kl_divergence": 0.12, "user": "diana", "votes": 34, "n_comments": 6},
+#         {"title": "Feature Engineering Techniques", "domain": "AI/ML", "kl_divergence": 0.25, "user": "eve", "votes": 23, "n_comments": 4},
+#         {"title": "Reinforcement Learning", "domain": "AI/ML", "kl_divergence": 0.19, "user": "frank", "votes": 41, "n_comments": 9},
+#         {"title": "React Component Architecture", "domain": "Web Dev", "kl_divergence": 0.18, "user": "grace", "votes": 56, "n_comments": 9},
+#         {"title": "Node.js Performance", "domain": "Web Dev", "kl_divergence": 0.07, "user": "henry", "votes": 78, "n_comments": 11},
+#         {"title": "CSS Grid Layouts", "domain": "Web Dev", "kl_divergence": 0.28, "user": "iris", "votes": 41, "n_comments": 7},
+#         {"title": "API Design Patterns", "domain": "Web Dev", "kl_divergence": 0.14, "user": "jack", "votes": 52, "n_comments": 13},
+#         {"title": "Frontend Testing", "domain": "Web Dev", "kl_divergence": 0.21, "user": "kate", "votes": 35, "n_comments": 5},
+#         {"title": "Database Optimization", "domain": "Backend", "kl_divergence": 0.22, "user": "liam", "votes": 61, "n_comments": 10},
+#         {"title": "Microservices Architecture", "domain": "Backend", "kl_divergence": 0.11, "user": "maya", "votes": 49, "n_comments": 8},
+#         {"title": "Cloud Infrastructure", "domain": "Backend", "kl_divergence": 0.35, "user": "noah", "votes": 73, "n_comments": 16},
+#         {"title": "Docker Containerization", "domain": "Backend", "kl_divergence": 0.16, "user": "olivia", "votes": 38, "n_comments": 6},
+#         {"title": "Data Structures Algorithms", "domain": "CS Theory", "kl_divergence": 0.19, "user": "peter", "votes": 38, "n_comments": 5},
+#         {"title": "Complexity Analysis", "domain": "CS Theory", "kl_divergence": 0.13, "user": "quinn", "votes": 44, "n_comments": 7},
+#         {"title": "Graph Theory Applications", "domain": "CS Theory", "kl_divergence": 0.29, "user": "ruby", "votes": 31, "n_comments": 4},
+#         {"title": "Dynamic Programming", "domain": "CS Theory", "kl_divergence": 0.17, "user": "sam", "votes": 42, "n_comments": 8}
+#     ]
     
-    df = pd.DataFrame(data)
-    df['engagement'] = df['votes'] + df['n_comments'] * 2
-    df['content_type'] = df['kl_divergence'].apply(
-        lambda x: 'Típico' if x < 0.15 else 'Moderado' if x < 0.25 else 'Atípico'
-    )
-    return df
+#     df = pd.DataFrame(data)
+#     df['engagement'] = df['votes'] + df['n_comments'] * 2
+#     df['content_type'] = df['kl_divergence'].apply(
+#         lambda x: 'Típico' if x < 0.15 else 'Moderado' if x < 0.25 else 'Atípico'
+#     )
+#     return df
 
 @st.cache_data
 def load_real_data(file_path: str):
     """Carga datos reales desde tu archivo Excel"""
     try:
         df = pd.read_excel(file_path)
-        df['engagement'] = df['votes'] + df['n_comments'] * 2
-        df['content_type'] = df['kl_divergence'].apply(
-            lambda x: 'Típico' if x < 0.15 else 'Moderado' if x < 0.25 else 'Atípico'
-        )
         return df
     except Exception as e:
         st.error(f"Error cargando el archivo: {str(e)}")
@@ -116,8 +112,8 @@ def calculate_domain_stats(df):
             'min_kl': domain_data['kl_divergence'].min(),
             'max_kl': domain_data['kl_divergence'].max(),
             'avg_engagement': domain_data['engagement'].mean(),
-            'typical_count': len(domain_data[domain_data['kl_divergence'] < 0.15]),
-            'atypical_count': len(domain_data[domain_data['kl_divergence'] >= 0.25])
+            'typical_count': len(domain_data[domain_data['kl_divergence'] < 1.0]),
+            'atypical_count': len(domain_data[domain_data['kl_divergence'] >= 1.45])
         }
         stats.append(stat)
     
@@ -125,8 +121,6 @@ def calculate_domain_stats(df):
 
 def create_scatter_plot(df, x_col, y_col, color_col, title):
     """Crea gráfico de dispersión con colores por dominio"""
-    df['engagement'] = df['votes'] + df['n_comments'] * 2
-    df['engagement'] = df['engagement'].apply(lambda x: max(x, 0))
     fig = px.scatter(
         df, 
         x=x_col, 
@@ -298,6 +292,10 @@ def main():
         )
         if uploaded_file:
             df = pd.read_excel(uploaded_file)
+            df['kl_divergence'] = df['kl_divergence'].astype(str).str.replace(',', '.').astype(float)
+            df['engagement'] = df['votes'] + (df['n_comments'] * 1.5) + (df['depth'] * 1.2)
+            df['content_type'] = df['kl_divergence'].apply(lambda x: 'Típico' if x < 1.0 else 'Moderado' if x < 1.45 else 'Atípico')
+
             st.sidebar.success("Archivo cargado exitosamente!")
         else:
             st.warning("Por favor, carga un archivo Excel para continuar.")
@@ -343,11 +341,11 @@ def main():
         )
     
     with col2:
-        typical_count = len(filtered_df[filtered_df['kl_divergence'] < 0.15])
+        typical_count = len(filtered_df[filtered_df['kl_divergence'] < 0.50])
         st.metric("Contenido Típico", typical_count)
     
     with col3:
-        atypical_count = len(filtered_df[filtered_df['kl_divergence'] >= 0.25])
+        atypical_count = len(filtered_df[filtered_df['kl_divergence'] >= 1.50])
         st.metric("Contenido Atípico", atypical_count)
     
     with col4:
@@ -385,6 +383,7 @@ def main():
         col1, col2 = st.columns(2)
         
         with col1:
+            # st.write("**Distribución de KL Divergencia por Dominio:**")
             dist_fig = create_distribution_plot(filtered_df)
             st.plotly_chart(dist_fig, use_container_width=True)
         
@@ -466,10 +465,10 @@ def main():
         
         with col3:
             st.write("**Clasificación:**")
-            typical_pct = (len(filtered_df[filtered_df['kl_divergence'] < 0.15]) / len(filtered_df)) * 100
-            moderate_pct = (len(filtered_df[(filtered_df['kl_divergence'] >= 0.15) & (filtered_df['kl_divergence'] < 0.25)]) / len(filtered_df)) * 100
-            atypical_pct = (len(filtered_df[filtered_df['kl_divergence'] >= 0.25]) / len(filtered_df)) * 100
-            
+            typical_pct = (len(filtered_df[filtered_df['kl_divergence'] < 0.50]) / len(filtered_df)) * 100
+            moderate_pct = (len(filtered_df[(filtered_df['kl_divergence'] >= 0.50) & (filtered_df['kl_divergence'] < 1.50)]) / len(filtered_df)) * 100
+            atypical_pct = (len(filtered_df[filtered_df['kl_divergence'] >= 1.50]) / len(filtered_df)) * 100
+
             st.write(f"Típico: {typical_pct:.1f}%")
             st.write(f"Moderado: {moderate_pct:.1f}%")
             st.write(f"Atípico: {atypical_pct:.1f}%")

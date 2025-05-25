@@ -14,11 +14,16 @@ from typing import Dict, List, Optional, Tuple
 # Initialize tools
 lemmatizer = WordNetLemmatizer()
 
-def load_processed_data(path: str) -> List[Dict]:
-    """Load and normalize data from Excel"""
+def load_processed_data(path: str, 
+                        sheet1: str = "Sheet1", 
+                        sheet2: str = "Sheet2") -> List[Dict]:
+    """Load and merge data from two Excel sheets related by the column 'id' in one sheet and 'discussion_id' in the other"""
     try:
-        data = pd.read_excel(path)
-        return data.to_dict(orient='records')
+        df1 = pd.read_excel(path, sheet_name=sheet1)
+        df2 = pd.read_excel(path, sheet_name=sheet2)
+        df2 = df2.rename(columns={"n_comments": "n_comments_features"})
+        merged = pd.merge(df1, df2, left_on="id", right_on="discussion_id", how="inner")
+        return merged.to_dict(orient='records')
     except Exception as e:
         print(f"Error loading data: {str(e)}")
         return []
@@ -130,6 +135,7 @@ def print_discussion_topics(discussion: Dict, topics: List[Tuple[int, str]], top
     print(f"Votes: {discussion.get('votes', 0)}")
     print(f"Comments: {discussion.get('n_comments', 0)}")
     print(f"Domains: {discussion.get('domains', {})}")
+    print(f"Depth: {discussion.get('depth', 0)}")
     print("\nDetected Topics:")
     for idx, topic in topics:
         print(f"  Topic {idx+1}: {topic}")
@@ -138,13 +144,14 @@ def print_discussion_topics(discussion: Dict, topics: List[Tuple[int, str]], top
         print(f"  Topic {idd+1}: {prob:.2%}")
 
 if __name__ == '__main__':
-    data = load_processed_data("src/results/processed_data.xlsx")
+    data = load_processed_data("src/results/processed_data.xlsx", sheet1="Discussions", sheet2="Features")
+    # print(data)
     if not data:
         print("No data loaded. Check file path and format.")
         exit()
     
     print(f"Loaded {len(data)} discussions")
-    for discussion in data[0:10]:  # Process first 5 discussions
+    for discussion in data[:5]:  # Process first 5 discussions
         topics, topic_dist = lda_analysis(discussion=discussion)  # Analyze first discussion
         print(topic_dist)
         if topics:
@@ -209,7 +216,7 @@ if __name__ == '__main__':
                 "user": discussion.get("user", "Unknown"),
                 "votes": discussion.get("votes", 0),
                 "n_comments": discussion.get("n_comments", 0),
-                "engagement": 0
+                "depth": discussion.get("depth", 0),
             })
 
         # 2. Promedio de temas por dominio
@@ -235,7 +242,7 @@ if __name__ == '__main__':
                     "user": record["user"],
                     "votes": positive_votes,
                     "n_comments": record["n_comments"],
-                    "engagement": positive_votes + record["n_comments"] * 2,
+                    "depth": record["depth"],
                 })
 
         df = pd.DataFrame(kl_results)
