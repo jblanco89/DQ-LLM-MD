@@ -95,7 +95,7 @@ class Visualize:
         plt.axis('off')
         plt.title(title)
 
-        plt.savefig("src/results/wordcloud_plot.png", dpi=300, bbox_inches='tight')
+        plt.savefig(f"src/results/wordcloud_plot_{forum_name}.png", dpi=300, bbox_inches='tight')
         plt.show()
         plt.close()  
 
