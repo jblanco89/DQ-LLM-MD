@@ -176,9 +176,9 @@ class PageRankAnalysis:
         
         # 3. Seleccionar algoritmo de layout
         layouts = {
-            'spring': lambda g: nx.spring_layout(g, k=3, iterations=50, weight='weight', seed=42),
+            'spring': lambda g: nx.spring_layout(g, k=1.5, iterations=100, weight='weight', seed=42),
             'kamada_kawai': lambda g: nx.kamada_kawai_layout(g, weight='weight'),
-            'circular': lambda g: nx.circular_layout(g),
+            'circular': lambda g: nx.circular_layout(g, scale=1.5, center=(0, 0)),
             # 'spectral': lambda g: nx.spectral_layout(g, weight='weight'),
             'shell': lambda g: nx.shell_layout(g)
         }
@@ -189,7 +189,7 @@ class PageRankAnalysis:
             pos = nx.spring_layout(G_filtered, k=2, iterations=30, seed=42)
         
         # 4. Crear visualización mejorada
-        plt.figure(figsize=(16, 12))
+        plt.figure(figsize=(12, 9))
         plt.clf()
         
         # Calcular tamaños de nodos basados en importancia
