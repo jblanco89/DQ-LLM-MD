@@ -51,6 +51,8 @@ pip install -r requirements.txt
 
 # Download NLTK data
 python -m nltk.downloader stopwords wordnet
+
+python -c "import nltk; nltk.download('punkt'); nltk.download('punkt_tab')"
 ```
 
 ### Using Docker

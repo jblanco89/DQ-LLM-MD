@@ -17,7 +17,13 @@ class AQuAPredictor:
         self.model = AutoAdapterModel.from_pretrained(model_name).to(self.device)
         
         # Valores por defecto (pueden ser sobrescritos)
-        self.weights = [0.20908452, 0.18285757]
+        # self.weights = [0.20908452, 0.18285757]
+
+        self.weights = [0.20908452, 0.18285757, -0.11069402, 0.29000763, 0.39535126,
+        0.14655912, -0.07331445, -0.03768367, 0.07019062, -0.02847408,
+        0.21126469, -0.02674237, 0.01482095, 0.00732909, -0.01900971,
+        -0.04995486, -0.05884586, -0.15170863, 0.02934227, 0.10628146]
+
         self.maxval = 4.989267539999999
         self.minval = -1.66928295
         self.minmaxdif = self.maxval - self.minval
@@ -116,13 +122,54 @@ class AQuAPredictor:
 # Configuración por defecto (para compatibilidad con el script original)
 default_task2identifier = {
     "relevance": "src/AQuA/trained_adapters/relevance",
-    "fact": "src/AQuA/trained_adapters/fact"
+    "fact": "src/AQuA/trained_adapters/fact",
+    "opinion": "src/AQuA/trained_adapters/opinion",
+    "justification": "src/AQuA/trained_adapters/justification",
+    "solproposal": "src/AQuA/trained_adapters/solproposal",
+    "addknowledge": "src/AQuA/trained_adapters/addknowledge",
+    "question": "src/AQuA/trained_adapters/question",
+    "refusers": "src/AQuA/trained_adapters/refusers",
+    "refmedium": "src/AQuA/trained_adapters/refmedium",
+    "refcontents": "src/AQuA/trained_adapters/refcontents",
+    "refpersonal": "src/AQuA/trained_adapters/refpersonal",
+    "refformat": "src/AQuA/trained_adapters/refformat",
+    "address": "src/AQuA/trained_adapters/address",
+    "respect": "src/AQuA/trained_adapters/respect",
+    "screaming": "src/AQuA/trained_adapters/screaming",
+    "vulgar": "src/AQuA/trained_adapters/vulgar",
+    "insult": "src/AQuA/trained_adapters/insult",
+    "sarcasm": "src/AQuA/trained_adapters/sarcasm",
+    "discrimination": "src/AQuA/trained_adapters/discrimination",
+
+    "storytelling": "src/AQuA/trained_adapters/storytelling"
 }
 
 default_task2weights = {
     "relevance": 0.20908452,
-    "fact": 0.18285757
-}
+    "fact": 0.18285757,
+    "opinion": -0.11069402,
+    "justification": 0.29000763,
+    "solproposal":0.39535126,
+    "addknowledge": 0.14655912,
+    "question":-0.07331445,
+
+    "refusers":-0.03768367,
+    "refmedium":0.07019062,
+    "refcontents":-0.02847408,
+    "refpersonal":0.21126469,
+    "refformat": -0.02674237,
+
+    "address": 0.01482095,
+    "respect": 0.00732909,
+    "screaming": -0.01900971,
+    "vulgar": -0.04995486,
+    "insult": -0.05884586,
+    "sarcasm":-0.15170863,
+    "discrimination":0.02934227,
+
+    "storytelling": 0.10628146
+
+    }
 
 def run_as_script():
     """Función para mantener compatibilidad con ejecución como script"""
