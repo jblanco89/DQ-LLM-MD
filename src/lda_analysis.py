@@ -211,6 +211,7 @@ if __name__ == '__main__':
 
             content_records.append({
                 "title": discussion.get("title", "Untitled"),
+                "id": discussion.get("id", "Unknown"),
                 "domains": domains,
                 "topic_dist": dense,
                 "user": discussion.get("user", "Unknown"),
@@ -237,6 +238,7 @@ if __name__ == '__main__':
                 positive_votes = max(record["votes"], 0)
                 kl_results.append({
                     "title": record["title"],
+                    "id": record["id"],
                     "domain": domain,
                     "kl_divergence": divergence,
                     "user": record["user"],
