@@ -13,19 +13,28 @@ class DeliqClusteringAnalyzer:
     """
     Clase principal para análisis de clustering con optimización de pesos del DELIQ Score
     """
-    
-    def __init__(self, initial_weights=None, optimal_method=None):
-        self.initial_weights = initial_weights or np.array([0.35, 0.30, 0.35])
+
+    def __init__(self, 
+                 initial_weights:list[float]=None, 
+                 optimal_method:str=None,
+                 random_state:int=42):  # AÑADIDO: parámetro de semilla
+        self.initial_weights = initial_weights
+        self.random_state = random_state  # AÑADIDO
         self.expertise_order = {
             "Novice": 1, "Contributor": 2, "Expert": 3, 
             "Master": 4, "Grandmaster": 5, None: 0
         }
         self.data = None
-        self.optimal_method = optimal_method or 'BFGS'
+        self.optimal_method = optimal_method
         
-    def load_and_merge_features(self, dq_path='src/results/processed_data_inferenced.csv',
-                               kl_path='src/results/kl_content_vs_domain.xlsx',
-                               pr_path='src/results/ranked_users.xlsx', outliers_field='votes'):
+        # AÑADIDO: Configurar semillas aleatorias
+        np.random.seed(self.random_state)
+        
+    def load_and_merge_features(self, 
+                                dq_path='src/results/processed_data_inferenced.csv',
+                                kl_path='src/results/kl_content_vs_domain.xlsx',
+                                pr_path='src/results/ranked_users.xlsx', 
+                                outliers_field='votes'):
         """Carga y combina las características DQ, KL, PR"""
         # Load DQ data
         df_dq = pd.read_csv(dq_path, sep='\t')
@@ -68,7 +77,7 @@ class DeliqClusteringAnalyzer:
         if self.data is None:
             raise ValueError("Datos no cargados. Ejecuta load_and_merge_features() primero.")
 
-        # Normalizar pesos
+        # Comprobar que los pesos estén normalizados
         weights = weights / np.sum(weights)
 
         # Calcular DELIQ score
@@ -77,8 +86,9 @@ class DeliqClusteringAnalyzer:
 
         return self.data
     
-    def prepare_clustering_data(self, features_list=['deliq_score', 'n_comments', 'votes'], 
-                               standardize=False):
+    def prepare_clustering_data(self, 
+                                features_list=['deliq_score', 'n_comments', 'votes'], 
+                                standardize=False):
         """Prepara los datos para clustering"""
         if self.data is None:
             raise ValueError("Datos no cargados.")
@@ -91,17 +101,23 @@ class DeliqClusteringAnalyzer:
         features = self.data[features_list].values
         
         if standardize:
-            features = StandardScaler().fit_transform(features)
+            # MODIFICADO: Usar semilla para StandardScaler si es posible
+            scaler = StandardScaler()
+            features = scaler.fit_transform(features)
             
         return features, features_list
     
-    def dbscan_clustering(self, features_list=['deliq_score', 'n_comments', 'votes'],
-                         eps=0.7, min_samples=10, standardize=False):
+    def dbscan_clustering(self, 
+                          features_list=['deliq_score', 'n_comments', 'votes'],
+                          eps=0.7, 
+                          min_samples=10, 
+                          standardize=False):
         """Ejecuta clustering DBSCAN"""
         features, feature_names = self.prepare_clustering_data(features_list, standardize)
         
         # Aplicar DBSCAN
-        dbscan = DBSCAN(eps=eps, min_samples=min_samples)
+        dbscan = DBSCAN(eps=eps, 
+                        min_samples=min_samples)
         clusters = dbscan.fit_predict(features)
         
         # Calcular métricas
@@ -117,8 +133,11 @@ class DeliqClusteringAnalyzer:
     
     def gmm_clustering(self, features_list=['deliq_score', 'n_comments', 'votes'],
                       n_components=3, covariance_type='full', standardize=False, 
-                      random_state=42):
+                      random_state=None):  # MODIFICADO: usar random_state de la clase
         """Ejecuta clustering GMM"""
+        if random_state is None:
+            random_state = self.random_state  # AÑADIDO
+            
         features, feature_names = self.prepare_clustering_data(features_list, standardize)
         
         # Aplicar GMM
@@ -143,7 +162,10 @@ class DeliqClusteringAnalyzer:
             **metrics
         }
     
-    def _calculate_clustering_metrics(self, features, clusters, algorithm='dbscan'):
+    def _calculate_clustering_metrics(self, 
+                                      features, 
+                                      clusters, 
+                                      algorithm='dbscan'):
         """Calcula métricas de calidad del clustering"""
         metrics = {}
         n_clusters = len(set(clusters)) - (1 if -1 in clusters else 0)
@@ -243,6 +265,7 @@ class DeliqClusteringAnalyzer:
                 silhouette = result.get('silhouette_score', -1)
                 noise_ratio = result.get('noise_ratio', 1)
                 score = -silhouette + noise_ratio * 2
+                # score = noise_ratio
                 
             else:  # GMM
                 result = self.gmm_clustering(**params)
@@ -254,6 +277,7 @@ class DeliqClusteringAnalyzer:
                 silhouette = result.get('silhouette_score', -1)
                 bic = result.get('bic_score', float('inf'))
                 score = -silhouette + (bic / len(self.data)) * 0.001
+                # score = bic
             
             return score
             
@@ -261,13 +285,19 @@ class DeliqClusteringAnalyzer:
             print(f"Error en función objetivo: {e}")
             return 10
     
-    def optimize_weights(self, algorithm='both', n_trials=10, 
-                        dbscan_params=None, gmm_params=None):
+    def optimize_weights(self, 
+                         algorithm='both', 
+                         n_trials=10, 
+                        dbscan_params=None, 
+                        gmm_params=None):
         """Optimiza los pesos del DELIQ score"""
+        
+        # AÑADIDO: Configurar semilla para esta optimización específica
+        np.random.seed(self.random_state)
         
         # Parámetros por defecto
         dbscan_params = dbscan_params or {'eps': 0.7, 'min_samples': 10}
-        gmm_params = gmm_params or {'n_components': 3, 'covariance_type': 'full'}
+        gmm_params = gmm_params or {'n_components': 3, 'covariance_type': 'diag'}
         
         # Configurar optimización
         bounds = [(0.01, 0.98) for _ in range(len(self.initial_weights))]
@@ -290,7 +320,8 @@ class DeliqClusteringAnalyzer:
             algorithm_params = {'algorithm': algo, 'params': params}
             
             for trial in range(n_trials):
-                # Punto de inicio aleatorio
+                # MODIFICADO: Punto de inicio determinístico basado en trial
+                np.random.seed(self.random_state + trial)  # Semilla única por trial
                 start_weights = np.random.dirichlet([1, 1, 1])
                 
                 try:
@@ -321,8 +352,12 @@ class DeliqClusteringAnalyzer:
         
         return results
     
-    def compare_results(self, original_weights,optimal_method, optimized_results, 
-                       dbscan_params=None, gmm_params=None):
+    def compare_results(self, 
+                        original_weights,
+                        optimal_method, 
+                        optimized_results, 
+                        dbscan_params=None, 
+                        gmm_params=None):
         """Compara resultados antes y después de la optimización"""
         optimal_method = self.optimal_method if optimal_method is None else optimal_method
         dbscan_params = dbscan_params or {'eps': 0.7, 'min_samples': 10}
@@ -333,6 +368,7 @@ class DeliqClusteringAnalyzer:
         print("="*60)
         print(f"Pesos originales: {original_weights}")
         print(f"Método: {optimal_method}")
+        print(f"Random State: {self.random_state}")  # AÑADIDO
         
         for algorithm in ['dbscan', 'gmm']:
             if algorithm not in optimized_results:
@@ -379,17 +415,24 @@ class DeliqClusteringAnalyzer:
             else:
                 print(f"{metric} - Original: {orig_val}, Optimizado: {opt_val}")
 
-# EJEMPLO DE USO
+# USO MODIFICADO
 if __name__ == "__main__":
+    # AÑADIDO: Configurar semilla global
+    RANDOM_STATE = 42
+    np.random.seed(RANDOM_STATE)
+    
     # Inicializar analizador
-    # methods = ['SLSQP', 'L-BFGS-B', 'CG', 'BFGS']
-    methods = ['BFGS']
+    methods = ['SLSQP', 'L-BFGS-B', 'CG']
+    # methods = ['SLSQP', 'L-BFGS-B']
     outliers_field = 'votes'  # Cambiar según el campo de outliers deseado
     comparison_table = []
 
     for method in methods:
         print(f"\n{'='*20} OPTIMIZATION METHOD: {method} {'='*20}")
-        analyzer = DeliqClusteringAnalyzer(optimal_method=method)
+        # MODIFICADO: Añadir random_state
+        analyzer = DeliqClusteringAnalyzer(initial_weights=[0.35, 0.35, 0.30],
+                                           optimal_method=method,
+                                           random_state=RANDOM_STATE)
         
         # Cargar datos
         data = analyzer.load_and_merge_features(outliers_field=outliers_field)
@@ -399,7 +442,7 @@ if __name__ == "__main__":
         
         # Parámetros de clustering
         dbscan_params = {'eps': 0.7, 'min_samples': 10, 'standardize': False}
-        gmm_params = {'n_components': 4, 'covariance_type': 'diag', 'standardize': False, 'random_state': 42}
+        gmm_params = {'n_components': 4, 'covariance_type': 'full', 'standardize': False, 'random_state': RANDOM_STATE}
         
         # Clustering inicial
         dbscan_initial = analyzer.dbscan_clustering(**dbscan_params)
@@ -408,7 +451,7 @@ if __name__ == "__main__":
         # Optimizar pesos
         optimization_results = analyzer.optimize_weights(
             algorithm='both',
-            n_trials=10,
+            n_trials=20,
             dbscan_params=dbscan_params,
             gmm_params=gmm_params
         )
@@ -449,6 +492,7 @@ if __name__ == "__main__":
     print("\n" + "="*80)
     print("COMPARATIVE TABLE OF OPTIMIZATION METHODS")
     print("="*80)
+    print(f"Random State Used: {RANDOM_STATE}")  # AÑADIDO
     print(f"{'Method':<10} {'Algorithm':<8} {'Outlier Field':<14} {'Init Silh.':<12} {'Final Silh.':<12} {'% Improv.':<12} {'Max Iter':<10} {'Optimized Weights'}")
     for row in comparison_table:
         init_sil = row['Initial Silhouette']
@@ -482,5 +526,3 @@ if __name__ == "__main__":
 
     # Guardar datos
     data.to_excel('src/results/data_deliq_scores.xlsx', index=False)
-    # Guardar datos
-    # data.to_excel('src/results/data_deliq_scores.xlsx', index=False)
