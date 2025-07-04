@@ -4,8 +4,10 @@ from sklearn.cluster import KMeans, DBSCAN
 from sklearn.mixture import GaussianMixture
 from sklearn.metrics import silhouette_score, calinski_harabasz_score
 from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import NearestNeighbors
 import matplotlib.pyplot as plt
 from scipy.optimize import minimize
+
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -85,6 +87,54 @@ class DeliqClusteringAnalyzer:
         self.data['deliq_score'] = np.dot(features, weights)
 
         return self.data
+
+    def hopkins_statistic(self, X, sample_ratio=0.3, random_state=None):
+        """
+        Calcula la estadística de Hopkins para evaluar la tendencia de agrupamiento.
+        
+        Parámetros:
+        X : array-like, shape (n_samples, n_features)
+            Matriz de datos a evaluar.
+    sample_ratio : float, opcional (default=0.3)
+        Proporción de puntos a muestrear para el cálculo.
+    random_state : int, opcional (default=None)
+        Semilla para reproducibilidad.
+        
+    Retorna:
+    float : Estadística de Hopkins entre 0 y 1
+    """
+        if random_state is not None:
+            np.random.seed(random_state)
+        
+        n = X.shape[0]  # Número de muestras
+        d = X.shape[1]  # Dimensión de los datos
+        m = int(sample_ratio * n)  # Número de puntos a muestrear
+        
+        if m == 0:
+            raise ValueError("sample_ratio too small, no samples selected")
+        
+        # 1. Generar m puntos aleatorios uniformes en el espacio de los datos
+        min_vals = X.min(axis=0)
+        max_vals = X.max(axis=0)
+        uniform_samples = np.random.uniform(min_vals, max_vals, size=(m, d))
+        
+        # 2. Muestrear m puntos aleatorios del conjunto de datos original
+        random_indices = np.random.choice(n, size=m, replace=False)
+        data_samples = X[random_indices]
+        
+        # 3. Calcular distancias para puntos uniformes
+        nbrs = NearestNeighbors(n_neighbors=1).fit(X)
+        u_distances, _ = nbrs.kneighbors(uniform_samples, n_neighbors=1)
+        u_distances = u_distances.flatten()
+        
+        # 4. Calcular distancias para puntos de datos
+        w_distances, _ = nbrs.kneighbors(data_samples, n_neighbors=3)
+        w_distances = w_distances[:, 1].flatten()  # Distancia al vecino más cercano que no sea él mismo
+        
+        # 5. Calcular la estadística de Hopkins
+        H = np.sum(u_distances) / (np.sum(u_distances) + np.sum(w_distances))
+    
+        return H
     
     def prepare_clustering_data(self, 
                                 features_list=['deliq_score', 'n_comments', 'votes'], 
@@ -419,110 +469,122 @@ class DeliqClusteringAnalyzer:
 if __name__ == "__main__":
     # AÑADIDO: Configurar semilla global
     RANDOM_STATE = 42
+    initial_weights = [0.65, 0.15, 0.20]  # Pesos iniciales para DELIQ score
     np.random.seed(RANDOM_STATE)
     
     # Inicializar analizador
-    methods = ['SLSQP', 'L-BFGS-B', 'CG']
-    # methods = ['SLSQP', 'L-BFGS-B']
+    methods = ['SLSQP', 'L-BFGS-B']
+    # methods = ['SLSQP']
     outliers_field = 'votes'  # Cambiar según el campo de outliers deseado
     comparison_table = []
 
-    for method in methods:
-        print(f"\n{'='*20} OPTIMIZATION METHOD: {method} {'='*20}")
-        # MODIFICADO: Añadir random_state
-        analyzer = DeliqClusteringAnalyzer(initial_weights=[0.35, 0.35, 0.30],
-                                           optimal_method=method,
-                                           random_state=RANDOM_STATE)
-        
-        # Cargar datos
-        data = analyzer.load_and_merge_features(outliers_field=outliers_field)
-        
-        # Calcular DELIQ score inicial
-        analyzer.calculate_deliq_score()
-        
-        # Parámetros de clustering
-        dbscan_params = {'eps': 0.7, 'min_samples': 10, 'standardize': False}
-        gmm_params = {'n_components': 4, 'covariance_type': 'full', 'standardize': False, 'random_state': RANDOM_STATE}
-        
-        # Clustering inicial
-        dbscan_initial = analyzer.dbscan_clustering(**dbscan_params)
-        gmm_initial = analyzer.gmm_clustering(**gmm_params)
-        
-        # Optimizar pesos
-        optimization_results = analyzer.optimize_weights(
-            algorithm='both',
-            n_trials=20,
-            dbscan_params=dbscan_params,
-            gmm_params=gmm_params
+    analyzer= DeliqClusteringAnalyzer(initial_weights=initial_weights,
+                                      optimal_method='SLSQP',
+                                      random_state=RANDOM_STATE)  # AÑADIDO: usar semilla
+    
+    data = analyzer.load_and_merge_features(outliers_field=outliers_field)
+    analyzer.calculate_deliq_score()
+    data_array = data[['deliq_score', 'votes', 'n_comments']].values
+    hopkins_stat = analyzer.hopkins_statistic(data_array, sample_ratio=0.3, random_state=RANDOM_STATE)
+    print(f"Hopkins Statistic: {hopkins_stat:.4f}")
+
+    if hopkins_stat > 0.5:
+        for method in methods:
+            print(f"\n{'='*20} OPTIMIZATION METHOD: {method} {'='*20}")
+            # MODIFICADO: Añadir random_state
+            analyzer = DeliqClusteringAnalyzer(initial_weights=initial_weights,
+                                               optimal_method=method,
+                                               random_state=RANDOM_STATE)
+
+            # Cargar datos
+            data = analyzer.load_and_merge_features(outliers_field=outliers_field)
+
+            # Calcular DELIQ score inicial
+            analyzer.calculate_deliq_score()
+
+            # Parámetros de clustering
+            dbscan_params = {'eps': 0.7, 'min_samples': 10, 'standardize': True}
+            gmm_params = {'n_components': 3, 'covariance_type': 'full', 'standardize': True, 'random_state': RANDOM_STATE}
+            
+            # Clustering inicial
+            dbscan_initial = analyzer.dbscan_clustering(**dbscan_params)
+            gmm_initial = analyzer.gmm_clustering(**gmm_params)
+            
+            # Optimizar pesos
+            optimization_results = analyzer.optimize_weights(
+                algorithm='both',
+                n_trials=20,
+                dbscan_params=dbscan_params,
+                gmm_params=gmm_params
+            )
+            
+            # Evaluar con pesos optimizados
+            for algo, initial_result in zip(['dbscan', 'gmm'], [dbscan_initial, gmm_initial]):
+                if algo in optimization_results:
+                    optimal_weights = optimization_results[algo]['optimal_weights']
+                    optimal_iters = optimization_results[algo]['n_iterations']
+                    analyzer.calculate_deliq_score(optimal_weights)
+                    if algo == 'dbscan':
+                        final_result = analyzer.dbscan_clustering(**dbscan_params)
+                    else:
+                        final_result = analyzer.gmm_clustering(**gmm_params)
+                    # Calculate improvement percentage
+                    init_sil = initial_result.get('silhouette_score', float('nan'))
+                    final_sil = final_result.get('silhouette_score', float('nan'))
+                    if np.isnan(init_sil) or init_sil == 0:
+                        improvement_pct = float('nan')
+                    else:
+                        improvement_pct = 100 * (final_sil - init_sil) / abs(init_sil)
+            
+                    comparison_table.append({
+                        'Method': method,
+                        'Algorithm': algo.upper(),
+                        'Outlier Field': outliers_field,
+                        'Initial Silhouette': init_sil,
+                        'Final Silhouette': final_sil,
+                        'Improvement (%)': improvement_pct,
+                        'Optimized Weights': np.round(optimal_weights, 4),
+                        'Max Iter Achieved': optimal_iters,
+                        'Initial Result': initial_result,
+                        'Final Result': final_result,
+                        'Analyzer': analyzer  # Save analyzer for plotting
+                    })
+
+        # Imprimir tabla comparativa
+        print("\n" + "="*80)
+        print("COMPARATIVE TABLE OF OPTIMIZATION METHODS")
+        print("="*80)
+        print(f"Random State Used: {RANDOM_STATE}")  # AÑADIDO
+        print(f"{'Method':<10} {'Algorithm':<8} {'Outlier Field':<14} {'Init Silh.':<12} {'Final Silh.':<12} {'% Improv.':<12} {'Max Iter':<10} {'Optimized Weights'}")
+        for row in comparison_table:
+            init_sil = row['Initial Silhouette']
+            final_sil = row['Final Silhouette']
+            improvement = row['Improvement (%)']
+            maxiter = row['Max Iter Achieved']
+            print(f"{row['Method']:<10} {row['Algorithm']:<8} {row['Outlier Field']:<14} "
+                f"{init_sil:<12.4f} {final_sil:<12.4f} "
+                f"{improvement if not np.isnan(improvement) else 'N/A':<12.2f} "
+                f"{maxiter:<10} {row['Optimized Weights']}")
+
+        # Detectar el mejor % Improvement
+        best_row = max(
+            (r for r in comparison_table if not np.isnan(r['Improvement (%)'])),
+            key=lambda r: r['Improvement (%)'],
+            default=0
         )
-        
-        # Evaluar con pesos optimizados
-        for algo, initial_result in zip(['dbscan', 'gmm'], [dbscan_initial, gmm_initial]):
-            if algo in optimization_results:
-                optimal_weights = optimization_results[algo]['optimal_weights']
-                optimal_iters = optimization_results[algo]['n_iterations']
-                analyzer.calculate_deliq_score(optimal_weights)
-                if algo == 'dbscan':
-                    final_result = analyzer.dbscan_clustering(**dbscan_params)
-                else:
-                    final_result = analyzer.gmm_clustering(**gmm_params)
-                # Calculate improvement percentage
-                init_sil = initial_result.get('silhouette_score', float('nan'))
-                final_sil = final_result.get('silhouette_score', float('nan'))
-                if np.isnan(init_sil) or init_sil == 0:
-                    improvement_pct = float('nan')
-                else:
-                    improvement_pct = 100 * (final_sil - init_sil) / abs(init_sil)
-        
-                comparison_table.append({
-                    'Method': method,
-                    'Algorithm': algo.upper(),
-                    'Outlier Field': outliers_field,
-                    'Initial Silhouette': init_sil,
-                    'Final Silhouette': final_sil,
-                    'Improvement (%)': improvement_pct,
-                    'Optimized Weights': np.round(optimal_weights, 4),
-                    'Max Iter Achieved': optimal_iters,
-                    'Initial Result': initial_result,
-                    'Final Result': final_result,
-                    'Analyzer': analyzer  # Save analyzer for plotting
-                })
 
-    # Imprimir tabla comparativa
-    print("\n" + "="*80)
-    print("COMPARATIVE TABLE OF OPTIMIZATION METHODS")
-    print("="*80)
-    print(f"Random State Used: {RANDOM_STATE}")  # AÑADIDO
-    print(f"{'Method':<10} {'Algorithm':<8} {'Outlier Field':<14} {'Init Silh.':<12} {'Final Silh.':<12} {'% Improv.':<12} {'Max Iter':<10} {'Optimized Weights'}")
-    for row in comparison_table:
-        init_sil = row['Initial Silhouette']
-        final_sil = row['Final Silhouette']
-        improvement = row['Improvement (%)']
-        maxiter = row['Max Iter Achieved']
-        print(f"{row['Method']:<10} {row['Algorithm']:<8} {row['Outlier Field']:<14} "
-              f"{init_sil:<12.4f} {final_sil:<12.4f} "
-              f"{improvement if not np.isnan(improvement) else 'N/A':<12.2f} "
-              f"{maxiter:<10} {row['Optimized Weights']}")
+        if best_row:
+            print("\n" + "="*40)
+            print("BEST IMPROVEMENT FOUND:")
+            print("="*40)
+            print(f"Method: {best_row['Method']}, Algorithm: {best_row['Algorithm']}, Improvement: {best_row['Improvement (%)']:.2f}%")
+            analyzer = best_row['Analyzer']
+            print("Plotting clustering results before optimization...")
+            analyzer.plot_clustering_results(best_row['Initial Result'])
+            print("Plotting clustering results after optimization...")
+            analyzer.plot_clustering_results(best_row['Final Result'])
+        else:
+            print("No valid improvement found.")
 
-    # Detectar el mejor % Improvement
-    best_row = max(
-        (r for r in comparison_table if not np.isnan(r['Improvement (%)'])),
-        key=lambda r: r['Improvement (%)'],
-        default=0
-    )
-
-    if best_row:
-        print("\n" + "="*40)
-        print("BEST IMPROVEMENT FOUND:")
-        print("="*40)
-        print(f"Method: {best_row['Method']}, Algorithm: {best_row['Algorithm']}, Improvement: {best_row['Improvement (%)']:.2f}%")
-        analyzer = best_row['Analyzer']
-        print("Plotting clustering results before optimization...")
-        analyzer.plot_clustering_results(best_row['Initial Result'])
-        print("Plotting clustering results after optimization...")
-        analyzer.plot_clustering_results(best_row['Final Result'])
-    else:
-        print("No valid improvement found.")
-
-    # Guardar datos
-    data.to_excel('src/results/data_deliq_scores.xlsx', index=False)
+        # Guardar datos
+        data.to_excel('src/results/data_deliq_scores.xlsx', index=False)

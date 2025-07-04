@@ -9,7 +9,7 @@ import seaborn as sns
 from upsetplot import UpSet
 from wordcloud import WordCloud
 from typing import Dict, List
-# from config.config import DOMAINS_TAGS
+
 
 
 class Visualize:
@@ -118,17 +118,114 @@ class Visualize:
         plt.show()
         plt.close()
 
+    def plot_histogram(self, directory: str, column_name: str, title: str = "Histogram"):
+        """
+        Create a histogram to visualize the distribution of a specific column,
+        including mean, std, and percentiles in the plot.
+        """
+        df = pd.read_excel(directory)
+        data = df.copy()
+        values = data[column_name].dropna()
 
-if __name__ == "__main__":
-    viz = Visualize()
+        mean = values.mean()
+        std = values.std()
+        p25 = values.quantile(0.25)
+        p50 = values.quantile(0.5)
+        p75 = values.quantile(0.75)
+
+        plt.figure(figsize=(10, 6))
+        sns.histplot(values, bins=20, color='blue', alpha=0.6, kde=True)
+        plt.title(title)
+        plt.xlabel(column_name)
+        plt.ylabel('Frequency')
+
+        # Add vertical lines for mean and percentiles
+        plt.axvline(mean, color='red', linestyle='--', label=f'Mean')
+        plt.axvline(p25, color='green', linestyle=':', label=f'25th or Median')
+        plt.axvline(p50, color='orange', linestyle='-.', label=f'50th')
+        plt.axvline(p75, color='purple', linestyle=':', label=f'75th')
+
+        # Add text box with stats
+        stats_text = (
+            f"Mean: {mean:.2f}\n"
+            f"Std: {std:.2f}\n"
+            f"25th: {p25:.2f}\n"
+            f"50th: {p50:.2f}\n"
+            f"75th: {p75:.2f}"
+        )
+        plt.gca().text(
+            0.98, 0.98, stats_text,
+            transform=plt.gca().transAxes,
+            fontsize=10,
+            verticalalignment='top',
+            horizontalalignment='right',
+            bbox=dict(boxstyle='round', facecolor='white', alpha=0.7)
+        )
+
+        plt.legend()
+        plt.savefig(f"src/results/histogram_plot_{column_name}.png", dpi=300, bbox_inches='tight')
+        plt.show()
+        plt.close()
+
+    def plot_adapter_box(self, directory: str):
+            # 3. Análisis de adaptadores vs score
+        adapters = ['relevance_ad', 'fact_ad', 'opinion_ad', 'justification_ad', 'solproposal_ad',
+                'addknowledge_ad', 'question_ad', 'refusers_ad', 'refmedium_ad', 'refcontents_ad',
+                'refpersonal_ad', 'refformat_ad', 'address_ad', 'respect_ad', 'screaming_ad',
+                'vulgar_ad', 'insult_ad', 'sarcasm_ad', 'discrimination_ad', 'storytelling_ad']
+
+        df = pd.read_excel(directory)
+        df_melted = df.melt(id_vars=['score'], value_vars=adapters, 
+            var_name='Adaptador', value_name='Nivel')
+
+        # Only keep rows where Nivel is 1, 2, or 3
+        df_melted = df_melted[df_melted['Nivel'].isin([1, 2, 3])]
+
+        adapters_per_subplot = 10
+        num_adapters = len(adapters)
+        num_subplots = (num_adapters + adapters_per_subplot - 1) // adapters_per_subplot
+
+        fig, axes = plt.subplots(num_subplots, 1, figsize=(18, 4 * num_subplots), sharey=True)
+        if num_subplots == 1:
+            axes = [axes]
+
+        for i in range(num_subplots):
+            start = i * adapters_per_subplot
+            end = min(start + adapters_per_subplot, num_adapters)
+            subset_adapters = adapters[start:end]
+            df_subset = df_melted[df_melted['Adaptador'].isin(subset_adapters)]
+            ax = axes[i]
+            sns.boxplot(
+            x='Adaptador', y='score', hue='Nivel', data=df_subset,
+            palette="Set2", ax=ax
+            )
+            ax.set_xticklabels(ax.get_xticklabels(), rotation=0, ha='center')
+            ax.set_title(f'Distribución de scores por nivel ({start+1}-{end})')
+            if i == 0:
+                ax.legend(title='Nivel', bbox_to_anchor=(1.01, 1), loc='upper left', borderaxespad=0)
+            else:
+                ax.get_legend().remove()
+
+        fig.tight_layout()
+        fig.savefig("src/results/adapter_box_plot.png", dpi=300, bbox_inches='tight')
+        plt.show()
+        plt.close(fig)
+
+
+# if __name__ == "__main__":
+    # from config.config import DOMAINS_TAGS
+    # viz = Visualize(DOMAINS_TAGS)
     
     # Example usage
-    dir_processed_data = "src/results/processed_data.xlsx"
-    dir_kl_div = "src/results/kl_content_vs_domain.xlsx"
-    dir_ranked = "src/results/ranked_users.xlsx"
-    
-    viz.upset_plot(dir_processed_data, sheet_name="Discussions")
-    viz.plot_heatmap(dir_ranked, index_name="expertise", columns_name="medal", values_name="influence_score", title="Average Influence Score by Expertise and Medal")
-    viz.plot_heatmap(dir_processed_data, index_name="expertise", columns_name="medal", values_name="votes", title="Average Votes by Expertise and Medal")
-    viz.plot_wordcloud(dir_processed_data, forum_name='getting-started', title="Word Cloud of Topics")
-    viz.plot_kl_divergence(dir_kl_div, title="KL Divergence Results")
+    # dir_processed_data = "src/results/processed_data.xlsx"
+    # dir_kl_div = "src/results/kl_content_vs_domain.xlsx"
+    # dir_ranked = "src/results/ranked_users.xlsx"
+    # dir_scores = "src/results/data_deliq_scores.xlsx"
+
+    # viz.upset_plot(dir_processed_data, sheet_name="Discussions")
+    # viz.plot_heatmap(dir_ranked, index_name="expertise", columns_name="medal", values_name="influence_score", title="Average Influence Score by Expertise and Medal")
+    # viz.plot_heatmap(dir_processed_data, index_name="expertise", columns_name="medal", values_name="votes", title="Average Votes by Expertise and Medal")
+    # viz.plot_wordcloud(dir_processed_data, forum_name='getting-started', title="Word Cloud of Topics")
+    # viz.plot_kl_divergence(dir_kl_div, title="KL Divergence Results")
+    # viz.plot_histogram(dir_scores, column_name="score", title="Histograma de Puntuación de calidad Argumentativa (AQuA)")
+    # viz.plot_adapter_box(dir_scores)
